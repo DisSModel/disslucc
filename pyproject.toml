@@ -1,0 +1,27 @@
+[project]
+name = "disslucc"
+version = "0.2.0"
+description = "Raster-only, script-first port of disslucc-continuous (Demand/Potential/Allocation CLUE-like on top of dissmodel)."
+requires-python = ">=3.11"
+dependencies = [
+    "dissmodel==0.6.3",
+]
+
+[project.optional-dependencies]
+examples = ["matplotlib"]
+dev = ["mypy>=1.10"]
+
+[tool.mypy]
+python_version = "3.11"
+files = ["src/disslucc"]
+warn_return_any = true
+warn_unused_ignores = true
+disallow_untyped_defs = false
+ignore_missing_imports = true
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
