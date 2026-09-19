@@ -9,7 +9,7 @@ dependencies = [
 
 [project.optional-dependencies]
 examples = ["matplotlib"]
-dev = ["mypy>=1.10"]
+dev = ["mypy>=1.10", "pytest>=7"]
 
 [tool.mypy]
 python_version = "3.11"
