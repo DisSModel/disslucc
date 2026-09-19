@@ -15,6 +15,8 @@ disslucc-discrete/tests/test_benchmark_discriminance.py, not ported
 here).
 """
 from __future__ import annotations
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 import geopandas as gpd
@@ -25,8 +27,11 @@ from disslucc import DemandPreComputedValues, PotentialDLogisticRegression, Allo
 from disslucc.schemas import LogisticRegressionSpec
 from disslucc.validation.pontius import pontius_millones, confusion_metrics
 
-CS_MOJU_SHP = "/tmp/moju/cs_moju.shp"
-TERRAME_SHP = "/tmp/lab15_ref/Lab6_2004.shp"
+ROOT = Path(__file__).resolve().parent.parent
+# Both zips are read directly -- GDAL opens a single-layer shapefile zip
+# without manual extraction, same as the tests in disslucc-discrete do.
+CS_MOJU_ZIP = ROOT / "data" / "cs_moju.zip"
+TERRAME_ZIP = ROOT / "benchmark" / "data" / "Lab15_2004.zip"
 
 LAND_USE_TYPES = ["f", "d", "o"]
 N_STEPS = 6
@@ -75,7 +80,7 @@ def build_backend_by_rowcol(gdf: gpd.GeoDataFrame) -> tuple[RasterBackend, np.nd
 
 # ── 1. real data + grid aligned by (lin, col) ─────────────────────────────────
 
-gdf = gpd.read_file(CS_MOJU_SHP)
+gdf = gpd.read_file(CS_MOJU_ZIP)
 backend, rows, cols = build_backend_by_rowcol(gdf)
 print(f"Backend: shape={backend.shape}, {len(rows):,} valid cells")
 
@@ -104,7 +109,7 @@ for i, lu in enumerate(LAND_USE_TYPES):
 
 # ── 3. compare cell by cell against the real TerraME reference ───────────────
 
-terrame = gpd.read_file(TERRAME_SHP)
+terrame = gpd.read_file(TERRAME_ZIP)
 
 ours_df = pd.DataFrame({
     "lin": rows, "col": cols, "d_ours": backend.get("d")[rows, cols],
