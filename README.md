@@ -5,8 +5,11 @@ script-first, on top of [`dissmodel`](https://github.com/DisSModel/dissmodel).
 Unified port of
 [`disslucc-continuous`](https://github.com/DisSModel/disslucc-continuous)
 (continuous CLUE) and [`disslucc-discrete`](https://github.com/DisSModel/disslucc-discrete)
-(discrete CLUE-S), validated cell by cell against the original TerraME
-reference in both cases — see [`docs/validation.md`](docs/validation.md).
+(discrete CLUE-S), validated against the original TerraME reference on
+real data for both: Lab1 (continuous) within the official 0.01 MAE
+tolerance, Lab15 (discrete) at exact, 100% cell-by-cell agreement —
+see [`docs/validation.md`](docs/validation.md) for both results and
+what each one does and doesn't prove.
 
 ```bash
 pip install -e ".[examples]"
@@ -53,7 +56,15 @@ the first time.
 ```bash
 pip install -e ".[dev]"
 mypy src/disslucc
+pytest tests/ -v
 ```
+
+CI (`.github/workflows/tests.yml`) runs the same test suite on every push
+and pull request. `tests/` includes the Lab1/Lab15 validation numbers as
+real assertions, plus the discriminance suites ported from
+`disslucc-continuous`/`disslucc-discrete` -- these check whether the
+benchmark itself can tell a correct implementation from a wrong one, not
+just whether it reproduces the reference.
 
 ## Structure
 
@@ -66,7 +77,11 @@ disslucc/
 │   │   ├── potential/    #   linear.py (continuous) + logistic.py (discrete)
 │   │   └── allocation/   #   clue.py (continuous) + clue_s.py (discrete)
 │   ├── validation/      # shared continuous + discrete (outside components/, see architecture.md)
+│   │   └── naive_baseline.py  # discriminance baseline for Lab15
 │   └── executors/        # ModelExecutor -- automatic provenance, second entry point
 ├── examples/          # ready-made scripts, synthetic, real data, and via Executor
+│   └── data/          # vendored Lab1 input + demand data
+├── data/, benchmark/data/   # vendored TerraME reference data (Lab1, Lab15)
+├── tests/             # pytest suite -- validation + discriminance, run by CI
 └── docs/
 ```
