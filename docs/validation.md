@@ -35,6 +35,14 @@ allocated quantity, not position.
 
 Reproduce: `examples/run_lab1_validation.py`.
 
+Provenance: the original LuccME scripts that generated this reference
+(`Lab1`, `maxDifference=1643`) are vendored at
+`benchmark/reference/lab1_main.lua` + `lab1_submodel.lua`. These are
+**not** the same scripts as `terrame/luccme`'s public
+`tests/functional/lab01.lua`, which shares this scenario's coefficients
+and demand but declares a different `maxDifference` (5000) and did not
+generate this data -- see `benchmark/reference/README.md`.
+
 ## Lab15 (discrete) — deforestation, Moju region
 
 Real data: `data/cs_moju.zip` (shapefile, 5,914 cells) from
@@ -60,6 +68,18 @@ documented in `disslucc-discrete` itself
 TerraME d_out").
 
 Reproduce: `examples/run_lab15_validation.py`.
+
+Provenance: despite the "Lab15" label used throughout this project
+(inherited from `disslucc-discrete`), the script that actually
+generated this reference is named `Lab6` internally
+(`outputTheme = "Lab6_"`, `maxDifference=10`), vendored unmodified at
+`benchmark/reference/lab15_main.lua` + `lab15_submodel.lua` (renamed
+from the originals' `lab6_main.lua`/`lab6_submodel.lua` to match this
+project's "Lab15" naming). This is **not** the same script as
+`terrame/luccme`'s public `tests/functional/lab15.lua`, which shares
+this scenario's coefficients and demand but declares a different
+`maxDifference` (300) and did not generate this data -- see
+`benchmark/reference/README.md` for the full trace.
 
 ### Discriminance warning (inherited, not my own achievement)
 

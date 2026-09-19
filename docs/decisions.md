@@ -411,3 +411,66 @@ coming from TOML/JSON).
 
 `mypy src/disslucc` clean after the change. Retested the six scripts --
 Lab1 checksum identical, Lab1/Lab15 MAE/accuracy unchanged.
+
+## Roadmap: `disslucc` as the single successor, post-JOSS (2026-09-19, not yet decided)
+
+Recorded here as intent, not as something already executed. Nothing
+below has been done; this is a checklist to pick back up once the
+conditions hold.
+
+**The idea.** `terrame/luccme` itself is a single repository, with
+continuous and discrete as components side by side inside the same
+framework. `disslucc-continuous` and `disslucc-discrete` (split for
+independent JOSS/CNPq-fellow ownership) don't mirror that -- `disslucc`
+now does, and after today's work (LICENSE, CI, `pytest` suite,
+`CITATION.cff`, `ModelExecutor`/`ExperimentRecord`, and vendored
+provenance for both Lab1 and Lab15 at `benchmark/reference/`) it's no
+longer behind the two separate repos on engineering grounds. Making it
+*the* repository people cite as "LuccME in Python" is a stronger,
+simpler story than pointing at two packages that together replicate
+it.
+
+**Why not now.** Three things currently depend on the split staying as
+it is:
+
+1. `paper.md`'s Lab1 section reports `Vector vs TerraME` *and*
+   `Raster vs TerraME` (both 87.37%), plus a `Vector vs Raster`
+   cross-substrate consistency check. That comes from
+   `disslucc-continuous`, which keeps both substrates.
+   `disslucc` is raster-only by deliberate decision (see the top of
+   this file) -- dropping the vector comparison from the paper is fine
+   *if it's an explicit rewrite*, not an accidental loss.
+2. The paper's "Research Impact Statement" uses the fact that
+   `disslucc-continuous`, `disslucc-discrete`, `brmangue-dissmodel` and
+   `disscube` are independently owned repositories as evidence that
+   the `ModelExecutor` contract generalizes across packages without
+   core changes -- tied to H1 in the CNPq proposal (fellow-owned
+   repos). Collapsing them weakens that specific argument unless the
+   text is rewritten alongside the migration.
+3. `dissmodel` is currently under JOSS review citing
+   `disslucc-continuous`/`disslucc-discrete` by name
+   (`[@DisSLUCCDiscrete]` in `paper.bib`). Changing what's cited
+   mid-review is friction worth avoiding.
+
+**Conditions to revisit this:**
+
+- [ ] JOSS review of `dissmodel` reaches a final decision (accept or
+      otherwise) -- don't touch the citation while it's still open.
+- [ ] Decide, explicitly, whether the vector substrate is ever coming
+      back to `disslucc`, or whether "raster only" becomes the
+      permanent story for the whole ecosystem (in which case the
+      paper's `Vector vs Raster` check is retired, not replaced).
+- [ ] If unifying: release a final tagged version of
+      `disslucc-continuous` and `disslucc-discrete`, mint a Zenodo DOI
+      for each, then archive (not delete) both -- so every citation
+      already printed in the accepted paper keeps resolving.
+- [ ] Rewrite the paper's Research Impact paragraph to describe
+      `disslucc` as the unified successor, without losing the
+      "independently owned packages" evidence for H1 -- possibly by
+      keeping `brmangue-dissmodel`/`disscube` as the examples for that
+      specific claim instead.
+- [ ] Lab15's discriminance gap (a trivial static ranking currently
+      reproduces the TerraME output cell-for-cell) is a weaker spot to
+      have in the flagship repo than in a secondary one; the planned
+      dynamic-covariate scenario should probably land before `disslucc`
+      becomes the primary citation, not after.
