@@ -40,6 +40,7 @@ from dissmodel.executor import ExperimentRecord, ModelExecutor
 from dissmodel.geo import RasterBackend
 from dissmodel.io import load_dataset
 from dissmodel.io.convert import vector_to_raster_backend
+from dissmodel.io.raster import save_geotiff
 
 
 class LuccExecutorBase(ModelExecutor):
@@ -87,10 +88,45 @@ class LuccExecutorBase(ModelExecutor):
         raise NotImplementedError("Subclasses implement run() -- this is where continuous and discrete genuinely diverge")
 
     def save(self, result: dict, record: ExperimentRecord) -> ExperimentRecord:
-        record.metrics.update(result["metrics"])
-        record.artifacts["output"] = self._sha256(
-            b"".join(result["backend"].get(lu).tobytes() for lu in result["land_use_types"])
+        """
+        Writes the land-use bands (+ "mask", if present) as a GeoTIFF to
+        `record.output_path` -- local path or `s3://` (MinIO), same
+        convention as `brmangue-dissmodel`'s `RasterExecutor.save()`
+        (checked against its source, not from memory). Georeferencing
+        (`crs`/`transform`) comes straight off the `RasterBackend`:
+        `vector_to_raster_backend()` (called in `load()`) already sets
+        both from the source GeoDataFrame, so no separate `meta` dict is
+        needed the way `brmangue`'s `load_geotiff()`-based load() needs
+        one.
+
+        Before this, `save()` only hashed the backend's raw array bytes
+        in memory (`record.artifacts["output"]`) and never wrote
+        anything to `record.output_path` -- `--output`/`record.output_path`
+        were accepted but silently ignored. That checksum is not the
+        same value as the sha256 of the GeoTIFF this now writes (GeoTIFF
+        framing/compression changes the bytes, not the data); nothing in
+        `tests/` asserted the old value -- only docs/decisions.md's
+        narrative history cites it, which is left as-is (append, don't
+        rewrite history).
+        """
+        backend = result["backend"]
+        land_use_types = result["land_use_types"]
+
+        band_spec = [(lu, str(backend.get(lu).dtype), -1.0) for lu in land_use_types]
+        if "mask" in backend.arrays:
+            band_spec.append(("mask", str(backend.get("mask").dtype), 0.0))
+
+        uri = record.output_path or f"output_{record.experiment_id[:8]}.tif"
+        checksum = save_geotiff(
+            (backend, {"crs": backend.crs, "transform": backend.transform}),
+            uri,
+            band_spec=band_spec,
         )
+
+        record.metrics.update(result["metrics"])
+        record.output_path = uri
+        record.artifacts["output"] = checksum
         record.status = "completed"
         record.add_log(result["final_log"])
+        record.add_log(f"Saved to {uri}")
         return record

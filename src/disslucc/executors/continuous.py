@@ -114,3 +114,12 @@ class LuccContinuousExecutor(LuccExecutorBase):
             "metrics": {f"final_{lu}_area": a for lu, a in areas.items()} | {"ms_per_step": elapsed_ms},
             "final_log": f"Final areas: {areas}",
         }
+
+
+if __name__ == "__main__":
+    # `python -m disslucc.executors.continuous run --toml ... --input ...`
+    # -- see dissmodel's docs/api/executor/cli.md for the `run`/`validate`/
+    # `show` subcommands this exposes, and examples/dissmodel-configs/
+    # lucc_continuous.toml for a real, validated model.toml.
+    from dissmodel.executor.cli import run_cli
+    run_cli(LuccContinuousExecutor)

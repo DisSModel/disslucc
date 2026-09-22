@@ -1,0 +1,69 @@
+# configs/models/lucc_discrete.toml
+#
+# Registers disslucc's LuccDiscreteExecutor with dissmodel-platform.
+# See lucc_continuous.toml in this directory for the full explanation
+# of the [model] vs [model.parameters] split and the open item this
+# depends on (docs/decisions.md, "TOML config example added for the
+# executors path").
+#
+# Encodes the same Lab15/Moju coefficients as
+# examples/run_lab15_via_executor.py, so the two are directly
+# comparable.
+
+[model]
+executor_module  = "disslucc.executors"
+name             = "lucc_discrete"
+class            = "lucc_discrete"
+description      = "LUCC discrete simulation (CLUE-S-like, logistic regression potential)"
+package          = "git+https://github.com/DisSModel/disslucc@main"
+dissmodel        = ">=0.6.0,<0.7.0"
+
+# Model-level config read from spec (record.resolved_spec["model"]),
+# merged into record.parameters by the platform before run().
+land_use_types   = ["f", "d", "o"]
+cell_area        = 1.0
+resolution       = 0.00455  # cs_moju is in EPSG:4618 (degrees); ~84x92 cells
+
+# transition_matrix: [region][from][to] -- f and d are irreversible to
+# each other (0), d is irreversible to o (0); o stays absorbing.
+transition_matrix = [[[1, 1, 0], [0, 1, 0], [0, 0, 1]]]
+
+# Runtime parameters (record.parameters).
+# demand_csv must be supplied at experiment time -- no sensible default.
+[model.parameters]
+n_steps          = 6
+max_difference   = 100.0  # looser than the exact-validation tolerance (10.0) used in
+                            # run_lab15_validation.py -- see that script's comment:
+                            # resolution-based rasterization here doesn't reproduce
+                            # TerraME's exact cell count the way direct row/col
+                            # alignment does.
+factor_iteration = 0.0001
+
+[[model.potential_data]]
+lu         = "f"
+const      = -2.34187976925989
+elasticity = 0.0
+  [model.potential_data.betas]
+  media_decl = -0.0272710076327129
+  dist_area_ =  4.30977432375496
+  dist_br    =  3.10319957497883
+  dist_curua =  0.445414024051873
+  dist_rios_ = 47.3556329553235
+  dist_estra = 38.4966894254506
+
+[[model.potential_data]]
+lu         = "d"
+const      = -0.100351497277102
+elasticity = 0.6
+  [model.potential_data.betas]
+  media_decl =  0.0581358851690861
+  dist_area_ = -0.974998890251365
+  dist_br    = -2.51650696123426
+  dist_curua = -1.26742746441679
+  dist_rios_ = -40.3646901047482
+  dist_estra = -23.0841140199094
+
+[[model.potential_data]]
+lu         = "o"
+const      = 0.01
+elasticity = 0.5

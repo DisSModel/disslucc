@@ -86,3 +86,11 @@ class LuccDiscreteExecutor(LuccExecutorBase):
             "metrics": {f"final_{lu}_cells": c for lu, c in counts.items()} | {"ms_per_step": elapsed_ms},
             "final_log": f"Final counts: {counts}",
         }
+
+
+if __name__ == "__main__":
+    # `python -m disslucc.executors.discrete run --toml ... --input ...`
+    # -- see continuous.py's __main__ block and
+    # examples/dissmodel-configs/lucc_discrete.toml.
+    from dissmodel.executor.cli import run_cli
+    run_cli(LuccDiscreteExecutor)

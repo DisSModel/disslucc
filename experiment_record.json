@@ -1,0 +1,197 @@
+{
+  "experiment_id": "9b70aa93fa354f96946d23525432cd5a",
+  "created_at": "2026-09-22T11:32:49.275860Z",
+  "model_name": "local",
+  "model_commit": "local-cli",
+  "code_version": "dev",
+  "resolved_spec": {
+    "model": {
+      "executor_module": "disslucc.executors",
+      "name": "lucc_continuous",
+      "class": "lucc_continuous",
+      "description": "LUCC continuous simulation (CLUE-like, linear regression potential)",
+      "package": "git+https://github.com/DisSModel/disslucc@main",
+      "dissmodel": ">=0.6.0,<0.7.0",
+      "land_use_types": [
+        "f",
+        "d",
+        "outros"
+      ],
+      "land_use_no_data": "outros",
+      "complementar_lu": "f",
+      "cell_area": 25.0,
+      "resolution": 5000.0,
+      "static": {
+        "f": -1,
+        "d": -1,
+        "outros": 1
+      },
+      "parameters": {
+        "n_steps": 7
+      },
+      "potential_data": [
+        {
+          "lu": "f",
+          "const": 0.7392,
+          "betas": {
+            "assentamen": -0.2193,
+            "uc_us": 0.1754,
+            "uc_pi": 0.09708,
+            "ti": 0.1207,
+            "dist_riobr": 2.388e-7,
+            "fertilidad": -0.1313
+          }
+        },
+        {
+          "lu": "d",
+          "const": 0.267,
+          "betas": {
+            "rodovias": -9.922e-7,
+            "assentamen": 0.2294,
+            "uc_us": -0.09867,
+            "dist_riobr": -3.216e-7,
+            "fertilidad": 0.1281
+          }
+        },
+        {
+          "lu": "outros",
+          "const": 0.0
+        }
+      ],
+      "allocation_data": [
+        {
+          "lu": "f",
+          "static": -1,
+          "min_value": 0,
+          "max_value": 1,
+          "min_change": 0,
+          "max_change": 1
+        },
+        {
+          "lu": "d",
+          "static": -1,
+          "min_value": 0,
+          "max_value": 1,
+          "min_change": 0,
+          "max_change": 1
+        },
+        {
+          "lu": "outros",
+          "static": 1,
+          "min_value": 0,
+          "max_value": 1,
+          "min_change": 0,
+          "max_change": 1
+        }
+      ]
+    }
+  },
+  "source": {
+    "type": "local",
+    "uri": "data/input/csAC.zip",
+    "collection": "",
+    "version": "",
+    "checksum": "dc659e611cb082bc40a2acbac8ec816cbaff66bf5c97f4940abe8c7c3c91a6eb"
+  },
+  "input_format": "auto",
+  "column_map": {},
+  "band_map": {},
+  "parameters": {
+    "land_use_types": [
+      "f",
+      "d",
+      "outros"
+    ],
+    "land_use_no_data": "outros",
+    "complementar_lu": "f",
+    "cell_area": 25.0,
+    "resolution": 5000.0,
+    "static": {
+      "f": -1,
+      "d": -1,
+      "outros": 1
+    },
+    "potential_data": [
+      {
+        "lu": "f",
+        "const": 0.7392,
+        "betas": {
+          "assentamen": -0.2193,
+          "uc_us": 0.1754,
+          "uc_pi": 0.09708,
+          "ti": 0.1207,
+          "dist_riobr": 2.388e-7,
+          "fertilidad": -0.1313
+        }
+      },
+      {
+        "lu": "d",
+        "const": 0.267,
+        "betas": {
+          "rodovias": -9.922e-7,
+          "assentamen": 0.2294,
+          "uc_us": -0.09867,
+          "dist_riobr": -3.216e-7,
+          "fertilidad": 0.1281
+        }
+      },
+      {
+        "lu": "outros",
+        "const": 0.0
+      }
+    ],
+    "allocation_data": [
+      {
+        "lu": "f",
+        "static": -1,
+        "min_value": 0,
+        "max_value": 1,
+        "min_change": 0,
+        "max_change": 1
+      },
+      {
+        "lu": "d",
+        "static": -1,
+        "min_value": 0,
+        "max_value": 1,
+        "min_change": 0,
+        "max_change": 1
+      },
+      {
+        "lu": "outros",
+        "static": 1,
+        "min_value": 0,
+        "max_value": 1,
+        "min_change": 0,
+        "max_change": 1
+      }
+    ],
+    "n_steps": 7,
+    "demand_csv": "data/input/examples_demand_lab1.csv"
+  },
+  "period": null,
+  "output_path": null,
+  "artifacts": {
+    "output": "853e0e1e65f3ea12c9b49a33f45a4c3521c6d4de8a1b3249c486c2bd95fec90d",
+    "profiling": "f89b8f17df33a99ab72aea6eb3c9ffaba60faeee57aca75ab07ff4c4d5580df8"
+  },
+  "metrics": {
+    "final_f_area": 134724.37744140625,
+    "final_d_area": 23136.416625976562,
+    "final_outros_area": 6489.2120361328125,
+    "ms_per_step": 41.42047028575949,
+    "time_validate_sec": 0.0,
+    "time_load_sec": 4.109,
+    "time_run_sec": 0.29,
+    "time_save_sec": 0.0,
+    "time_total_sec": 4.4
+  },
+  "status": "completed",
+  "logs": [
+    "Loaded: 6,574 features",
+    "Rasterized: shape=(89, 165)",
+    "Ran 7 steps (41.4 ms/step)",
+    "Final areas: {'f': 134724.37744140625, 'd': 23136.416625976562, 'outros': 6489.2120361328125}",
+    "Saved profiling artifact → ./profiling_9b70aa93.md"
+  ]
+}

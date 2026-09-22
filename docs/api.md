@@ -289,9 +289,14 @@ premature abstraction. Provides:
   Same convention as the real `LUCCRasterExecutor`, checked against the
   source: rasterizing is expensive, it runs once inside `load()`,
   never inside `run()`.
-- `save()` -- a default that serves both cases:
-  `record.metrics.update(result["metrics"])`, output checksum, status,
-  final log
+- `save()` -- a default that serves both cases: writes the land-use
+  bands (+ `"mask"`, if present) as a GeoTIFF to `record.output_path`
+  -- local path or `s3://` (MinIO), via `dissmodel.io.raster.save_geotiff`
+  -- then `record.metrics.update(result["metrics"])`, output checksum
+  (of the written file), status, final log. `crs`/`transform` come
+  straight off the `RasterBackend` (`load()` already sets both via
+  `vector_to_raster_backend`). Same mechanism as
+  `brmangue-dissmodel`'s `RasterExecutor.save()`.
 
 `run(data, record)` remains abstract -- `data` arrives as the
 `RasterBackend` already built (not the GeoDataFrame); subclasses just
@@ -340,3 +345,50 @@ print(record.metrics, record.artifacts, record.source.checksum)
 
 See `examples/run_lab1_via_executor.py` and
 `examples/run_lab15_via_executor.py` for a full example with real data.
+
+### Registering with `dissmodel-configs` (TOML)
+
+The Executors are also the entry point registered in
+[`dissmodel-configs`](https://github.com/DisSModel/dissmodel-configs)
+for running on `dissmodel-platform`, and (as of the `dissmodel` fix
+below) runnable locally too, via `dissmodel.executor.cli.run_cli`
+(`continuous.py`/`discrete.py` each have an `if __name__ == "__main__"`
+block):
+
+```bash
+python -m disslucc.executors.continuous run \
+  --toml examples/dissmodel-configs/lucc_continuous.toml \
+  --input data/input/csAC.zip \
+  --param demand_csv=data/input/examples_demand_lab1.csv
+```
+
+`examples/dissmodel-configs/` has one TOML per executor --
+[`lucc_continuous.toml`](../examples/dissmodel-configs/lucc_continuous.toml)
+and
+[`lucc_discrete.toml`](../examples/dissmodel-configs/lucc_discrete.toml)
+-- each encoding the exact same coefficients as its `*_via_executor.py`
+sibling above (verified: same final metrics, same output checksum for
+the continuous/Lab1 case). Everything under `[model]` besides
+`[model.parameters]` (`land_use_types`, `[[model.potential_data]]`,
+`[[model.allocation_data]]`, `static`, `transition_matrix`, ...) is
+what gets merged into `record.parameters` before `run()` is called --
+by the platform when registered in `dissmodel-configs`, and (as of the
+fix below) by `dissmodel.executor.cli` for local `--toml` runs too.
+Table names match this package's own `required_parameters`
+(`potential_data`/`allocation_data`, not the shorter `potential`/
+`allocation` used in some other `dissmodel-configs` entries) --
+`disslucc`'s executors read those keys as-is, with no renaming layer
+of its own.
+
+> **Needs a `dissmodel` release past `0.6.3`.** The local-`--toml`
+> merge above didn't exist in `dissmodel`'s CLI before this was found
+> (only `[model.parameters]` was ever read into `record.parameters`,
+> matching the docstring's promise but not the code -- confirmed
+> against a fresh clone of `DisSModel/dissmodel@main`, not a stale
+> local copy). A fix was written and validated (full `dissmodel` test
+> suite + new regression tests for the merge, `mypy` clean, and this
+> exact `lucc_continuous.toml`/`lucc_discrete.toml` run end-to-end
+> through the real CLI with matching output checksums) but is not yet
+> merged/released upstream -- `disslucc` pins `dissmodel==0.6.3`
+> exactly, which predates it. See `docs/decisions.md`, "TOML config
+> example added for the executors path", for the full history.
