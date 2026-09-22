@@ -21,10 +21,9 @@ from disslucc import DemandPreComputedValues, PotentialLinearRegression, Allocat
 from disslucc.schemas import RegressionSpec, AllocationSpec
 from disslucc.components.demand import load_demand_csv
 
-DATA_DIR = Path("/tmp/csAC")  # shapefile already extracted from the original repo's csAC.zip
-DEMAND_CSV = Path(
-    "/home/claude/disslucc-continuous/examples/data/input/examples_demand_lab1.csv"
-)
+ROOT = Path(__file__).resolve().parent.parent
+CSAC_ZIP = ROOT / "examples" / "data" / "input" / "csAC.zip"
+DEMAND_CSV = ROOT / "examples" / "data" / "input" / "examples_demand_lab1.csv"
 
 LAND_USE_TYPES = ["f", "d", "outros"]
 DRIVER_COLS = ["assentamen", "uc_us", "uc_pi", "ti", "dist_riobr", "fertilidad", "rodovias"]
@@ -35,7 +34,7 @@ CELL_AREA = 25.0
 
 # ── 1. load the real shapefile and rasterize (same call as the real executor) ─
 
-gdf = gpd.read_file(DATA_DIR / "csAC.shp")
+gdf = gpd.read_file(CSAC_ZIP)
 attrs = {lu: 0.0 for lu in LAND_USE_TYPES}
 attrs.update({col: 0.0 for col in DRIVER_COLS})
 

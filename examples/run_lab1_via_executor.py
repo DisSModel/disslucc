@@ -6,18 +6,24 @@ change the result, it only adds provenance (ExperimentRecord).
 """
 from __future__ import annotations
 
+from pathlib import Path
+
 from dissmodel.executor import ExperimentRecord
 from dissmodel.executor.runner import execute_lifecycle
 
 from disslucc.executors import LuccContinuousExecutor
 
+ROOT = Path(__file__).resolve().parent.parent
+CSAC_ZIP = ROOT / "examples" / "data" / "input" / "csAC.zip"
+DEMAND_CSV = ROOT / "examples" / "data" / "input" / "examples_demand_lab1.csv"
+
 record = ExperimentRecord(
     model_name=LuccContinuousExecutor.name,
-    source={"uri": "/home/claude/disslucc-continuous/examples/data/input/csAC.zip"},
+    source={"uri": str(CSAC_ZIP)},
     parameters={
         "land_use_types": ["f", "d", "outros"],
         "complementar_lu": "f",
-        "demand_csv": "/home/claude/disslucc-continuous/examples/data/input/examples_demand_lab1.csv",
+        "demand_csv": str(DEMAND_CSV),
         "land_use_no_data": "outros",
         "static": {"f": -1, "d": -1, "outros": 1},
         "cell_area": 25.0,
