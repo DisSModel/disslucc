@@ -9,6 +9,22 @@ without `disslucc-continuous` or `disslucc-discrete` cloned alongside
 it.
 
 ### Added
+- `examples/dissmodel-configs/lucc_continuous.toml` and
+  `lucc_discrete.toml` -- registration configs for
+  `dissmodel-configs`/`dissmodel-platform`, matching the real
+  production convention (`[model]` spec merged into
+  `record.parameters`, `[model.parameters]` for run-specific
+  overrides), corrected for this package's own `required_parameters`
+  naming (`potential_data`/`allocation_data`).
+- A working local CLI: `python -m disslucc.executors.continuous run
+  --toml ... --input ... --output ...` and the `discrete` equivalent,
+  via `if __name__ == "__main__": run_cli(...)` in each executor
+  module. Requires `dissmodel>=0.6.4` (see Fixed, upstream).
+- `--output` now writes a real georeferenced GeoTIFF (local path or
+  `s3://`/MinIO), one band per land-use class plus a `mask` band --
+  `LuccExecutorBase.save()` previously only hashed the backend's raw
+  in-memory bytes and never wrote anything to disk despite accepting
+  `--output`/`record.output_path`.
 - `LICENSE` (MIT, same text/copyright as the two individual repos).
 - `authors`, `readme` and `license` fields in `pyproject.toml`, and a
   `CITATION.cff` for GitHub/Zenodo citation metadata.
@@ -32,6 +48,21 @@ it.
   pull request.
 
 ### Fixed
+- `python -m disslucc.executors.continuous ...` raised
+  `RuntimeWarning: 'disslucc.executors.continuous' found in
+  sys.modules after import of package 'disslucc.executors', but prior
+  to execution` -- `disslucc/executors/__init__.py` eagerly imported
+  `.continuous`/`.discrete`, colliding with `python -m`'s own
+  import-then-execute-as-`__main__` sequence. Fixed with PEP 562 lazy
+  `__getattr__` re-exports; `from disslucc.executors import
+  LuccContinuousExecutor` still works identically.
+- (Upstream) `dissmodel`'s local `--toml` CLI only ever merged
+  `[model.parameters]` into `record.parameters`, silently dropping any
+  `[model]`-level spec -- the convention this package's own
+  `dissmodel-configs` examples (above) depend on. Found while wiring
+  up the local CLI; reported as
+  [dissmodel#176](https://github.com/DisSModel/dissmodel/issues/176),
+  fixed in `dissmodel` 0.6.4.
 - `examples/run_lab1_validation.py` and `run_lab15_validation.py` had
   absolute paths from a development session
   (`/home/claude/disslucc-continuous/...`, `/tmp/csAC`, `/tmp/moju`,

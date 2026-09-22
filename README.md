@@ -2,14 +2,12 @@
 
 Land use and land cover change (LUCC) modeling, raster-only,
 script-first, on top of [`dissmodel`](https://github.com/DisSModel/dissmodel).
-Unified port of
-[`disslucc-continuous`](https://github.com/DisSModel/disslucc-continuous)
-(continuous CLUE) and [`disslucc-discrete`](https://github.com/DisSModel/disslucc-discrete)
-(discrete CLUE-S), validated against the original TerraME reference on
-real data for both: Lab1 (continuous) within the official 0.01 MAE
-tolerance, Lab15 (discrete) at exact, 100% cell-by-cell agreement —
-see [`docs/validation.md`](docs/validation.md) for both results and
-what each one does and doesn't prove.
+Continuous (CLUE) and discrete (CLUE-S) allocation, validated against
+the original TerraME reference on real data for both: Lab1
+(continuous) within the official 0.01 MAE tolerance, Lab15 (discrete)
+at exact, 100% cell-by-cell agreement — see
+[`docs/validation.md`](docs/validation.md) for both results and what
+each one does and doesn't prove.
 
 ## Migration status: becoming the single successor repository
 

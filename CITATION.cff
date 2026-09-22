@@ -3,9 +3,8 @@ message: "If you use this software, please cite it as below."
 title: "disslucc"
 abstract: >-
   Land use and land cover change (LUCC) modeling, raster-only,
-  script-first, on top of dissmodel. Unified port of
-  disslucc-continuous (continuous CLUE) and disslucc-discrete
-  (discrete CLUE-S), validated against the original TerraME
+  script-first, on top of dissmodel. Continuous (CLUE) and discrete
+  (CLUE-S) allocation, validated against the original TerraME
   reference on real data.
 authors:
   - family-names: "Souza Costa"
@@ -13,9 +12,9 @@ authors:
     orcid: "https://orcid.org/0000-0002-0232-4549"
     affiliation: "Universidade Federal do Maranhão (UFMA)"
 version: 0.3.0
-date-released: "2026-09-19"
+date-released: "2026-09-22"
 license: MIT
-repository-code: "https://github.com/DisSModel/disslucc"
+repository-code: "https://github.com/LambdaGeo/disslucc"
 keywords:
   - land use and land cover change
   - LUCC

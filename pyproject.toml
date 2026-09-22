@@ -1,13 +1,13 @@
 [project]
 name = "disslucc"
 version = "0.3.0"
-description = "Raster-only, script-first port of disslucc-continuous (Demand/Potential/Allocation CLUE-like on top of dissmodel)."
+description = "Land Use and Cover Change (LUCC) modeling — continuous and discrete allocation — on top of dissmodel."
 readme = "README.md"
 authors = [{ name = "Sergio Souza Costa", email = "sergio@ufma.br" }]
 license = { text = "MIT" }
 requires-python = ">=3.11"
 dependencies = [
-    "dissmodel==0.6.3",
+    "dissmodel>=0.6.4,<0.7.0",
 ]
 
 [project.optional-dependencies]
