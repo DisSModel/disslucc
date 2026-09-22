@@ -682,3 +682,74 @@ name (`dst.update_tags(i, name=name)`, e.g. `{"name": "f"}`) plus a
 for Lab1 -- matches `Loaded: 6,574 features` in the same run's log).
 pytest: 14 passed, 2 xfailed, unchanged (no test exercises `save()`'s
 disk I/O). mypy: same 3 pre-existing, unrelated errors.
+
+## Third reason to migrate: bugs found this session would otherwise need fixing three times
+
+Adds to "Roadmap: `disslucc` as the single successor, post-JOSS" above,
+not a new decision -- concrete evidence for one already made.
+
+This session found and fixed three real, independent bugs in the
+executors/CLI/output path: no local CLI entry point at all (no
+`if __name__ == "__main__"`), TOML table names not matching
+`required_parameters` (`potential`/`allocation` vs. this package's
+`potential_data`/`allocation_data`), and `save()` never writing the
+output raster to disk (accepted `--output`/`record.output_path`,
+silently did nothing with them -- see "`save()` now actually writes
+the output raster" above). None of these are `disslucc`-specific
+science bugs; they're the same executor-lifecycle plumbing
+(`ModelExecutor`/`ExperimentRecord`/CLI) that `disslucc-continuous`
+and `disslucc-discrete` each carry their own copy of. Staying split
+means each of those two would need the same three fixes applied and
+verified separately -- not a reason to migrate on its own, but a
+concrete cost of *not* migrating that wasn't part of the original
+two-reason case (Efficiency, One clear reference).
+
+Weighed against the one real cost of migrating before JOSS concludes
+(`dissmodel`'s paper currently cites `disslucc-continuous`/
+`disslucc-discrete` by name mid-review -- see "Conditions to revisit
+this" above): judged worth accepting that citation noise rather than
+fixing the same three bugs three times. This doesn't by itself check
+off the JOSS-review condition in the list above -- that's still an
+external, ongoing process -- but it does mean the cost side of that
+tradeoff is now backed by a concrete, first-hand instance, not just
+the general "duplication doesn't scale" argument from the original
+entry.
+
+## `dissmodel` paper/README citations consolidated to `disslucc`; review stall changes the calculus
+
+The JOSS reviewer for `dissmodel`'s paper stalled; the editor is
+likely to reassign. Given that, plus `disslucc-continuous`/
+`disslucc-discrete` being unused by anyone else and carrying the
+three plumbing bugs fixed this session (see above), decided the
+"citation noise mid-review" cost accepted in the previous entry is no
+longer worth avoiding -- `dissmodel`'s `paper.md`/`paper.bib` and
+`README.md` now cite/list `disslucc` only, not the two source repos.
+This is `dissmodel`-repo work, not `disslucc`-repo work; noted here
+because it's the trigger for the next step below.
+
+Changes made in `dissmodel` (separate repo, own commits/patches):
+`paper.bib` merges the two `@software` entries into one `@DisSLUCC`
+entry pointing at `github.com/DisSModel/disslucc`; `paper.md` updates
+all prose mentions (Summary, Lab1/Lab15 paragraphs, Research Impact
+Statement, Author Contributions -- `J.M.P.A.` now credited for
+`disslucc`, AI Usage Disclosure) accordingly, including replacing the
+Lab15 discrete speed figure (56.8 ms/step, measured on
+`disslucc-discrete`'s vector-only executor -- not valid for
+`disslucc`'s raster path, so dropped rather than kept or fabricated)
+with 10.3 ms/step, measured fresh against `disslucc`'s own
+`examples/dissmodel-configs/lucc_discrete.toml` (Lab15/Moju, 6 steps,
+0.062s run phase via the CLI's profiling report -- ModelExecutor
+lifecycle `run` phase only, not load/save). `README.md`'s specialized
+model libraries table merges the two rows into one, pointing at
+`github.com/LambdaGeo/disslucc` (not yet `DisSModel/disslucc` --
+matches this repo's current, not future, location).
+
+Next: the user (maintainer) plans to archive `disslucc-continuous`
+and `disslucc-discrete` separately (own repos, not tracked in this
+decision log) with a note in each that there's no guarantee of
+compatibility with newer `dissmodel` releases and that development
+moved to `disslucc` -- the same treatment `terrame/luccme` itself
+received when TerraME/LuccME's own active development moved on. Not
+yet done as of this entry; this repo's own migration status section
+in `README.md` already anticipates it ("will be released, tagged,
+archived, and kept citable once this migration completes").
