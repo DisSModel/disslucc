@@ -500,3 +500,185 @@ itself:**
       have in the flagship repo than in a secondary one; the planned
       dynamic-covariate scenario should probably land before `disslucc`
       becomes the primary citation, not after.
+
+## TOML config example added for the executors path (2026-09-22)
+
+Clarified a point of confusion: dropping TOML in the "Two deliberate
+decisions" section at the top of this file was about the default,
+script-first path only (`examples/run_script.py`) -- not about
+`src/disslucc/executors/`. The executors path already exists
+specifically to be registered in
+[`dissmodel-configs`](https://github.com/DisSModel/dissmodel-configs)
+and run through `dissmodel-platform`, and that registration is a TOML
+file by convention (see `dissmodel-configs/models/*.toml` for the
+sibling packages). There was no example of that TOML for `disslucc`
+in this repo, unlike `disslucc-continuous`/`disslucc-discrete`, which
+is what prompted this entry.
+
+Added `examples/dissmodel-configs/lucc_continuous.toml`, adapted from
+`disslucc-continuous`'s `lucc_continuous_vector.toml` (real file in
+`dissmodel-configs`) to this repo's actual executor: `name`/`class`
+become `"lucc_continuous"` (`LuccContinuousExecutor.name`, raster-only
+-- no `lucc_vector`/`lucc_raster` split here), `executor_module =
+"disslucc.executors"`, `package = "git+https://github.com/DisSModel/disslucc@main"`.
+Encodes the same Lab1 coefficients as
+`examples/run_lab1_via_executor.py`'s hand-built `ExperimentRecord`,
+so the two are directly comparable.
+
+**Open item, not fixed here**: `dissmodel.executor.cli.run_cli`'s local
+`--toml` loader (`dissmodel/executor/cli.py`, `_load_toml`) only lifts
+`[model.parameters]` into `record.parameters` -- everything else under
+`[model]` (`land_use_types`, `[[model.potential]]`,
+`[[model.allocation]]`, `[model.static]`) lands only in
+`record.resolved_spec`. `LuccContinuousExecutor`/`LuccDiscreteExecutor`
+read `land_use_types`/`potential_data`/`static`/`allocation_data`
+directly from `record.parameters` (confirmed against
+`src/disslucc/executors/continuous.py` and `discrete.py`), matching
+`ModelExecutor.run()`'s documented contract that it "receives record
+with resolved_spec and parameters already merged" -- but that merge is
+platform-side (`dissmodel-platform`, not in this repo or in
+`dissmodel` itself). So `examples/dissmodel-configs/lucc_continuous.toml`
+is correct for platform registration, but is **not** yet a working
+`--toml` argument for `python -m disslucc.executors.continuous run
+--toml ...` locally -- that would need either `dissmodel`'s local CLI
+to do the same resolved_spec merge, or the executors here to read
+`record.resolved_spec["model"]` as a fallback. Left open; affects
+`dissmodel` (the CLI), not `disslucc` alone.
+
+## Discrete TOML example + README/api.md cross-links added
+
+Follow-up to "TOML config example added for the executors path":
+that entry only covered `LuccContinuousExecutor`, and neither the
+README nor `docs/api.md` pointed at `examples/dissmodel-configs/`,
+so it was easy to miss even after landing.
+
+Added `examples/dissmodel-configs/lucc_discrete.toml`, same
+convention as the continuous one, encoding the same Lab15/Moju
+coefficients as `examples/run_lab15_via_executor.py` (`transition_matrix`,
+three `[[model.potential]]` entries with `elasticity`). Verified
+end-to-end (not just parsed): loaded both TOMLs with `tomllib`,
+simulated the platform-side `resolved_spec` -> `parameters` merge by
+hand, ran `LuccContinuousExecutor`/`LuccDiscreteExecutor` through
+`execute_lifecycle`, and diffed the resulting `record.metrics` against
+the corresponding `run_*_via_executor.py` script run in the same
+environment -- identical in both cases (continuous: same three final
+areas to the full float; discrete: same `final_f_cells`/`final_d_cells`/
+`final_o_cells` -- 5474/365/3).
+
+Cross-linked from both README.md (the `disslucc.executors` paragraph)
+and `docs/api.md` (new "Registering with dissmodel-configs (TOML)"
+subsection under Executors), so the TOML path is discoverable from
+where a reader already learns the executors exist, not just from this
+log.
+
+## Resolved: local CLI now wired up, upstream fix sent to `dissmodel`
+
+Follow-up closing the open item from the two entries above. Two
+separate problems had to be fixed, one in each repository:
+
+**In `dissmodel` (upstream, not this repo).** Confirmed the gap
+against a *fresh* `git clone` of `DisSModel/dissmodel@main` (not a
+possibly-stale local copy) -- `dissmodel/executor/cli.py`'s
+`_load_toml`/`_build_record` only ever copied `[model.parameters]`
+into `record.parameters`; every other `[model]`-level key
+(`land_use_types`, `[[model.potential]]`, ...) landed only in
+`record.resolved_spec`, contradicting `ModelExecutor.run()`'s own
+docstring ("receives record with resolved_spec and parameters already
+merged") and `dissmodel`'s own `docs/api/executor/cli.md`, whose
+`model.toml` example already showed a `[[model.potential]]` section
+with no explanation of how it would reach the executor. Wrote a fix
+(`_load_toml` now merges `[model]` keys other than a fixed metadata
+set -- `executor_module`/`name`/`class`/`description`/`package`/
+`dissmodel` -- into `params`, `[model.parameters]` still winning on
+overlap, `--param` still winning over both), 11 new regression tests
+in `tests/executor/test_cli.py`, and updated
+`docs/api/executor/cli.md`. Full `dissmodel` suite: 441 -> 449 passed,
+2 skipped, `mypy dissmodel` clean, `mkdocs build --strict` clean. Not
+yet merged/released -- `disslucc` still pins `dissmodel==0.6.3`
+exactly, which predates the fix.
+
+**In `disslucc` (this repo).** Once the upstream fix made local
+`--toml` runs reach `validate()`, it surfaced a second, independent
+problem: `examples/dissmodel-configs/*.toml` used `[[model.potential]]`/
+`[[model.allocation]]` (copied from the real `dissmodel-configs` entry
+for `disslucc-continuous` given as a reference), but
+`LuccContinuousExecutor`/`LuccDiscreteExecutor`'s `required_parameters`
+expect `potential_data`/`allocation_data` -- this package's own
+parameter names, unrelated to the CLI merge fix. Renamed the TOML
+table names (data only, no code change) to match. Also added
+`if __name__ == "__main__": run_cli(...)` to both
+`src/disslucc/executors/continuous.py` and `discrete.py` -- neither
+had one, so `python -m disslucc.executors.<name> run ...` didn't work
+at all before this, independent of both TOML issues.
+
+**Verified together, not separately**: built a `dissmodel` venv with
+the fix installed, ran both commands for real --
+`python -m disslucc.executors.continuous run --toml
+examples/dissmodel-configs/lucc_continuous.toml --input
+data/input/csAC.zip --param demand_csv=data/input/examples_demand_lab1.csv`
+and the discrete equivalent -- end to end through the actual CLI
+(not a hand-simulated merge like the previous two entries). Continuous
+output checksum: `853e0e1e65f3ea12c9b49a33f45a4c3521c6d4de8a1b3249c486c2bd95fec90d`
+-- identical to the Lab1 checksum recorded in `CLAUDE.md`. Discrete
+final counts: `{'f': 5474, 'd': 365, 'o': 3}` -- identical to
+`run_lab15_via_executor.py`. `disslucc`'s own suite (against the fixed
+`dissmodel`): 14 passed, 2 xfailed, unchanged.
+
+README.md and `docs/api.md` updated with the real, working command --
+with an explicit callout that it needs a `dissmodel` release past
+0.6.3, since `pip install -e .` today still installs the pinned,
+unfixed 0.6.3.
+
+## `save()` now actually writes the output raster
+
+Found while answering a question about `--output`: `LuccExecutorBase.save()`
+never wrote anything to disk. It hashed the backend's raw array bytes
+in memory into `record.artifacts["output"]`, set `status="completed"`,
+and returned -- `record.output_path`/`--output` were accepted and
+echoed in the CLI's summary (`output: outputs/result_<id>.tif`) but no
+such file was ever created. Confirmed by re-running a prior `--output`
+test and checking the path with `ls` afterward: not found.
+
+Checked how `brmangue-dissmodel` (a sibling package, further along --
+this is where a QGIS plugin was built reading simulation output
+straight from MinIO) solves this, against its actual source, not from
+memory: `RasterExecutor.save()` calls
+`dissmodel.io.raster.save_geotiff((backend, meta), uri, band_spec=...)`,
+which writes a local file or, for an `s3://` URI, uploads via
+`dissmodel.io._storage.get_default_client().put_object(...)`. `meta`
+there comes from `load_geotiff()`. `disslucc`'s own `load()` uses
+`vector_to_raster_backend()` instead, which doesn't return a separate
+meta dict -- but it does set `crs`/`transform` directly as attributes
+on the `RasterBackend` it constructs (checked against
+`dissmodel/io/convert.py`), so `save()` can build the
+`{"crs": backend.crs, "transform": backend.transform}` dict itself
+from the backend already in hand, with no change needed to `load()`.
+
+Fixed: `LuccExecutorBase.save()` now calls `save_geotiff` with a
+`band_spec` built from `result["land_use_types"]` (+ `"mask"` if
+present in the backend), writes to `record.output_path` (defaulting to
+`output_<experiment_id[:8]>.tif` if `--output` wasn't given, same
+convention as `brmangue`'s `default_output_uri`), and stores the
+checksum of the actual written file in `record.artifacts["output"]`.
+
+**Side effect worth flagging explicitly**: the checksum value changes.
+Before, `record.artifacts["output"]` hashed raw NumPy bytes; now it
+hashes the written GeoTIFF (different framing/compression -- same
+data, different bytes). The Lab1 checksum narrated across this file
+(`853e0e1e65f3ea12c9b49a33f45a4c3521c6d4de8a1b3249c486c2bd95fec90d`)
+is the *old* (in-memory-bytes) value and is not reproduced by a fresh
+run with this fix -- confirmed nothing in `tests/` asserts that exact
+string (only this file's own narrative history cites it, left as-is).
+A new run with `--output` now produces a real file whose checksum can
+be cited instead, going forward.
+
+Verified: ran both executors via the real CLI with `--output`, opened
+the resulting `.tif` with `rasterio` -- correct CRS (`EPSG:29101`
+continuous / `EPSG:4618` discrete), correct transform (5000 m
+resolution for continuous, matching the TOML), correct shape matching
+the rasterized backend, one band per land-use class tagged with its
+name (`dst.update_tags(i, name=name)`, e.g. `{"name": "f"}`) plus a
+`mask` band whose sum equals the loaded feature count exactly (6,574
+for Lab1 -- matches `Loaded: 6,574 features` in the same run's log).
+pytest: 14 passed, 2 xfailed, unchanged (no test exercises `save()`'s
+disk I/O). mypy: same 3 pre-existing, unrelated errors.

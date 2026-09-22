@@ -62,7 +62,46 @@ experiment, reproducible with `git clone && pip install -e . && python3 script.p
 When automatic provenance matters more than simplicity (production,
 CI), `disslucc.executors` brings `ModelExecutor`/`ExperimentRecord`
 back as a second entry point — same math, identical result, see
-[`api.md`](docs/api.md#executors-dissluccexecutors).
+[`api.md`](docs/api.md#executors-dissluccexecutors). This is also
+the entry point registered in
+[`dissmodel-configs`](https://github.com/DisSModel/dissmodel-configs)
+to run on `dissmodel-platform`, and it comes with a CLI, via
+`dissmodel.executor.cli.run_cli`:
+
+```bash
+python -m disslucc.executors.continuous run \
+  --toml examples/dissmodel-configs/lucc_continuous.toml \
+  --input data/input/csAC.zip \
+  --param demand_csv=data/input/examples_demand_lab1.csv \
+  --output outputs/result.tif   # local path or s3://bucket/key (MinIO)
+
+python -m disslucc.executors.discrete run \
+  --toml examples/dissmodel-configs/lucc_discrete.toml \
+  --input data/input/cs_moju.zip \
+  --param demand_csv=data/input/demand_moju.csv \
+  --output outputs/result.tif
+```
+
+`--output` writes a GeoTIFF with one band per land-use class (+ `mask`),
+georeferenced from the input's CRS/extent -- open it directly in QGIS,
+locally or straight from MinIO.
+
+> **Requires an unreleased `dissmodel` fix.** As of `dissmodel==0.6.3`
+> (the version pinned in `pyproject.toml`), the local `--toml` loader
+> doesn't merge `[model]`-level spec (e.g. `land_use_types`,
+> `[[model.potential_data]]`) into `record.parameters` — only
+> `[model.parameters]` — so the commands above fail with `Missing
+> parameters: [...]` until a `dissmodel` release ships the fix
+> (patch sent upstream; see `docs/decisions.md`). Until then, use
+> `examples/run_*_via_executor.py` (same math, `ExperimentRecord`
+> built directly in Python) or the script-first path above.
+
+`examples/dissmodel-configs/` has a TOML config per executor
+([continuous](examples/dissmodel-configs/lucc_continuous.toml),
+[discrete](examples/dissmodel-configs/lucc_discrete.toml)), each
+encoding the same coefficients as its `examples/run_*_via_executor.py`
+counterpart — see [`api.md`](docs/api.md#registering-with-dissmodel-configs-toml)
+for the full explanation.
 
 ## Documentation
 
