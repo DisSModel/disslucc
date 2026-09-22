@@ -25,9 +25,9 @@ from disslucc.schemas import AllocationSpec, RegressionSpec
 from disslucc.validation.pontius import pontius_millones
 
 ROOT = Path(__file__).resolve().parent.parent
-CSAC_ZIP = ROOT / "examples" / "data" / "input" / "csAC.zip"
+CSAC_ZIP = ROOT / "data" / "input" / "csAC.zip"
 TERRAME_ZIP = ROOT / "benchmark" / "data" / "LUCCME_Lab1_2014.zip"
-DEMAND_CSV = ROOT / "examples" / "data" / "input" / "examples_demand_lab1.csv"
+DEMAND_CSV = ROOT / "data" / "input" / "examples_demand_lab1.csv"
 
 LAND_USE_TYPES = ["f", "d", "outros"]
 DRIVER_COLS = ["assentamen", "uc_us", "uc_pi", "ti", "dist_riobr", "fertilidad", "rodovias"]

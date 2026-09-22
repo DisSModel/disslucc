@@ -14,8 +14,8 @@ from dissmodel.executor.runner import execute_lifecycle
 from disslucc.executors import LuccContinuousExecutor
 
 ROOT = Path(__file__).resolve().parent.parent
-CSAC_ZIP = ROOT / "examples" / "data" / "input" / "csAC.zip"
-DEMAND_CSV = ROOT / "examples" / "data" / "input" / "examples_demand_lab1.csv"
+CSAC_ZIP = ROOT / "data" / "input" / "csAC.zip"
+DEMAND_CSV = ROOT / "data" / "input" / "examples_demand_lab1.csv"
 
 record = ExperimentRecord(
     model_name=LuccContinuousExecutor.name,

@@ -22,8 +22,8 @@ from disslucc.schemas import RegressionSpec, AllocationSpec
 from disslucc.components.demand import load_demand_csv
 
 ROOT = Path(__file__).resolve().parent.parent
-CSAC_ZIP = ROOT / "examples" / "data" / "input" / "csAC.zip"
-DEMAND_CSV = ROOT / "examples" / "data" / "input" / "examples_demand_lab1.csv"
+CSAC_ZIP = ROOT / "data" / "input" / "csAC.zip"
+DEMAND_CSV = ROOT / "data" / "input" / "examples_demand_lab1.csv"
 
 LAND_USE_TYPES = ["f", "d", "outros"]
 DRIVER_COLS = ["assentamen", "uc_us", "uc_pi", "ti", "dist_riobr", "fertilidad", "rodovias"]

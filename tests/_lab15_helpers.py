@@ -20,7 +20,7 @@ from disslucc.schemas import LogisticRegressionSpec
 from disslucc.validation.pontius import confusion_metrics, pontius_millones
 
 ROOT = Path(__file__).resolve().parent.parent
-CS_MOJU_ZIP = ROOT / "data" / "cs_moju.zip"
+CS_MOJU_ZIP = ROOT / "data" / "input" / "cs_moju.zip"
 TERRAME_ZIP = ROOT / "benchmark" / "data" / "Lab15_2004.zip"
 
 LAND_USE_TYPES = ["f", "d", "o"]

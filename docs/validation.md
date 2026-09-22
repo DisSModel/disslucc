@@ -5,8 +5,8 @@ TerraME/LuccME reference -- not just "runs without error".
 
 ## Lab1 (continuous) — Amazon deforestation, csAC region
 
-Real data: `examples/data/input/csAC.zip` (shapefile, 6,574 cells) +
-`examples/data/input/examples_demand_lab1.csv`, both from
+Real data: `data/input/csAC.zip` (shapefile, 6,574 cells) +
+`data/input/examples_demand_lab1.csv`, both originally from
 `disslucc-continuous`. Real calibrated regression coefficients (not
 synthetic). Reference: `benchmark/data/LUCCME_Lab1_2014.zip`
 (`disslucc-continuous`).
@@ -45,8 +45,8 @@ generate this data -- see `benchmark/reference/README.md`.
 
 ## Lab15 (discrete) — deforestation, Moju region
 
-Real data: `data/cs_moju.zip` (shapefile, 5,914 cells) from
-`disslucc-discrete`. Real logistic regression coefficients, real
+Real data: `data/input/cs_moju.zip` (shapefile, 5,914 cells), originally
+from `disslucc-discrete`. Real logistic regression coefficients, real
 transition matrix (irreversible deforestation: forest can become
 deforested, deforested doesn't go back to forest). Reference:
 `benchmark/data/Lab15_2004.zip` (`disslucc-discrete`).

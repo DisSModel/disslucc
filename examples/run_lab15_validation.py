@@ -30,7 +30,7 @@ from disslucc.validation.pontius import pontius_millones, confusion_metrics
 ROOT = Path(__file__).resolve().parent.parent
 # Both zips are read directly -- GDAL opens a single-layer shapefile zip
 # without manual extraction, same as the tests in disslucc-discrete do.
-CS_MOJU_ZIP = ROOT / "data" / "cs_moju.zip"
+CS_MOJU_ZIP = ROOT / "data" / "input" / "cs_moju.zip"
 TERRAME_ZIP = ROOT / "benchmark" / "data" / "Lab15_2004.zip"
 
 LAND_USE_TYPES = ["f", "d", "o"]

@@ -12,7 +12,7 @@ from dissmodel.executor.runner import execute_lifecycle
 from disslucc.executors import LuccDiscreteExecutor
 
 ROOT = Path(__file__).resolve().parent.parent
-CS_MOJU_ZIP = ROOT / "data" / "cs_moju.zip"
+CS_MOJU_ZIP = ROOT / "data" / "input" / "cs_moju.zip"
 
 record = ExperimentRecord(
     model_name=LuccDiscreteExecutor.name,

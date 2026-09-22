@@ -80,8 +80,10 @@ disslucc/
 │   │   └── naive_baseline.py  # discriminance baseline for Lab15
 │   └── executors/        # ModelExecutor -- automatic provenance, second entry point
 ├── examples/          # ready-made scripts, synthetic, real data, and via Executor
-│   └── data/          # vendored Lab1 input + demand data
-├── data/, benchmark/data/   # vendored TerraME reference data (Lab1, Lab15)
+├── data/input/        # vendored Lab1 + Lab15 input shapefiles and demand CSVs
+├── benchmark/
+│   ├── data/          # vendored TerraME reference outputs (Lab1, Lab15)
+│   └── reference/     # vendored original LuccME .lua scripts (provenance)
 ├── tests/             # pytest suite -- validation + discriminance, run by CI
 └── docs/
 ```
