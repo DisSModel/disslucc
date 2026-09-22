@@ -11,6 +11,36 @@ tolerance, Lab15 (discrete) at exact, 100% cell-by-cell agreement —
 see [`docs/validation.md`](docs/validation.md) for both results and
 what each one does and doesn't prove.
 
+## Migration status: becoming the single successor repository
+
+`disslucc` is migrating from two separately maintained repositories
+(`disslucc-continuous`, `disslucc-discrete`) into **one single
+repository**, mirroring how the original
+[`terrame/luccme`](https://github.com/terrame/luccme) is itself one
+repository with continuous and discrete components side by side,
+instead of split by paradigm. Two reasons:
+
+1. **Efficiency.** As more Demand/Potential/Allocation strategies are
+   developed, maintaining two parallel implementations (vector +
+   raster, continuous repo + discrete repo, each with its own
+   Demand/validation code duplicated) doesn't scale and gets confusing
+   fast. Consolidating into one raster-only package, with Demand and
+   Pontius & Millones validation shared across both paradigms, removes
+   that duplication.
+2. **One clear reference.** A single repository is a much stronger
+   "LuccME in Python" story than pointing people at two packages that
+   together replicate it.
+
+This repository is moving from `github.com/LambdaGeo/disslucc` to
+`github.com/DisSModel/disslucc`, alongside `dissmodel`,
+`disslucc-continuous`, and `disslucc-discrete`. The two source
+repositories will be released, tagged, archived, and kept citable once
+this migration completes — see
+[`docs/decisions.md`](docs/decisions.md) for the full reasoning,
+status, and what's still pending (this does not happen before
+`dissmodel`'s JOSS review concludes, so existing citations aren't
+disrupted mid-review).
+
 ```bash
 pip install -e ".[examples]"
 ```

@@ -57,7 +57,7 @@ Before writing code or opening a pull request, make sure an issue tracks the tas
 2. Push your branch to GitHub:
    - **Lab members:** `git push -u origin <branch-name>`
    - **External contributors:** `git push -u origin feat/my-improvement` (to your fork)
-3. Open a Pull Request targeting `LambdaGeo/disslucc:main`.
+3. Open a Pull Request targeting `DisSModel/disslucc:main`.
 4. Complete the checklist provided by the Pull Request template.
 5. Ensure the PR description explicitly links the issue it resolves (e.g., `Closes #15`).
 6. A maintainer will review your submission. Once approved, the changes will be integrated via **Squash and merge**, and the working branch will be automatically deleted.
@@ -69,7 +69,7 @@ Before writing code or opening a pull request, make sure an issue tracks the tas
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/LambdaGeo/disslucc.git
+git clone https://github.com/DisSModel/disslucc.git
 cd disslucc
 ```
 

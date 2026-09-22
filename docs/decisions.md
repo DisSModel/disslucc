@@ -412,34 +412,52 @@ coming from TOML/JSON).
 `mypy src/disslucc` clean after the change. Retested the six scripts --
 Lab1 checksum identical, Lab1/Lab15 MAE/accuracy unchanged.
 
-## Roadmap: `disslucc` as the single successor, post-JOSS (2026-09-19, not yet decided)
+## Roadmap: `disslucc` as the single successor, post-JOSS (decided 2026-09-22)
 
-Recorded here as intent, not as something already executed. Nothing
-below has been done; this is a checklist to pick back up once the
-conditions hold.
+Originally recorded 2026-09-19 as intent, not yet decided. As of
+2026-09-22, two of the three open questions below **are now decided**;
+what remains is timing and execution, not whether.
 
-**The idea.** `terrame/luccme` itself is a single repository, with
-continuous and discrete as components side by side inside the same
-framework. `disslucc-continuous` and `disslucc-discrete` (split for
-independent JOSS/CNPq-fellow ownership) don't mirror that -- `disslucc`
-now does, and after today's work (LICENSE, CI, `pytest` suite,
-`CITATION.cff`, `ModelExecutor`/`ExperimentRecord`, and vendored
-provenance for both Lab1 and Lab15 at `benchmark/reference/`) it's no
-longer behind the two separate repos on engineering grounds. Making it
-*the* repository people cite as "LuccME in Python" is a stronger,
-simpler story than pointing at two packages that together replicate
-it.
+**The decision.** `disslucc` is becoming the single successor
+repository to `disslucc-continuous` and `disslucc-discrete`, mirroring
+`terrame/luccme` itself -- one repository, with continuous and discrete
+as components side by side, instead of split by paradigm. Two reasons,
+stated plainly:
 
-**Why not now.** Three things currently depend on the split staying as
-it is:
+1. **Efficiency.** As more Demand/Potential/Allocation strategies get
+   developed, maintaining two parallel implementations (vector +
+   raster, continuous repo + discrete repo, each duplicating its own
+   Demand/validation code) doesn't scale and gets confusing. A single
+   raster-only package, with Demand and Pontius & Millones validation
+   already shared across both paradigms (see "Bringing discrete into
+   this repository" above), removes that duplication going forward.
+2. **One clear reference.** A single repository citable as "LuccME in
+   Python" is a stronger story than two packages that together
+   replicate it -- and after the LICENSE/CI/`pytest`/`CITATION.cff`/
+   `ModelExecutor`/provenance work already done here, `disslucc` isn't
+   behind the two separate repos on engineering grounds anymore.
+
+**Also decided 2026-09-22: raster stays permanent, not provisional.**
+The "raster only" choice at the top of this file was originally framed
+as a pragmatic simplification for this port. It is now the ecosystem's
+permanent direction, precisely *because* new algorithms are coming:
+keeping a vector substrate alive in parallel while the component
+catalog grows would mean duplicating every new strategy twice and
+testing both, for a substrate whose main advantage (fidelity to how
+LuccME/TerraME originally worked) is bought at a real, recurring
+maintenance cost. Consequence: `paper.md`'s `Vector vs Raster`
+cross-substrate check (from `disslucc-continuous`) is retired going
+forward, not replaced -- see the Research Impact rewrite item below.
+
+**What's still pending -- timing and execution, not the decision
+itself:**
 
 1. `paper.md`'s Lab1 section reports `Vector vs TerraME` *and*
    `Raster vs TerraME` (both 87.37%), plus a `Vector vs Raster`
    cross-substrate consistency check. That comes from
-   `disslucc-continuous`, which keeps both substrates.
-   `disslucc` is raster-only by deliberate decision (see the top of
-   this file) -- dropping the vector comparison from the paper is fine
-   *if it's an explicit rewrite*, not an accidental loss.
+   `disslucc-continuous`, which keeps both substrates. Now that raster
+   is decided as permanent, dropping the vector comparison from the
+   paper needs to be *an explicit rewrite*, not an accidental loss.
 2. The paper's "Research Impact Statement" uses the fact that
    `disslucc-continuous`, `disslucc-discrete`, `brmangue-dissmodel` and
    `disscube` are independently owned repositories as evidence that
@@ -456,10 +474,18 @@ it is:
 
 - [ ] JOSS review of `dissmodel` reaches a final decision (accept or
       otherwise) -- don't touch the citation while it's still open.
-- [ ] Decide, explicitly, whether the vector substrate is ever coming
-      back to `disslucc`, or whether "raster only" becomes the
-      permanent story for the whole ecosystem (in which case the
-      paper's `Vector vs Raster` check is retired, not replaced).
+      This is the main thing execution is still waiting on.
+- [x] ~~Decide, explicitly, whether the vector substrate is ever
+      coming back to `disslucc`~~ -- decided 2026-09-22: raster only,
+      permanently, for the whole ecosystem going forward. See above.
+- [ ] Move the repository from `github.com/LambdaGeo/disslucc` to
+      `github.com/DisSModel/disslucc` (GitHub's transfer preserves the
+      old URL as a redirect, so this is low-risk once done -- but
+      needs an org owner to actually run it; not something a patch can
+      do). Update `CITATION.cff`'s `repository-code` and
+      `CONTRIBUTING.md`'s clone/PR-target URLs alongside it (done
+      ahead of the actual transfer in this commit, since GitHub
+      redirects the old URL either way).
 - [ ] If unifying: release a final tagged version of
       `disslucc-continuous` and `disslucc-discrete`, mint a Zenodo DOI
       for each, then archive (not delete) both -- so every citation
