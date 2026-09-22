@@ -1,9 +1,9 @@
-from .pontius import pontius_millones, confusion_metrics
-from .naive_baseline import naive_allocation, logistic_probability
+from .naive_baseline import logistic_probability, naive_allocation
+from .pontius import confusion_metrics, pontius_millones
 
 __all__ = [
-    "pontius_millones",
     "confusion_metrics",
-    "naive_allocation",
     "logistic_probability",
+    "naive_allocation",
+    "pontius_millones",
 ]

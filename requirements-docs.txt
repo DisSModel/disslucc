@@ -1,0 +1,11 @@
+# Documentation-only dependencies -- not needed to install or run
+# disslucc itself (see pyproject.toml's [project.optional-dependencies]
+# for that). Separate from `dev` so CI's `lint`/`test` jobs don't pull
+# in the docs toolchain for no reason.
+#
+# Build locally:  pip install -r requirements-docs.txt && mkdocs serve
+# Deploy:         .github/workflows/docs_deploy.yml (mkdocs gh-deploy)
+
+mkdocs
+mkdocs-material
+mkdocs-jupyter

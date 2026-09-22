@@ -595,7 +595,9 @@ in `tests/executor/test_cli.py`, and updated
 `docs/api/executor/cli.md`. Full `dissmodel` suite: 441 -> 449 passed,
 2 skipped, `mypy dissmodel` clean, `mkdocs build --strict` clean. Not
 yet merged/released -- `disslucc` still pins `dissmodel==0.6.3`
-exactly, which predates the fix.
+exactly, which predates the fix. (Shipped in `dissmodel` 0.6.4;
+`disslucc` now pins `dissmodel>=0.6.4` -- see README.md/`api.md` for
+the current, working state rather than this entry's snapshot.)
 
 **In `disslucc` (this repo).** Once the upstream fix made local
 `--toml` runs reach `validate()`, it surfaced a second, independent

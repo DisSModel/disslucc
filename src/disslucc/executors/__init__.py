@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     from .continuous import LuccContinuousExecutor as LuccContinuousExecutor
     from .discrete import LuccDiscreteExecutor as LuccDiscreteExecutor
 
-__all__ = ["LuccExecutorBase", "LuccContinuousExecutor", "LuccDiscreteExecutor"]
+__all__ = ["LuccContinuousExecutor", "LuccDiscreteExecutor", "LuccExecutorBase"]
 
 
 def __getattr__(name: str):

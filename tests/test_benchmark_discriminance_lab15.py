@@ -27,7 +27,6 @@ that is an improvement, and the marker should be removed.
 from __future__ import annotations
 
 import pytest
-
 from _lab15_helpers import (
     ANNUAL_DEMAND,
     DEFAULT_POTENTIAL_DATA,
@@ -36,6 +35,7 @@ from _lab15_helpers import (
     load_gdf_terrame,
     run_lab15_raster,
 )
+
 from disslucc.validation.naive_baseline import naive_allocation
 
 skip_if_no_data = pytest.mark.skipif(not data_available, reason="Lab15 data files not found")

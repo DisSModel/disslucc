@@ -12,15 +12,33 @@ dependencies = [
 
 [project.optional-dependencies]
 examples = ["matplotlib"]
-dev = ["mypy>=1.10", "pytest>=7"]
+dev = ["mypy>=1.10", "pytest>=7", "ruff>=0.16,<0.17"]
 
 [tool.mypy]
-python_version = "3.11"
+# 3.12, not 3.11 (the floor in requires-python): numpy 2.5's stub uses
+# PEP 695 `type` statement syntax, which mypy can only parse when
+# targeting 3.12+. python_version pins the syntax mypy parses, not a
+# ceiling on what it will pass on this project's own code, so pointing
+# it at the newer of the two supported versions costs nothing here and
+# avoids `mypy` breaking outright on whichever numpy resolves for a
+# student running it locally under Python 3.12 (same class of problem
+# as the zarr/PEP-695 override in dissmodel core's [tool.mypy]).
+python_version = "3.12"
 files = ["src/disslucc"]
 warn_return_any = true
 warn_unused_ignores = true
 disallow_untyped_defs = false
 ignore_missing_imports = true
+
+[tool.ruff]
+# No explicit `select`: lints with ruff's own default rule set (isort,
+# pyupgrade, pyflakes/pycodestyle, and the ruff-specific/flake8-derived
+# checks that are on by default too, as of the 0.16.x line pinned above
+# in `dev`). Pinned for the same reason as dissmodel core: that default
+# set grows across ruff versions, and an unpinned `ruff` would silently
+# start failing CI on a routine upgrade with no code change on our side.
+line-length = 120
+target-version = "py311"
 
 [build-system]
 requires = ["setuptools>=68"]

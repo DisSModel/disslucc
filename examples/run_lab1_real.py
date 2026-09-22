@@ -10,16 +10,20 @@ LuccME/TerraME Amazon deforestation dynamics tutorial.
 Requires geopandas (already a transitive dissmodel dependency).
 """
 from __future__ import annotations
-import csv
+
 from pathlib import Path
 
 import geopandas as gpd
 from dissmodel.core import Environment
 from dissmodel.io.convert import vector_to_raster_backend
 
-from disslucc import DemandPreComputedValues, PotentialLinearRegression, AllocationClueLike
-from disslucc.schemas import RegressionSpec, AllocationSpec
+from disslucc import (
+    AllocationClueLike,
+    DemandPreComputedValues,
+    PotentialLinearRegression,
+)
 from disslucc.components.demand import load_demand_csv
+from disslucc.schemas import AllocationSpec, RegressionSpec
 
 ROOT = Path(__file__).resolve().parent.parent
 CSAC_ZIP = ROOT / "data" / "input" / "csAC.zip"
@@ -97,8 +101,8 @@ for i, lu in enumerate(LAND_USE_TYPES):
     print(f"  {lu:>8}: target={target:12.1f}  allocated={actual:12.1f}  diff={abs(target - actual):8.1f}")
 
 # ── quicklook -----------------------------------------------------------------
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 mask = backend.get("mask").astype(bool)
 fig, axes = plt.subplots(1, 3, figsize=(12, 4))

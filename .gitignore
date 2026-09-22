@@ -11,3 +11,13 @@ venv/
 .mypy_cache/
 .DS_Store
 .ipynb_checkpoints/
+site/
+.cache/
+
+# Run artifacts from local `run_*` / executor invocations -- these landed
+# in git by accident (see CHANGELOG), not meant to be tracked. `data/`
+# and `benchmark/` are reference fixtures and stay tracked; this is only
+# generated output.
+outputs/
+/profiling_*.md
+/experiment_record.json

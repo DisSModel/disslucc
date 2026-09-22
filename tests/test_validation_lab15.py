@@ -14,8 +14,13 @@ reproduced by a trivial static ranking, so it validates coefficient
 transcription rather than the allocation algorithm.
 """
 import pytest
-
-from _lab15_helpers import ANNUAL_DEMAND, LAND_USE_TYPES, data_available, metrics_vs_terrame, run_lab15_raster
+from _lab15_helpers import (
+    ANNUAL_DEMAND,
+    LAND_USE_TYPES,
+    data_available,
+    metrics_vs_terrame,
+    run_lab15_raster,
+)
 
 
 @pytest.mark.skipif(not data_available, reason="Lab15 data files not found -- skipping integration test")

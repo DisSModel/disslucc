@@ -1,4 +1,4 @@
-from .precomputed import DemandPreComputedValues, load_demand_csv
 from .inline import DemandInline
+from .precomputed import DemandPreComputedValues, load_demand_csv
 
-__all__ = ["DemandPreComputedValues", "load_demand_csv", "DemandInline"]
+__all__ = ["DemandInline", "DemandPreComputedValues", "load_demand_csv"]

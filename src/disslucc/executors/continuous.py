@@ -19,21 +19,21 @@ continuous and discrete genuinely diverge (which
 Demand/Potential/Allocation to build).
 """
 from __future__ import annotations
-from typing import Any
+
 import pathlib
 import time
+from typing import Any, ClassVar
 
 import numpy as np
-
 from dissmodel.core import Environment
-from dissmodel.geo import RasterBackend
 from dissmodel.executor import ExperimentRecord
+from dissmodel.geo import RasterBackend
 
-from .base import LuccExecutorBase
+from ..components.allocation import AllocationClueLike
 from ..components.demand import DemandPreComputedValues, load_demand_csv
 from ..components.potential import PotentialLinearRegression
-from ..components.allocation import AllocationClueLike
-from ..schemas import RegressionSpec, AllocationSpec
+from ..schemas import AllocationSpec, RegressionSpec
+from .base import LuccExecutorBase
 
 
 def _spec_from_dict(d: dict[str, Any]) -> RegressionSpec:
@@ -68,7 +68,7 @@ class LuccContinuousExecutor(LuccExecutorBase):
     """
 
     name = "lucc_continuous"
-    required_parameters = [
+    required_parameters: ClassVar[list[str]] = [
         "land_use_types", "demand_csv", "potential_data",
         "static", "complementar_lu", "allocation_data",
     ]

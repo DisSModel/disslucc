@@ -15,19 +15,24 @@ run_lab1_real.py does) introduces alignment error that doesn't exist
 here.
 """
 from __future__ import annotations
-import zipfile
-import tempfile
+
 import os
+import tempfile
+import zipfile
 from pathlib import Path
 
-import numpy as np
 import geopandas as gpd
+import numpy as np
 from dissmodel.core import Environment
 from dissmodel.geo.raster.backend import RasterBackend
 
-from disslucc import DemandPreComputedValues, PotentialLinearRegression, AllocationClueLike
-from disslucc.schemas import RegressionSpec, AllocationSpec
+from disslucc import (
+    AllocationClueLike,
+    DemandPreComputedValues,
+    PotentialLinearRegression,
+)
 from disslucc.components.demand import load_demand_csv
+from disslucc.schemas import AllocationSpec, RegressionSpec
 from disslucc.validation.pontius import pontius_millones
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -63,9 +68,8 @@ def build_backend_by_rowcol(gdf: gpd.GeoDataFrame) -> tuple[RasterBackend, np.nd
 
 
 def load_terrame_reference(zip_path: Path) -> gpd.GeoDataFrame:
-    with zipfile.ZipFile(zip_path) as z:
-        with z.open("Lab1_2014.dbf") as f:
-            data = f.read()
+    with zipfile.ZipFile(zip_path) as z, z.open("Lab1_2014.dbf") as f:
+        data = f.read()
     with tempfile.NamedTemporaryFile(suffix=".dbf", delete=False) as tmp:
         tmp.write(data)
         tmp_path = tmp.name
@@ -134,6 +138,7 @@ our_d = backend.get("d")[rows, cols]  # our grid, same row order as csAC.shp
 # align by (row,col) -- csAC and the TerraME reference may not be in
 # the same row order, so join by key, not by position
 import pandas as pd
+
 ours_df = pd.DataFrame({"row": rows, "col": cols, "d_ours": our_d}).set_index(["row", "col"])
 terrame_df = pd.DataFrame({"row": terrame_row, "col": terrame_col, "d_terrame": terrame_d}).set_index(["row", "col"])
 aligned = ours_df.join(terrame_df, how="inner")

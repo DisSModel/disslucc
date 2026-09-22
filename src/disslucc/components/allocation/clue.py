@@ -15,9 +15,10 @@ indirection through PotentialProtocol.get_potential() was only on
 decoupling.
 """
 from __future__ import annotations
-from typing import cast
-import numpy as np
 
+from typing import cast
+
+import numpy as np
 from dissmodel.geo import SyncRasterModel
 
 from ...protocols import DemandProtocol, PotentialProtocol

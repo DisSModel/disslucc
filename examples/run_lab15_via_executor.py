@@ -51,9 +51,8 @@ record = ExperimentRecord(
 demand_path = "/tmp/demand_lab15.csv"
 with open(demand_path, "w") as f:
     f.write("f,d,o\n")
-    for row in [[5706, 205, 3], [5658, 253, 3], [5611, 300, 3],
-                [5563, 348, 3], [5516, 395, 3], [5468, 443, 3]]:
-        f.write(",".join(str(v) for v in row) + "\n")
+    f.writelines(",".join(str(v) for v in row) + "\n" for row in [[5706, 205, 3], [5658, 253, 3], [5611, 300, 3],
+                [5563, 348, 3], [5516, 395, 3], [5468, 443, 3]])
 record.parameters["demand_csv"] = demand_path
 
 executor = LuccDiscreteExecutor()

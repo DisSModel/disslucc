@@ -7,8 +7,8 @@ Replaces what, in the original repository, would come from
 Here it's just deterministic np.random.
 """
 from __future__ import annotations
-import numpy as np
 
+import numpy as np
 from dissmodel.geo import RasterBackend
 
 LAND_USE_TYPES = ["forest", "agriculture", "urban"]

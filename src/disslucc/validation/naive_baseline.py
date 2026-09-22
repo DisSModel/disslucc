@@ -28,7 +28,11 @@ import numpy as np
 
 
 def _sigmoid(z: np.ndarray) -> np.ndarray:
-    return 1.0 / (1.0 + np.exp(-z))
+    # np.exp(-z) on an ndarray is typed Any (no stub narrows it back to
+    # ndarray through the division), so mypy sees this as returning Any
+    # against a declared ndarray return type; np.asarray is a no-op here
+    # at runtime and just restores the static type.
+    return np.asarray(1.0 / (1.0 + np.exp(-z)))
 
 
 def logistic_probability(gdf, spec) -> np.ndarray:
@@ -70,7 +74,10 @@ def naive_allocation(gdf, n_target: int, potential_data) -> np.ndarray:
 
     n_new = int(n_target) - int(d0.sum())
     if n_new <= 0:
-        return d0
+        # d0 comes from gdf["d"].values (geopandas has no type stubs, so
+        # this is typed Any) -- np.asarray restores the ndarray type mypy
+        # expects from the declared return type, with no runtime effect.
+        return np.asarray(d0)
 
     order = np.argsort(-margin)
     order = order[eligible[order]]
@@ -78,4 +85,4 @@ def naive_allocation(gdf, n_target: int, potential_data) -> np.ndarray:
 
     result = d0.copy()
     result[selected] = 1
-    return result
+    return np.asarray(result)

@@ -7,16 +7,51 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  lint:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    strategy:
+      fail-fast: false
+      matrix:
+        # Same matrix as `test`, deliberately: mypy is sensitive to which
+        # numpy resolves for each Python version, not just to the code
+        # here -- numpy 2.5's stub needs 3.12 syntax support that only
+        # shows up when mypy itself runs under (or targets) 3.12. A
+        # single pinned lint version would have missed exactly that.
+        python-version: ["3.11", "3.12"]
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install package and dev dependencies
+        run: pip install -e ".[dev]"
+
+      - name: Run Ruff
+        run: ruff check .
+
+      - name: Run mypy
+        run: mypy src/disslucc
+
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        # requires-python is ">=3.11" in pyproject.toml -- no 3.10 here.
+        python-version: ["3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
 
       - name: Install package, examples and dev dependencies
         run: pip install -e ".[examples,dev]"

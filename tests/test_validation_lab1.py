@@ -8,7 +8,6 @@ own criterion). Turns examples/run_lab1_validation.py's printed numbers
 into something CI can fail on.
 """
 import pytest
-
 from _lab1_helpers import TOLERANCE, data_available, run_lab1
 
 

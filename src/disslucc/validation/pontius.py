@@ -39,6 +39,7 @@ sum(|d_i|) = FP + FN. Substituting:
 disslucc-discrete.
 """
 from __future__ import annotations
+
 from typing import Any
 
 import numpy as np
@@ -105,8 +106,10 @@ def confusion_metrics(pred: Any, ref: Any, threshold: float = 0.5) -> dict:
     recall = tp / (tp + fn) if (tp + fn) > 0 else float("nan")
     f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else float("nan")
 
-    return dict(n=n, tp=tp, tn=tn, fp=fp, fn=fn, accuracy=accuracy * 100,
-                precision=precision, recall=recall, f1=f1)
+    return {
+        "n": n, "tp": tp, "tn": tn, "fp": fp, "fn": fn, "accuracy": accuracy * 100,
+        "precision": precision, "recall": recall, "f1": f1,
+    }
 
 
 if __name__ == "__main__":

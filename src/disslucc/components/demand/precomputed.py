@@ -7,6 +7,7 @@ why there's no separate "raster" version: the same class works for
 any substrate.
 """
 from __future__ import annotations
+
 import csv
 import io
 

@@ -12,6 +12,7 @@ hook), not `get_potential`. More coupled than the decoupling version,
 but it's what's in production.
 """
 from __future__ import annotations
+
 from typing import Protocol, runtime_checkable
 
 

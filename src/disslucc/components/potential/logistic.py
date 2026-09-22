@@ -19,8 +19,8 @@ more "locked in" the pixel stays in its current class (spatial
 lock-in).
 """
 from __future__ import annotations
-import numpy as np
 
+import numpy as np
 from dissmodel.geo import SyncRasterModel
 
 from ...schemas import LogisticRegressionSpec

@@ -15,17 +15,22 @@ disslucc-discrete/tests/test_benchmark_discriminance.py, not ported
 here).
 """
 from __future__ import annotations
+
 from pathlib import Path
 
+import geopandas as gpd
 import numpy as np
 import pandas as pd
-import geopandas as gpd
 from dissmodel.core import Environment
 from dissmodel.geo.raster.backend import RasterBackend
 
-from disslucc import DemandPreComputedValues, PotentialDLogisticRegression, AllocationDClueSLike
+from disslucc import (
+    AllocationDClueSLike,
+    DemandPreComputedValues,
+    PotentialDLogisticRegression,
+)
 from disslucc.schemas import LogisticRegressionSpec
-from disslucc.validation.pontius import pontius_millones, confusion_metrics
+from disslucc.validation.pontius import confusion_metrics, pontius_millones
 
 ROOT = Path(__file__).resolve().parent.parent
 # Both zips are read directly -- GDAL opens a single-layer shapefile zip

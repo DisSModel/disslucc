@@ -19,7 +19,11 @@ import pandas as pd
 from dissmodel.core import Environment
 from dissmodel.geo.raster.backend import RasterBackend
 
-from disslucc import AllocationClueLike, DemandPreComputedValues, PotentialLinearRegression
+from disslucc import (
+    AllocationClueLike,
+    DemandPreComputedValues,
+    PotentialLinearRegression,
+)
 from disslucc.components.demand import load_demand_csv
 from disslucc.schemas import AllocationSpec, RegressionSpec
 from disslucc.validation.pontius import pontius_millones
@@ -84,9 +88,8 @@ def build_backend_by_rowcol(gdf: gpd.GeoDataFrame) -> tuple[RasterBackend, np.nd
 
 
 def load_terrame_reference(zip_path: Path = TERRAME_ZIP) -> gpd.GeoDataFrame:
-    with zipfile.ZipFile(zip_path) as z:
-        with z.open("Lab1_2014.dbf") as f:
-            data = f.read()
+    with zipfile.ZipFile(zip_path) as z, z.open("Lab1_2014.dbf") as f:
+        data = f.read()
     with tempfile.NamedTemporaryFile(suffix=".dbf", delete=False) as tmp:
         tmp.write(data)
         tmp_path = tmp.name

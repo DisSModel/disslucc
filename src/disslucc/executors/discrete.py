@@ -11,21 +11,21 @@ model on top of it. See `continuous.py`'s docstring and
 (measured, not assumed).
 """
 from __future__ import annotations
-from typing import Any
+
 import pathlib
 import time
+from typing import Any, ClassVar
 
 import numpy as np
-
 from dissmodel.core import Environment
-from dissmodel.geo import RasterBackend
 from dissmodel.executor import ExperimentRecord
+from dissmodel.geo import RasterBackend
 
-from .base import LuccExecutorBase
+from ..components.allocation import AllocationDClueSLike
 from ..components.demand import DemandPreComputedValues, load_demand_csv
 from ..components.potential import PotentialDLogisticRegression
-from ..components.allocation import AllocationDClueSLike
 from ..schemas import LogisticRegressionSpec
+from .base import LuccExecutorBase
 
 
 def _spec_from_dict(d: dict[str, Any]) -> LogisticRegressionSpec:
@@ -46,7 +46,9 @@ class LuccDiscreteExecutor(LuccExecutorBase):
     """
 
     name = "lucc_discrete"
-    required_parameters = ["land_use_types", "demand_csv", "potential_data", "transition_matrix"]
+    required_parameters: ClassVar[list[str]] = [
+        "land_use_types", "demand_csv", "potential_data", "transition_matrix",
+    ]
 
     def run(self, data: RasterBackend, record: ExperimentRecord) -> dict:
         p = record.parameters

@@ -7,6 +7,7 @@ Act as the contract between the user and the models -- validation
 happens here, the models just consume.
 """
 from __future__ import annotations
+
 from dataclasses import dataclass, field
 
 

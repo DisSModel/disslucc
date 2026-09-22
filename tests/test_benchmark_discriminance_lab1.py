@@ -37,7 +37,6 @@ import copy
 import geopandas as gpd
 import numpy as np
 import pytest
-
 from _lab1_helpers import (
     CELL_AREA,
     CSAC_ZIP,

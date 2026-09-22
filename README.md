@@ -1,5 +1,7 @@
 # disslucc
 
+[![Tests](https://github.com/DisSModel/disslucc/actions/workflows/tests.yml/badge.svg)](https://github.com/DisSModel/disslucc/actions/workflows/tests.yml)
+
 Land use and land cover change (LUCC) modeling, raster-only,
 script-first, on top of [`dissmodel`](https://github.com/DisSModel/dissmodel).
 Continuous (CLUE) and discrete (CLUE-S) allocation, validated against
@@ -84,15 +86,11 @@ python -m disslucc.executors.discrete run \
 georeferenced from the input's CRS/extent -- open it directly in QGIS,
 locally or straight from MinIO.
 
-> **Requires an unreleased `dissmodel` fix.** As of `dissmodel==0.6.3`
-> (the version pinned in `pyproject.toml`), the local `--toml` loader
-> doesn't merge `[model]`-level spec (e.g. `land_use_types`,
-> `[[model.potential_data]]`) into `record.parameters` — only
-> `[model.parameters]` — so the commands above fail with `Missing
-> parameters: [...]` until a `dissmodel` release ships the fix
-> (patch sent upstream; see `docs/decisions.md`). Until then, use
-> `examples/run_*_via_executor.py` (same math, `ExperimentRecord`
-> built directly in Python) or the script-first path above.
+Both commands above run end-to-end as written -- `pyproject.toml` pins
+`dissmodel>=0.6.4`, which merges `[model]`-level spec into
+`record.parameters` for local `--toml` runs (this used to require an
+unreleased fix; see `docs/decisions.md` for that history if you're
+curious).
 
 `examples/dissmodel-configs/` has a TOML config per executor
 ([continuous](examples/dissmodel-configs/lucc_continuous.toml),

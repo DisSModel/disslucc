@@ -15,7 +15,11 @@ import numpy as np
 from dissmodel.core import Environment
 from dissmodel.geo.raster.backend import RasterBackend
 
-from disslucc import AllocationDClueSLike, DemandPreComputedValues, PotentialDLogisticRegression
+from disslucc import (
+    AllocationDClueSLike,
+    DemandPreComputedValues,
+    PotentialDLogisticRegression,
+)
 from disslucc.schemas import LogisticRegressionSpec
 from disslucc.validation.pontius import confusion_metrics, pontius_millones
 

@@ -13,11 +13,10 @@ no StageRegistry).
 from __future__ import annotations
 
 from dissmodel.core import Environment
+from scenario import COMPLEMENTAR_LU, LAND_USE_TYPES, build_backend, build_demand
 
-from disslucc import DemandInline, PotentialLinearRegression, AllocationClueLike
-from disslucc.schemas import RegressionSpec, AllocationSpec
-
-from scenario import build_backend, build_demand, LAND_USE_TYPES, COMPLEMENTAR_LU
+from disslucc import AllocationClueLike, DemandInline, PotentialLinearRegression
+from disslucc.schemas import AllocationSpec, RegressionSpec
 
 N_STEPS = 8
 HEIGHT = WIDTH = 30

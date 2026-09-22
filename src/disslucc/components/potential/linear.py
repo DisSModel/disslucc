@@ -5,9 +5,10 @@ Faithful port of disslucc_continuous.components.potential.raster.linear
 (decoupling branch). Raster only -- that's what was asked for.
 """
 from __future__ import annotations
-import math
-import numpy as np
 
+import math
+
+import numpy as np
 from dissmodel.geo import SyncRasterModel
 
 from ...schemas import RegressionSpec

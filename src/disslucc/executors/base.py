@@ -36,6 +36,8 @@ registry or string resolution.
 """
 from __future__ import annotations
 
+from typing import ClassVar
+
 from dissmodel.executor import ExperimentRecord, ModelExecutor
 from dissmodel.geo import RasterBackend
 from dissmodel.io import load_dataset
@@ -53,7 +55,7 @@ class LuccExecutorBase(ModelExecutor):
     subclasses can override it if they need something different.
     """
 
-    required_parameters: list[str] = []
+    required_parameters: ClassVar[list[str]] = []
 
     def validate(self, record: ExperimentRecord) -> None:
         if not record.source or not record.source.uri:

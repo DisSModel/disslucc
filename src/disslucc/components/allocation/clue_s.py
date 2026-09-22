@@ -14,9 +14,10 @@ until the difference between demand and allocated area is within
 max_difference.
 """
 from __future__ import annotations
-from typing import cast
-import numpy as np
 
+from typing import cast
+
+import numpy as np
 from dissmodel.geo import SyncRasterModel
 
 from ...protocols import DemandProtocol
@@ -72,7 +73,6 @@ class AllocationDClueSLike(SyncRasterModel):
         lu_types = self.land_use_types
         n_lu = len(lu_types)
         mask = self._mask()
-        flat_mask = mask.ravel()
 
         # 0-based regions for numpy indexing
         regions = (self.backend.get(self.region_attr).ravel().astype(int) - 1)

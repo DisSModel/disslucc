@@ -363,9 +363,9 @@ python -m disslucc.executors.continuous run \
 ```
 
 `examples/dissmodel-configs/` has one TOML per executor --
-[`lucc_continuous.toml`](../examples/dissmodel-configs/lucc_continuous.toml)
+[`lucc_continuous.toml`](https://github.com/DisSModel/disslucc/blob/main/examples/dissmodel-configs/lucc_continuous.toml)
 and
-[`lucc_discrete.toml`](../examples/dissmodel-configs/lucc_discrete.toml)
+[`lucc_discrete.toml`](https://github.com/DisSModel/disslucc/blob/main/examples/dissmodel-configs/lucc_discrete.toml)
 -- each encoding the exact same coefficients as its `*_via_executor.py`
 sibling above (verified: same final metrics, same output checksum for
 the continuous/Lab1 case). Everything under `[model]` besides
@@ -380,15 +380,14 @@ Table names match this package's own `required_parameters`
 `disslucc`'s executors read those keys as-is, with no renaming layer
 of its own.
 
-> **Needs a `dissmodel` release past `0.6.3`.** The local-`--toml`
-> merge above didn't exist in `dissmodel`'s CLI before this was found
-> (only `[model.parameters]` was ever read into `record.parameters`,
-> matching the docstring's promise but not the code -- confirmed
-> against a fresh clone of `DisSModel/dissmodel@main`, not a stale
-> local copy). A fix was written and validated (full `dissmodel` test
-> suite + new regression tests for the merge, `mypy` clean, and this
-> exact `lucc_continuous.toml`/`lucc_discrete.toml` run end-to-end
-> through the real CLI with matching output checksums) but is not yet
-> merged/released upstream -- `disslucc` pins `dissmodel==0.6.3`
-> exactly, which predates it. See `docs/decisions.md`, "TOML config
-> example added for the executors path", for the full history.
+> **Fixed in `dissmodel` 0.6.4.** The local-`--toml` merge above
+> didn't exist in `dissmodel`'s CLI before this was found (only
+> `[model.parameters]` was ever read into `record.parameters`,
+> matching the docstring's promise but not the code). A fix was
+> written and validated (full `dissmodel` test suite + new regression
+> tests for the merge, `mypy` clean, and this exact
+> `lucc_continuous.toml`/`lucc_discrete.toml` run end-to-end through
+> the real CLI with matching output checksums) and shipped in
+> `dissmodel` 0.6.4 -- `disslucc` pins `dissmodel>=0.6.4`, so both
+> commands above work as written. See `docs/decisions.md`, "TOML
+> config example added for the executors path", for the full history.

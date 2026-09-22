@@ -6,7 +6,7 @@
 pip install -e ".[examples]"
 ```
 
-`dissmodel==0.6.3` comes as a dependency (brings `geopandas`/`rasterio`
+`dissmodel` comes as a dependency (brings `geopandas`/`rasterio`
 along). `matplotlib` is optional, only for the examples that generate
 a quicklook.
 
@@ -75,6 +75,14 @@ Run any of them from inside `examples/`:
 ```bash
 cd examples && python3 run_script.py
 ```
+
+## Notebooks
+
+Prefer to read and run cell by cell rather than as a script? Two
+small, fully synthetic notebooks -- no shapefiles, no vendored data --
+walk through the same mechanics one step at a time:
+[continuous (CLUE)](examples/notebooks/continuous_synthetic.ipynb) and
+[discrete (CLUE-S)](examples/notebooks/discrete_synthetic.ipynb).
 
 ## Next steps
 
