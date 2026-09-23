@@ -12,6 +12,7 @@ from pathlib import Path
 
 import geopandas as gpd
 import numpy as np
+import pandas as pd
 from dissmodel.core import Environment
 from dissmodel.geo.raster.backend import RasterBackend
 
@@ -25,7 +26,10 @@ from disslucc.validation.pontius import confusion_metrics, pontius_millones
 
 ROOT = Path(__file__).resolve().parent.parent
 CS_MOJU_ZIP = ROOT / "data" / "input" / "cs_moju.zip"
-TERRAME_ZIP = ROOT / "benchmark" / "data" / "Lab15_2004.zip"
+# TerraME reference: golden lab15_md10 (benchmark/goldens/, generated in
+# LambdaGeo/terrame-docker). Its last year is the former
+# benchmark/data/Lab15_2004.zip (identical).
+GOLDEN_CSV = ROOT / "benchmark" / "goldens" / "lab15_md10" / "lab15_md10.csv.gz"
 
 LAND_USE_TYPES = ["f", "d", "o"]
 N_STEPS = 6
@@ -52,7 +56,7 @@ DEFAULT_POTENTIAL_DATA: list[list[LogisticRegressionSpec]] = [[
 
 TRANSITION_MATRIX = [[[1, 1, 0], [0, 1, 0], [0, 0, 1]]]  # irreversible deforestation
 
-data_available = CS_MOJU_ZIP.exists() and TERRAME_ZIP.exists()
+data_available = CS_MOJU_ZIP.exists() and GOLDEN_CSV.exists()
 
 
 def build_backend_by_rowcol(gdf: gpd.GeoDataFrame) -> tuple[RasterBackend, np.ndarray, np.ndarray]:
@@ -78,8 +82,14 @@ def load_gdf_input() -> gpd.GeoDataFrame:
     return gpd.read_file(CS_MOJU_ZIP)
 
 
-def load_gdf_terrame() -> gpd.GeoDataFrame:
-    return gpd.read_file(TERRAME_ZIP)
+def load_gdf_terrame() -> pd.DataFrame:
+    """TerraME's final year (2004) as a table (lin, col, d_out), in the same
+    row order as the input shapefile. The golden calls `lin` `row`."""
+    golden = pd.read_csv(GOLDEN_CSV)
+    final = golden[golden["year"] == golden["year"].max()][["row", "col", "d_out"]]
+    final = final.rename(columns={"row": "lin"})
+    cells = load_gdf_input()[["lin", "col"]].astype(int)
+    return cells.merge(final, on=["lin", "col"], how="left", validate="one_to_one")
 
 
 def run_lab15_raster(
@@ -111,8 +121,6 @@ def run_lab15_raster(
 def metrics_vs_terrame(backend: RasterBackend, rows: np.ndarray, cols: np.ndarray) -> dict:
     """Pontius & Millones decomposition plus confusion metrics for
     class 'd', aligned against the real TerraME reference."""
-    import pandas as pd
-
     terrame = load_gdf_terrame()
     ours_df = pd.DataFrame({
         "lin": rows, "col": cols, "d_ours": backend.get("d")[rows, cols],

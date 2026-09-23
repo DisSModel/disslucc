@@ -1,0 +1,139 @@
+
+Verifying Model parameters
+Verifying Demand parameters
+Verifying Potential parameters
+Verifying Allocation parameters
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Time: 1999
+-------------------------------------------------------------------------------
+Cell Area 1
+Num of cells 5914
+Max diff area 300
+Initial area for land use : f -> 5706
+Initial area for land use : d -> 205
+Initial area for land use : o -> 3
+-------------------------------------------------------------------------------
+
+Year: 1999 Iteration -> 0
+f -> 5706		demand -> 5706 difference -> 0
+d -> 205		demand -> 205 difference -> 0
+o -> 3		demand -> 3 difference -> 0
+
+Demand allocated correctly in this time: 1999
+[harness] lab15: Lab15, anos 1999..2004, colunas f_out,d_out,o_out,f_pot,d_pot,o_pot
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Time: 2000
+-------------------------------------------------------------------------------
+Cell Area 1
+Num of cells 5914
+Max diff area 300
+Initial area for land use : f -> 5706
+Initial area for land use : d -> 205
+Initial area for land use : o -> 3
+-------------------------------------------------------------------------------
+
+Year: 2000 Iteration -> 0
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Demand allocated correctly in this time: 2000
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Time: 2001
+-------------------------------------------------------------------------------
+Cell Area 1
+Num of cells 5914
+Max diff area 300
+Initial area for land use : f -> 5706
+Initial area for land use : d -> 205
+Initial area for land use : o -> 3
+-------------------------------------------------------------------------------
+
+Year: 2001 Iteration -> 0
+f -> 5706		demand -> 5611 difference -> -95
+d -> 205		demand -> 300 difference -> 95
+o -> 3		demand -> 3 difference -> 0
+
+Demand allocated correctly in this time: 2001
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Time: 2002
+-------------------------------------------------------------------------------
+Cell Area 1
+Num of cells 5914
+Max diff area 300
+Initial area for land use : f -> 5706
+Initial area for land use : d -> 205
+Initial area for land use : o -> 3
+-------------------------------------------------------------------------------
+
+Year: 2002 Iteration -> 0
+f -> 5706		demand -> 5563 difference -> -143
+d -> 205		demand -> 348 difference -> 143
+o -> 3		demand -> 3 difference -> 0
+
+Demand allocated correctly in this time: 2002
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Time: 2003
+-------------------------------------------------------------------------------
+Cell Area 1
+Num of cells 5914
+Max diff area 300
+Initial area for land use : f -> 5706
+Initial area for land use : d -> 205
+Initial area for land use : o -> 3
+-------------------------------------------------------------------------------
+
+Year: 2003 Iteration -> 0
+f -> 5706		demand -> 5516 difference -> -190
+d -> 205		demand -> 395 difference -> 190
+o -> 3		demand -> 3 difference -> 0
+
+Demand allocated correctly in this time: 2003
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Time: 2004
+-------------------------------------------------------------------------------
+Cell Area 1
+Num of cells 5914
+Max diff area 300
+Initial area for land use : f -> 5706
+Initial area for land use : d -> 205
+Initial area for land use : o -> 3
+-------------------------------------------------------------------------------
+
+Year: 2004 Iteration -> 0
+f -> 5706		demand -> 5468 difference -> -238
+d -> 205		demand -> 443 difference -> 238
+o -> 3		demand -> 3 difference -> 0
+
+Demand allocated correctly in this time: 2004
+
+Saving Lab15_2004.
+Elapsed time: 00:00:03 hh:mm:ss
+
+End of Simulation
+[harness] lab15: 5 arquivos da saída original em /work/out/lab15
+[harness] lab15: CSV gravado em /work/out/lab15

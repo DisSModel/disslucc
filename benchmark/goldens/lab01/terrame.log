@@ -1,0 +1,90 @@
+
+Verifying Model parameters
+Verifying Demand parameters
+Verifying Potential parameters
+Verifying Allocation parameters
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Year: 2008	Step: 0
+f Area: 137878	Difference: 0
+d Area: 19982	Difference: 0
+outros Area: 6489	Difference: 0
+
+Demand allocated correctly in 2008.	Number of iterations: 0	Maximum error: 2.7950358344242e-05
+[harness] lab01: Lab01, anos 2008..2014, colunas f_out,d_out,outros_out,f_pot,d_pot,outros_pot
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Year: 2009	Step: 0
+f Area: 136483	Difference: -1139
+d Area: 20953	Difference: 714
+outros Area: 6489	Difference: 0
+
+Demand allocated correctly in 2009.	Number of iterations: 0	Maximum error: 1138.4125251856
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Year: 2010	Step: 0
+f Area: 135609	Difference: -1757
+d Area: 21826	Difference: 1331
+outros Area: 6489	Difference: 0
+
+Demand allocated correctly in 2010.	Number of iterations: 0	Maximum error: 1756.4683416836
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Year: 2011	Step: 0
+f Area: 134822	Difference: -2288
+d Area: 22612	Difference: 1862
+outros Area: 6489	Difference: 0
+
+Demand allocated correctly in 2011.	Number of iterations: 0	Maximum error: 2287.3741648977
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Year: 2012	Step: 0
+f Area: 134114	Difference: -2711
+d Area: 23320	Difference: 2284
+outros Area: 6489	Difference: 0
+
+Demand allocated correctly in 2012.	Number of iterations: 0	Maximum error: 2710.5152184257
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Year: 2013	Step: 0
+f Area: 133475	Difference: -3064
+d Area: 23956	Difference: 2635
+outros Area: 6489	Difference: 0
+
+Demand allocated correctly in 2013.	Number of iterations: 0	Maximum error: 3063.7042134609
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Year: 2014	Step: 0
+f Area: 132899	Difference: -3354
+d Area: 24530	Difference: 2922
+outros Area: 6489	Difference: 0
+
+Demand allocated correctly in 2014.	Number of iterations: 0	Maximum error: 3353.6276049931
+
+Saving Lab01_2014.
+Elapsed time: 00:00:04 hh:mm:ss
+
+End of Simulation
+[harness] lab01: 5 arquivos da saída original em /work/out/lab01
+[harness] lab01: CSV gravado em /work/out/lab01

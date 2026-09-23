@@ -8,8 +8,12 @@ TerraME/LuccME reference -- not just "runs without error".
 Real data: `data/input/csAC.zip` (shapefile, 6,574 cells) +
 `data/input/examples_demand_lab1.csv`, both originally from
 `disslucc-continuous`. Real calibrated regression coefficients (not
-synthetic). Reference: `benchmark/data/LUCCME_Lab1_2014.zip`
-(`disslucc-continuous`).
+synthetic). Reference: the last year (2014) of the golden
+`benchmark/goldens/lab01_md1643` -- the same values as the former
+`benchmark/data/LUCCME_Lab1_2014.zip` from `disslucc-continuous` (max
+difference 5e-13), now kept together with its generating scripts in
+[LambdaGeo/terrame-docker](https://github.com/LambdaGeo/terrame-docker)
+(`benchmark/references/lab01_md1643/`).
 
 Method: raster grid built via direct `row`/`col` mapping (each
 shapefile polygon already knows its position in the original grid --
@@ -37,11 +41,20 @@ Reproduce: `examples/run_lab1_validation.py`.
 
 Provenance: the original LuccME scripts that generated this reference
 (`Lab1`, `maxDifference=1643`) are vendored at
-`benchmark/reference/lab1_main.lua` + `lab1_submodel.lua`. These are
+terrame-docker's `benchmark/references/lab01_md1643/` (`lab1_main.lua` +
+`lab1_submodel.lua`, with the original TerraME output zip). These are
 **not** the same scripts as `terrame/luccme`'s public
 `tests/functional/lab01.lua`, which shares this scenario's coefficients
 and demand but declares a different `maxDifference` (5000) and did not
-generate this data -- see `benchmark/reference/README.md`.
+generate this data -- see `benchmark/references/README.md` there.
+
+**Where this MAE comes from.** All of it is one deliberate deviation:
+LuccME's `correctCellChange` never runs (its guard reads
+`cell.regionregionAloc`, a typo, in `AllocationCClueLike.lua`), while
+disslucc runs the correction by default (`cell_correction=True`, the
+intended algorithm). With `cell_correction=False`, disslucc matches TerraME
+in every year and every iteration count (MAE < 1e-7, float32 noise) -- see
+"Year by year" below.
 
 ## Lab15 (discrete) — deforestation, Moju region
 
@@ -49,7 +62,10 @@ Real data: `data/input/cs_moju.zip` (shapefile, 5,914 cells), originally
 from `disslucc-discrete`. Real logistic regression coefficients, real
 transition matrix (irreversible deforestation: forest can become
 deforested, deforested doesn't go back to forest). Reference:
-`benchmark/data/Lab15_2004.zip` (`disslucc-discrete`).
+the last year (2004) of the golden `benchmark/goldens/lab15_md10` -- the
+same values as the former `benchmark/data/Lab15_2004.zip` from
+`disslucc-discrete` (identical), now kept with its generating scripts in
+terrame-docker (`benchmark/references/lab15_md10/`).
 
 ```
 Pontius & Millones -- disslucc vs TerraME, class 'd':
@@ -73,13 +89,14 @@ Provenance: despite the "Lab15" label used throughout this project
 (inherited from `disslucc-discrete`), the script that actually
 generated this reference is named `Lab6` internally
 (`outputTheme = "Lab6_"`, `maxDifference=10`), vendored unmodified at
-`benchmark/reference/lab15_main.lua` + `lab15_submodel.lua` (renamed
-from the originals' `lab6_main.lua`/`lab6_submodel.lua` to match this
-project's "Lab15" naming). This is **not** the same script as
+terrame-docker's `benchmark/references/lab15_md10/` under their original
+names `lab6_main.lua` + `lab6_submodel.lua` (this project used to keep
+them as `lab15_main.lua`/`lab15_submodel.lua`, to match its "Lab15"
+naming). This is **not** the same script as
 `terrame/luccme`'s public `tests/functional/lab15.lua`, which shares
 this scenario's coefficients and demand but declares a different
 `maxDifference` (300) and did not generate this data -- see
-`benchmark/reference/README.md` for the full trace.
+`benchmark/references/README.md` in terrame-docker for the full trace.
 
 ### Discriminance warning (inherited, not my own achievement)
 
@@ -94,16 +111,44 @@ coefficients were transcribed correctly** (the deterministic part,
 easy to verify) -- **it is not proof that the allocation algorithm**
 (CLUE-S with iteration/convergence via `factor_iteration`) **is
 faithful** in scenarios where competition between classes really
-matters. Proving that would require comparing the iteration count per
-step against the TerraME log (`disslucc-discrete` documents 61-67
-iterations per step) -- not done here.
+matters. Proving that requires comparing the iteration count per step
+against the TerraME log -- done now, year by year, in the next section.
+
+## Year by year, with iteration counts
+
+`benchmark/goldens/` holds a copy of the goldens generated in
+[LambdaGeo/terrame-docker](https://github.com/LambdaGeo/terrame-docker):
+for every cell and every simulated year, `<lu>_out` and `<lu>_pot`, plus
+TerraME's convergence-loop iteration count per year. terrame-docker has 23
+(the 21 functional labs of the LuccME package and the two scenarios above);
+this repository keeps the four its tests use (`lab01`, `lab01_md1643`,
+`lab15`, `lab15_md10`), and adds the others as their components are
+implemented.
+`tests/test_goldens_per_year.py` checks the iteration count per year
+(exact) and every class per year (MAE < 1e-6):
+
+| Golden | `maxDifference` | TerraME iterations per year | disslucc |
+|---|---|---|---|
+| `lab15_md10` (discrete) | 10 | 0, 67, 56, 56, 61, 61 | same; `d_out`/`d_pot` identical every year |
+| `lab15` (package) | 300 | 0 every year | same; identical every year |
+| `lab01_md1643` (continuous) | 1643 | 0, 0, 8, 26, 18, 17, 17 | same with `cell_correction=False` (MAE < 1e-7 every year) |
+| `lab01` (package) | 5000 | 0 every year | same with `cell_correction=False` |
+
+With the default `cell_correction=True`, `lab01_md1643` gives 0, 0, 0, 14,
+17, 16, 16 iterations and drifts from 2009 on (MAE 0.003583 in 2014, the
+number in the Lab1 section above).
+
+This closes the gap left by the Lab15 discriminance warning: the final map
+alone could not tell a correct CLUE-S from a static ranking, but the
+iteration counts can, and they match in every year.
 
 ## Summary
 
 | Scenario | Type | MAE | Match | What it proves |
 |---|---|---|---|---|
-| Lab1 | continuous | 0.0036 | -- | full model (Demand+Potential+Allocation), within the official tolerance |
-| Lab15 | discrete | 0.0 | 100% | correct regression coefficients; **does not** confirm CLUE-S convergence under real competition |
+| Lab1 | continuous | 0.0036 | -- | full model (Demand+Potential+Allocation), within the official tolerance; the whole MAE is the cell correction that TerraME skips |
+| Lab15 | discrete | 0.0 | 100% | correct regression coefficients |
+| Lab1, Lab15 year by year | both | < 1e-7 | iterations exact | CLUE-S convergence confirmed; CLUE identical to TerraME with `cell_correction=False` |
 
 ## What these numbers DON'T prove: engineering validation ≠ scientific validation
 

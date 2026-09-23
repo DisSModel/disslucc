@@ -19,9 +19,10 @@ missing, unclear, or inconsistent with the actual code/data? -->
 - [ ] Add/update docstrings in `path/to/module.py`
 - [ ] Write or refine a documentation page in `docs/`
 - [ ] Update code examples in `examples/` to reflect current API behavior
-- [ ] Update provenance notes in `benchmark/reference/README.md` or
+- [ ] Update provenance notes in `benchmark/README.md` or
       `docs/validation.md`
 
 ### References & Context
-<!-- Link to relevant code, the original LuccME scripts in
-benchmark/reference/, papers, or related issues, if applicable. -->
+<!-- Link to relevant code, the original LuccME scripts (kept in
+LambdaGeo/terrame-docker, benchmark/references/), papers, or related
+issues, if applicable. -->

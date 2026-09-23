@@ -8,9 +8,6 @@ and the pytest suite.
 """
 from __future__ import annotations
 
-import os
-import tempfile
-import zipfile
 from pathlib import Path
 
 import geopandas as gpd
@@ -30,7 +27,10 @@ from disslucc.validation.pontius import pontius_millones
 
 ROOT = Path(__file__).resolve().parent.parent
 CSAC_ZIP = ROOT / "data" / "input" / "csAC.zip"
-TERRAME_ZIP = ROOT / "benchmark" / "data" / "LUCCME_Lab1_2014.zip"
+# TerraME reference: golden lab01_md1643 (benchmark/goldens/, generated in
+# LambdaGeo/terrame-docker). Its last year is the former
+# benchmark/data/LUCCME_Lab1_2014.zip (max difference 5e-13).
+GOLDEN_CSV = ROOT / "benchmark" / "goldens" / "lab01_md1643" / "lab01_md1643.csv.gz"
 DEMAND_CSV = ROOT / "data" / "input" / "examples_demand_lab1.csv"
 
 LAND_USE_TYPES = ["f", "d", "outros"]
@@ -63,7 +63,7 @@ DEFAULT_ALLOCATION_DATA: list[AllocationSpec] = [
     AllocationSpec(static=1, min_value=0, max_value=1, min_change=0, max_change=1),
 ]
 
-data_available = CSAC_ZIP.exists() and TERRAME_ZIP.exists() and DEMAND_CSV.exists()
+data_available = CSAC_ZIP.exists() and GOLDEN_CSV.exists() and DEMAND_CSV.exists()
 
 
 def build_backend_by_rowcol(gdf: gpd.GeoDataFrame) -> tuple[RasterBackend, np.ndarray, np.ndarray]:
@@ -87,17 +87,13 @@ def build_backend_by_rowcol(gdf: gpd.GeoDataFrame) -> tuple[RasterBackend, np.nd
     return backend, rows, cols
 
 
-def load_terrame_reference(zip_path: Path = TERRAME_ZIP) -> gpd.GeoDataFrame:
-    with zipfile.ZipFile(zip_path) as z, z.open("Lab1_2014.dbf") as f:
-        data = f.read()
-    with tempfile.NamedTemporaryFile(suffix=".dbf", delete=False) as tmp:
-        tmp.write(data)
-        tmp_path = tmp.name
-    try:
-        gdf = gpd.read_file(tmp_path)
-    finally:
-        os.unlink(tmp_path)
-    return gdf
+def load_terrame_reference(golden_csv: Path = GOLDEN_CSV) -> pd.DataFrame:
+    """TerraME's final year (2014) as a table (row, col, d_out), in the same
+    row order as the input shapefile."""
+    golden = pd.read_csv(golden_csv)
+    final = golden[golden["year"] == golden["year"].max()][["row", "col", "d_out"]]
+    cells = gpd.read_file(CSAC_ZIP)[["row", "col"]].astype(int)
+    return cells.merge(final, on=["row", "col"], how="left", validate="one_to_one")
 
 
 def full_metrics(pred: np.ndarray, ref: np.ndarray, tolerance: float = TOLERANCE) -> dict:

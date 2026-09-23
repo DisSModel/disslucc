@@ -112,19 +112,21 @@ number change unexpectedly, treat it as a regression until proven otherwise.
 Two things make this package different from a typical model port, and both
 have their own conventions:
 
-- **Vendored input/reference data** (`data/input/`, `benchmark/data/`) is
-  real data from `disslucc-continuous`/`disslucc-discrete`, not synthetic.
-  Don't regenerate or "clean up" these files without understanding
-  `docs/validation.md` first -- the numbers they produce are cited in
-  `dissmodel`'s JOSS paper.
-- **Provenance scripts** (`benchmark/reference/*.lua`) are the actual
-  original LuccME "Model Configurator" scripts that generated the reference
-  data, kept unmodified. If you're unsure whether a script on
-  `terrame/luccme`'s GitHub is "the" source for a scenario here, check
-  `benchmark/reference/README.md` first -- coefficients/demand matching is
-  not sufficient evidence, since TerraME's own public test suite contains
-  look-alike scenarios with different convergence parameters that did not
-  generate this repository's data.
+- **Vendored input data** (`data/input/`) is real data from
+  `disslucc-continuous`/`disslucc-discrete`, not synthetic. Don't regenerate
+  or "clean up" these files without understanding `docs/validation.md` first
+  -- the numbers they produce are cited in `dissmodel`'s JOSS paper.
+- **Reference results** (`benchmark/goldens/`) are a copy of the goldens this
+  repository's tests use, generated in [LambdaGeo/terrame-docker](https://github.com/LambdaGeo/terrame-docker)
+  v0.1.0 (which has goldens for all 21 LuccME labs; copy one here only with
+  the component and test that use it),
+  which also keeps the original LuccME "Model Configurator" scripts, the
+  original TerraME outputs and the generator. Never edit a golden by hand:
+  regenerate it there and copy the folder (see `benchmark/README.md`). If
+  you're unsure which script is "the" source for a scenario, check
+  terrame-docker's `benchmark/references/README.md` -- coefficients/demand
+  matching is not sufficient evidence, since TerraME's own public test suite
+  contains look-alike scenarios with different convergence parameters.
 
 If your change affects a Lab1 or Lab15 validation number, update
 `docs/validation.md` in the same PR and say so explicitly in the PR

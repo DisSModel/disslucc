@@ -33,10 +33,12 @@ from disslucc.schemas import LogisticRegressionSpec
 from disslucc.validation.pontius import confusion_metrics, pontius_millones
 
 ROOT = Path(__file__).resolve().parent.parent
-# Both zips are read directly -- GDAL opens a single-layer shapefile zip
+# The input zip is read directly -- GDAL opens a single-layer shapefile zip
 # without manual extraction, same as the tests in disslucc-discrete do.
 CS_MOJU_ZIP = ROOT / "data" / "input" / "cs_moju.zip"
-TERRAME_ZIP = ROOT / "benchmark" / "data" / "Lab15_2004.zip"
+# TerraME reference: golden lab15_md10, last year = 2004 (generated with
+# LambdaGeo/terrame-docker; formerly benchmark/data/Lab15_2004.zip).
+GOLDEN_CSV = ROOT / "benchmark" / "goldens" / "lab15_md10" / "lab15_md10.csv.gz"
 
 LAND_USE_TYPES = ["f", "d", "o"]
 N_STEPS = 6
@@ -114,7 +116,8 @@ for i, lu in enumerate(LAND_USE_TYPES):
 
 # ── 3. compare cell by cell against the real TerraME reference ───────────────
 
-terrame = gpd.read_file(TERRAME_ZIP)
+golden = pd.read_csv(GOLDEN_CSV)
+terrame = golden[golden["year"] == golden["year"].max()].rename(columns={"row": "lin"})
 
 ours_df = pd.DataFrame({
     "lin": rows, "col": cols, "d_ours": backend.get("d")[rows, cols],
