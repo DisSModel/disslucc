@@ -1,7 +1,8 @@
 """
 Real validation: runs disslucc (ours, raster-only) over the real Lab1
 scenario and compares cell by cell against the TerraME reference
-(benchmark/data/LUCCME_Lab1_2014.zip from disslucc-continuous), using
+(benchmark/goldens/lab01_md1643, last year = 2014, generated with
+LambdaGeo/terrame-docker; formerly benchmark/data/LUCCME_Lab1_2014.zip), using
 the continuous Pontius & Millones decomposition
 (disslucc.validation.pontius).
 
@@ -16,13 +17,11 @@ here.
 """
 from __future__ import annotations
 
-import os
-import tempfile
-import zipfile
 from pathlib import Path
 
 import geopandas as gpd
 import numpy as np
+import pandas as pd
 from dissmodel.core import Environment
 from dissmodel.geo.raster.backend import RasterBackend
 
@@ -37,7 +36,7 @@ from disslucc.validation.pontius import pontius_millones
 
 ROOT = Path(__file__).resolve().parent.parent
 CSAC_ZIP = ROOT / "data" / "input" / "csAC.zip"
-TERRAME_ZIP = ROOT / "benchmark" / "data" / "LUCCME_Lab1_2014.zip"
+GOLDEN_CSV = ROOT / "benchmark" / "goldens" / "lab01_md1643" / "lab01_md1643.csv.gz"
 DEMAND_CSV = ROOT / "data" / "input" / "examples_demand_lab1.csv"
 
 LAND_USE_TYPES = ["f", "d", "outros"]
@@ -67,17 +66,10 @@ def build_backend_by_rowcol(gdf: gpd.GeoDataFrame) -> tuple[RasterBackend, np.nd
     return backend, rows, cols
 
 
-def load_terrame_reference(zip_path: Path) -> gpd.GeoDataFrame:
-    with zipfile.ZipFile(zip_path) as z, z.open("Lab1_2014.dbf") as f:
-        data = f.read()
-    with tempfile.NamedTemporaryFile(suffix=".dbf", delete=False) as tmp:
-        tmp.write(data)
-        tmp_path = tmp.name
-    try:
-        gdf = gpd.read_file(tmp_path)
-    finally:
-        os.unlink(tmp_path)
-    return gdf
+def load_terrame_reference(golden_csv: Path) -> pd.DataFrame:
+    """TerraME's final year (row, col, d_out) from the golden."""
+    golden = pd.read_csv(golden_csv)
+    return golden[golden["year"] == golden["year"].max()]
 
 
 # ── 1. real data + grid aligned by row/col ────────────────────────────────────
@@ -128,7 +120,7 @@ env.run()
 
 # ── 3. compare cell by cell against the real TerraME reference ───────────────
 
-terrame = load_terrame_reference(TERRAME_ZIP)
+terrame = load_terrame_reference(GOLDEN_CSV)
 terrame_row = terrame["row"].astype(int).values
 terrame_col = terrame["col"].astype(int).values
 terrame_d = terrame["d_out"].astype(float).values
@@ -137,7 +129,6 @@ our_d = backend.get("d")[rows, cols]  # our grid, same row order as csAC.shp
 
 # align by (row,col) -- csAC and the TerraME reference may not be in
 # the same row order, so join by key, not by position
-import pandas as pd
 
 ours_df = pd.DataFrame({"row": rows, "col": cols, "d_ours": our_d}).set_index(["row", "col"])
 terrame_df = pd.DataFrame({"row": terrame_row, "col": terrame_col, "d_terrame": terrame_d}).set_index(["row", "col"])

@@ -9,7 +9,11 @@ the original TerraME reference on real data for both: Lab1
 (continuous) within the official 0.01 MAE tolerance, Lab15 (discrete)
 at exact, 100% cell-by-cell agreement — see
 [`docs/validation.md`](docs/validation.md) for both results and what
-each one does and doesn't prove.
+each one does and doesn't prove. Both are also checked year by year,
+iteration counts included, against the goldens of
+[LambdaGeo/terrame-docker](https://github.com/LambdaGeo/terrame-docker)
+(`benchmark/goldens/`), which cover the 21 labs of the LuccME package; this
+repository keeps the ones its tests use.
 
 ## Migration status: becoming the single successor repository
 
@@ -147,8 +151,7 @@ disslucc/
 ├── examples/          # ready-made scripts, synthetic, real data, and via Executor
 ├── data/input/        # vendored Lab1 + Lab15 input shapefiles and demand CSVs
 ├── benchmark/
-│   ├── data/          # vendored TerraME reference outputs (Lab1, Lab15)
-│   └── reference/     # vendored original LuccME .lua scripts (provenance)
+│   └── goldens/       # TerraME reference results, year by year (from LambdaGeo/terrame-docker)
 ├── tests/             # pytest suite -- validation + discriminance, run by CI
 └── docs/
 ```

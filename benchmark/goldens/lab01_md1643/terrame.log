@@ -1,0 +1,522 @@
+
+Verifying Model parameters
+Verifying Demand parameters
+Verifying Potential parameters
+Verifying Allocation parameters
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Year: 2008	Step: 0
+f Area: 137878	Difference: 0
+d Area: 19982	Difference: 0
+outros Area: 6489	Difference: 0
+
+Demand allocated correctly in 2008.	Number of iterations: 0	Maximum error: 2.7950358344242e-05
+[harness] lab01_md1643: Lab1, anos 2008..2014, colunas f_out,d_out,outros_out,f_pot,d_pot,outros_pot
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Year: 2009	Step: 0
+f Area: 136483	Difference: -1139
+d Area: 20953	Difference: 714
+outros Area: 6489	Difference: 0
+
+Demand allocated correctly in 2009.	Number of iterations: 0	Maximum error: 1138.4125251856
+Cell 1: f_pot=0.0295, d_pot=-0.0398
+Cell 2: f_pot=-0.0227, d_pot=0.0000
+Cell 3: f_pot=-0.0171, d_pot=0.0000
+Cell 4: f_pot=-0.0223, d_pot=0.0000
+Cell 5: f_pot=-0.0353, d_pot=0.0000
+Mean d_pot: 0.0052
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Year: 2010	Step: 0
+f Area: 135609	Difference: -1757
+d Area: 21826	Difference: 1331
+outros Area: 6489	Difference: 0
+
+Year: 2010	Step: 1
+f Area: 135626	Difference: -1740
+d Area: 21773	Difference: 1278
+outros Area: 6489	Difference: 0
+
+Year: 2010	Step: 2
+f Area: 135642	Difference: -1724
+d Area: 21725	Difference: 1230
+outros Area: 6489	Difference: 0
+
+Year: 2010	Step: 3
+f Area: 135658	Difference: -1708
+d Area: 21681	Difference: 1186
+outros Area: 6489	Difference: 0
+
+Year: 2010	Step: 4
+f Area: 135674	Difference: -1693
+d Area: 21641	Difference: 1146
+outros Area: 6489	Difference: 0
+
+Year: 2010	Step: 5
+f Area: 135689	Difference: -1678
+d Area: 21604	Difference: 1110
+outros Area: 6489	Difference: 0
+
+Year: 2010	Step: 6
+f Area: 135704	Difference: -1663
+d Area: 21571	Difference: 1076
+outros Area: 6489	Difference: 0
+
+Year: 2010	Step: 7
+f Area: 135718	Difference: -1648
+d Area: 21540	Difference: 1046
+outros Area: 6489	Difference: 0
+
+Year: 2010	Step: 8
+f Area: 135732	Difference: -1634
+d Area: 21512	Difference: 1017
+outros Area: 6489	Difference: 0
+
+Demand allocated correctly in 2010.	Number of iterations: 8	Maximum error: 1633.341418966
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Year: 2011	Step: 0
+f Area: 135106	Difference: -2005
+d Area: 22329	Difference: 1579
+outros Area: 6489	Difference: 0
+
+Year: 2011	Step: 1
+f Area: 135124	Difference: -1986
+d Area: 22271	Difference: 1521
+outros Area: 6489	Difference: 0
+
+Year: 2011	Step: 2
+f Area: 135142	Difference: -1969
+d Area: 22219	Difference: 1469
+outros Area: 6489	Difference: 0
+
+Year: 2011	Step: 3
+f Area: 135159	Difference: -1951
+d Area: 22173	Difference: 1422
+outros Area: 6489	Difference: 0
+
+Year: 2011	Step: 4
+f Area: 135176	Difference: -1934
+d Area: 22130	Difference: 1380
+outros Area: 6489	Difference: 0
+
+Year: 2011	Step: 5
+f Area: 135192	Difference: -1918
+d Area: 22092	Difference: 1341
+outros Area: 6489	Difference: 0
+
+Year: 2011	Step: 6
+f Area: 135209	Difference: -1902
+d Area: 22056	Difference: 1306
+outros Area: 6489	Difference: 0
+
+Year: 2011	Step: 7
+f Area: 135224	Difference: -1886
+d Area: 22024	Difference: 1274
+outros Area: 6489	Difference: 0
+
+Year: 2011	Step: 8
+f Area: 135240	Difference: -1870
+d Area: 21994	Difference: 1244
+outros Area: 6489	Difference: 0
+
+Year: 2011	Step: 9
+f Area: 135255	Difference: -1855
+d Area: 21967	Difference: 1217
+outros Area: 6489	Difference: 0
+
+Year: 2011	Step: 10
+f Area: 135270	Difference: -1841
+d Area: 21942	Difference: 1191
+outros Area: 6489	Difference: 0
+
+Year: 2011	Step: 11
+f Area: 135284	Difference: -1826
+d Area: 21919	Difference: 1168
+outros Area: 6489	Difference: 0
+
+Year: 2011	Step: 12
+f Area: 135298	Difference: -1812
+d Area: 21897	Difference: 1146
+outros Area: 6489	Difference: 0
+
+Year: 2011	Step: 13
+f Area: 135312	Difference: -1798
+d Area: 21877	Difference: 1126
+outros Area: 6489	Difference: 0
+
+Year: 2011	Step: 14
+f Area: 135326	Difference: -1784
+d Area: 21858	Difference: 1107
+outros Area: 6489	Difference: 0
+
+Year: 2011	Step: 15
+f Area: 135339	Difference: -1771
+d Area: 21840	Difference: 1090
+outros Area: 6489	Difference: 0
+
+Year: 2011	Step: 16
+f Area: 135352	Difference: -1758
+d Area: 21824	Difference: 1073
+outros Area: 6489	Difference: 0
+
+Year: 2011	Step: 17
+f Area: 135365	Difference: -1745
+d Area: 21809	Difference: 1058
+outros Area: 6489	Difference: 0
+
+Year: 2011	Step: 18
+f Area: 135377	Difference: -1733
+d Area: 21794	Difference: 1044
+outros Area: 6489	Difference: 0
+
+Year: 2011	Step: 19
+f Area: 135390	Difference: -1721
+d Area: 21781	Difference: 1030
+outros Area: 6489	Difference: 0
+
+Year: 2011	Step: 20
+f Area: 135402	Difference: -1709
+d Area: 21768	Difference: 1017
+outros Area: 6489	Difference: 0
+
+Year: 2011	Step: 21
+f Area: 135414	Difference: -1697
+d Area: 21756	Difference: 1005
+outros Area: 6489	Difference: 0
+
+Year: 2011	Step: 22
+f Area: 135425	Difference: -1685
+d Area: 21745	Difference: 994
+outros Area: 6489	Difference: 0
+
+Year: 2011	Step: 23
+f Area: 135436	Difference: -1674
+d Area: 21734	Difference: 983
+outros Area: 6489	Difference: 0
+
+Year: 2011	Step: 24
+f Area: 135448	Difference: -1663
+d Area: 21724	Difference: 973
+outros Area: 6489	Difference: 0
+
+Year: 2011	Step: 25
+f Area: 135459	Difference: -1652
+d Area: 21714	Difference: 964
+outros Area: 6489	Difference: 0
+
+Year: 2011	Step: 26
+f Area: 135469	Difference: -1641
+d Area: 21705	Difference: 955
+outros Area: 6489	Difference: 0
+
+Demand allocated correctly in 2011.	Number of iterations: 26	Maximum error: 1640.6006249464
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Year: 2012	Step: 0
+f Area: 134931	Difference: -1893
+d Area: 22504	Difference: 1467
+outros Area: 6489	Difference: 0
+
+Year: 2012	Step: 1
+f Area: 134948	Difference: -1877
+d Area: 22452	Difference: 1415
+outros Area: 6489	Difference: 0
+
+Year: 2012	Step: 2
+f Area: 134965	Difference: -1860
+d Area: 22404	Difference: 1368
+outros Area: 6489	Difference: 0
+
+Year: 2012	Step: 3
+f Area: 134981	Difference: -1844
+d Area: 22362	Difference: 1326
+outros Area: 6489	Difference: 0
+
+Year: 2012	Step: 4
+f Area: 134997	Difference: -1828
+d Area: 22323	Difference: 1287
+outros Area: 6489	Difference: 0
+
+Year: 2012	Step: 5
+f Area: 135012	Difference: -1813
+d Area: 22287	Difference: 1251
+outros Area: 6489	Difference: 0
+
+Year: 2012	Step: 6
+f Area: 135027	Difference: -1797
+d Area: 22255	Difference: 1218
+outros Area: 6489	Difference: 0
+
+Year: 2012	Step: 7
+f Area: 135042	Difference: -1783
+d Area: 22224	Difference: 1188
+outros Area: 6489	Difference: 0
+
+Year: 2012	Step: 8
+f Area: 135057	Difference: -1768
+d Area: 22197	Difference: 1161
+outros Area: 6489	Difference: 0
+
+Year: 2012	Step: 9
+f Area: 135071	Difference: -1754
+d Area: 22171	Difference: 1135
+outros Area: 6489	Difference: 0
+
+Year: 2012	Step: 10
+f Area: 135085	Difference: -1740
+d Area: 22147	Difference: 1111
+outros Area: 6489	Difference: 0
+
+Year: 2012	Step: 11
+f Area: 135098	Difference: -1726
+d Area: 22125	Difference: 1089
+outros Area: 6489	Difference: 0
+
+Year: 2012	Step: 12
+f Area: 135112	Difference: -1713
+d Area: 22104	Difference: 1068
+outros Area: 6489	Difference: 0
+
+Year: 2012	Step: 13
+f Area: 135125	Difference: -1700
+d Area: 22085	Difference: 1049
+outros Area: 6489	Difference: 0
+
+Year: 2012	Step: 14
+f Area: 135137	Difference: -1687
+d Area: 22067	Difference: 1031
+outros Area: 6489	Difference: 0
+
+Year: 2012	Step: 15
+f Area: 135150	Difference: -1675
+d Area: 22050	Difference: 1014
+outros Area: 6489	Difference: 0
+
+Year: 2012	Step: 16
+f Area: 135162	Difference: -1662
+d Area: 22034	Difference: 998
+outros Area: 6489	Difference: 0
+
+Year: 2012	Step: 17
+f Area: 135174	Difference: -1650
+d Area: 22019	Difference: 983
+outros Area: 6489	Difference: 0
+
+Year: 2012	Step: 18
+f Area: 135186	Difference: -1639
+d Area: 22005	Difference: 969
+outros Area: 6489	Difference: 0
+
+Demand allocated correctly in 2012.	Number of iterations: 18	Maximum error: 1638.1073367472
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Year: 2013	Step: 0
+f Area: 134661	Difference: -1878
+d Area: 22774	Difference: 1452
+outros Area: 6489	Difference: 0
+
+Year: 2013	Step: 1
+f Area: 134677	Difference: -1862
+d Area: 22725	Difference: 1403
+outros Area: 6489	Difference: 0
+
+Year: 2013	Step: 2
+f Area: 134693	Difference: -1846
+d Area: 22680	Difference: 1358
+outros Area: 6489	Difference: 0
+
+Year: 2013	Step: 3
+f Area: 134709	Difference: -1830
+d Area: 22640	Difference: 1318
+outros Area: 6489	Difference: 0
+
+Year: 2013	Step: 4
+f Area: 134724	Difference: -1815
+d Area: 22603	Difference: 1281
+outros Area: 6489	Difference: 0
+
+Year: 2013	Step: 5
+f Area: 134739	Difference: -1800
+d Area: 22569	Difference: 1247
+outros Area: 6489	Difference: 0
+
+Year: 2013	Step: 6
+f Area: 134754	Difference: -1785
+d Area: 22538	Difference: 1216
+outros Area: 6489	Difference: 0
+
+Year: 2013	Step: 7
+f Area: 134768	Difference: -1771
+d Area: 22509	Difference: 1187
+outros Area: 6489	Difference: 0
+
+Year: 2013	Step: 8
+f Area: 134783	Difference: -1757
+d Area: 22482	Difference: 1161
+outros Area: 6489	Difference: 0
+
+Year: 2013	Step: 9
+f Area: 134796	Difference: -1743
+d Area: 22458	Difference: 1136
+outros Area: 6489	Difference: 0
+
+Year: 2013	Step: 10
+f Area: 134810	Difference: -1729
+d Area: 22435	Difference: 1113
+outros Area: 6489	Difference: 0
+
+Year: 2013	Step: 11
+f Area: 134823	Difference: -1716
+d Area: 22414	Difference: 1092
+outros Area: 6489	Difference: 0
+
+Year: 2013	Step: 12
+f Area: 134836	Difference: -1703
+d Area: 22394	Difference: 1072
+outros Area: 6489	Difference: 0
+
+Year: 2013	Step: 13
+f Area: 134849	Difference: -1690
+d Area: 22375	Difference: 1053
+outros Area: 6489	Difference: 0
+
+Year: 2013	Step: 14
+f Area: 134861	Difference: -1678
+d Area: 22358	Difference: 1036
+outros Area: 6489	Difference: 0
+
+Year: 2013	Step: 15
+f Area: 134873	Difference: -1666
+d Area: 22341	Difference: 1020
+outros Area: 6489	Difference: 0
+
+Year: 2013	Step: 16
+f Area: 134885	Difference: -1654
+d Area: 22326	Difference: 1004
+outros Area: 6489	Difference: 0
+
+Year: 2013	Step: 17
+f Area: 134897	Difference: -1642
+d Area: 22312	Difference: 990
+outros Area: 6489	Difference: 0
+
+Demand allocated correctly in 2013.	Number of iterations: 17	Maximum error: 1641.4798002601
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Year: 2014	Step: 0
+f Area: 134385	Difference: -1869
+d Area: 23049	Difference: 1442
+outros Area: 6489	Difference: 0
+
+Year: 2014	Step: 1
+f Area: 134401	Difference: -1853
+d Area: 23003	Difference: 1396
+outros Area: 6489	Difference: 0
+
+Year: 2014	Step: 2
+f Area: 134416	Difference: -1837
+d Area: 22961	Difference: 1354
+outros Area: 6489	Difference: 0
+
+Year: 2014	Step: 3
+f Area: 134432	Difference: -1822
+d Area: 22923	Difference: 1315
+outros Area: 6489	Difference: 0
+
+Year: 2014	Step: 4
+f Area: 134447	Difference: -1807
+d Area: 22888	Difference: 1280
+outros Area: 6489	Difference: 0
+
+Year: 2014	Step: 5
+f Area: 134461	Difference: -1792
+d Area: 22855	Difference: 1248
+outros Area: 6489	Difference: 0
+
+Year: 2014	Step: 6
+f Area: 134475	Difference: -1778
+d Area: 22826	Difference: 1218
+outros Area: 6489	Difference: 0
+
+Year: 2014	Step: 7
+f Area: 134489	Difference: -1764
+d Area: 22798	Difference: 1191
+outros Area: 6489	Difference: 0
+
+Year: 2014	Step: 8
+f Area: 134503	Difference: -1750
+d Area: 22773	Difference: 1165
+outros Area: 6489	Difference: 0
+
+Year: 2014	Step: 9
+f Area: 134517	Difference: -1737
+d Area: 22749	Difference: 1142
+outros Area: 6489	Difference: 0
+
+Year: 2014	Step: 10
+f Area: 134530	Difference: -1724
+d Area: 22727	Difference: 1120
+outros Area: 6489	Difference: 0
+
+Year: 2014	Step: 11
+f Area: 134543	Difference: -1711
+d Area: 22707	Difference: 1099
+outros Area: 6489	Difference: 0
+
+Year: 2014	Step: 12
+f Area: 134555	Difference: -1698
+d Area: 22688	Difference: 1080
+outros Area: 6489	Difference: 0
+
+Year: 2014	Step: 13
+f Area: 134568	Difference: -1686
+d Area: 22670	Difference: 1062
+outros Area: 6489	Difference: 0
+
+Year: 2014	Step: 14
+f Area: 134580	Difference: -1674
+d Area: 22653	Difference: 1045
+outros Area: 6489	Difference: 0
+
+Year: 2014	Step: 15
+f Area: 134592	Difference: -1662
+d Area: 22637	Difference: 1030
+outros Area: 6489	Difference: 0
+
+Year: 2014	Step: 16
+f Area: 134603	Difference: -1650
+d Area: 22622	Difference: 1015
+outros Area: 6489	Difference: 0
+
+Year: 2014	Step: 17
+f Area: 134615	Difference: -1639
+d Area: 22608	Difference: 1001
+outros Area: 6489	Difference: 0
+
+Demand allocated correctly in 2014.	Number of iterations: 17	Maximum error: 1638.220954259
+
+Saving Lab1_2014.
+[harness] lab01_md1643: CSV gravado em /work/out/lab01_md1643

@@ -1,0 +1,60 @@
+{
+  "lab": "lab01_md1643",
+  "source": [
+    {
+      "script": "benchmark/references/lab01_md1643/lab1_main.lua",
+      "sha256": "48d3fa0891a01107ed7ed72d30f3dbd11cc98a33712126996376db1fdc3774bd"
+    },
+    {
+      "script": "benchmark/references/lab01_md1643/lab1_submodel.lua",
+      "sha256": "f26699b3a9e63cc0c5119c52b9c32b9894b8f9ab5152fcef185755e9c51e041f"
+    }
+  ],
+  "engine": {
+    "image": "terrame-luccme",
+    "terrame": "2.0.1",
+    "terralib": "5.5.1",
+    "luccme_commit": "6244dd461f94259efb6e1d2170d32fc7e28c033c"
+  },
+  "generator": {
+    "script": "benchmark/harness.lua",
+    "sha256": "be7c575428c574da799f7f745da7766a05f6b878df08b12bcd0bab882e346581"
+  },
+  "status": "ok",
+  "years": [
+    2008,
+    2014
+  ],
+  "n_cells": 6574,
+  "columns": [
+    "f_out",
+    "d_out",
+    "outros_out",
+    "f_pot",
+    "d_pot",
+    "outros_pot"
+  ],
+  "file": {
+    "name": "lab01_md1643.csv.gz",
+    "rows": 46018,
+    "sha256": "c0a46b524be5e482921c7fd10239168b3f472636dd762b18df34056793803c46"
+  },
+  "crosscheck_vs_original_output": {
+    "tolerance": 1e-09,
+    "max_abs_diff": {
+      "Lab1_2014.dbf:d_out": 4.999993474807951e-13,
+      "original_Lab1_2014.dbf:d_out": 4.999993474807951e-13
+    },
+    "note": "último ano do CSV comparado com os .dbf da pasta de saída: a saída do próprio script e, nas referências, a saída original do TerraME"
+  },
+  "iterations_per_year": {
+    "2008": 0,
+    "2009": 0,
+    "2010": 8,
+    "2011": 26,
+    "2012": 18,
+    "2013": 17,
+    "2014": 17
+  },
+  "iterations_note": "contínuo: 'Number of iterations' do LuccME; discreto: maior n de 'Iteration -> n' (0 = aceito na 1ª passada)"
+}

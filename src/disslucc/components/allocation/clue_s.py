@@ -58,6 +58,9 @@ class AllocationDClueSLike(SyncRasterModel):
         self.max_iteration = max_iteration
         self.factor_iteration = factor_iteration
         self.region_attr = region_attr
+        # Iterations of the convergence loop at each step, same meaning as
+        # the largest n in LuccME's "Iteration -> n" log (0 = first pass accepted).
+        self.iterations_per_step: list[int] = []
 
         # (n_regions, n_lu, n_lu) -- O(1) access in the inner loop
         self._tm = np.array(transition_matrix, dtype=np.int8)
@@ -121,6 +124,7 @@ class AllocationDClueSLike(SyncRasterModel):
             max_diff = max(abs(v) for v in diff.values())
 
             if max_diff <= self.max_difference:
+                self.iterations_per_step.append(n_iter)
                 break
             if n_iter >= self.max_iteration:
                 raise RuntimeError(

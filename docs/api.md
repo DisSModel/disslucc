@@ -140,8 +140,20 @@ AllocationClueLike(
     min_elasticity: float = 0.001,
     max_elasticity: float = 1.5,
     allocation_data: list[AllocationSpec] | None = None,  # min/max per class, in land_use_types order
+    cell_correction: bool = True,       # False reproduces TerraME (see below)
 )
 ```
+
+> `cell_correction=True` (default) runs `_correct_cell_change`, which brings
+> each cell's classes back to a total of 1. LuccME meant to do the same, but its
+> `correctCellChange` never runs (the guard reads `cell.regionregionAloc`, a typo,
+> in `AllocationCClueLike.lua`). So the default is the intended algorithm and
+> differs from TerraME; `cell_correction=False` reproduces TerraME year by year
+> (`tests/test_goldens_per_year.py`).
+>
+> After a run, `iterations_per_step` lists the convergence-loop iterations of
+> each step, same meaning as LuccME's "Number of iterations" (0 = first
+> allocation accepted).
 
 > `max_difference` has to be calibrated to the scenario's scale -- the
 > default (1643) is the value used in the real Lab1 (~900k ha). In a
@@ -175,6 +187,10 @@ AllocationDClueSLike(
 
 Optional `tau_<lu>` arrays in the backend act as per-cell/class
 attraction/repulsion; if absent, `tau=0` (default behavior).
+
+After a run, `iterations_per_step` lists the convergence-loop iterations of
+each step (the largest `n` in LuccME's `Iteration -> n` log; 0 = first pass
+accepted). It matches TerraME in every year of `lab15_md10` (0, 67, 56, 56, 61, 61).
 
 ---
 

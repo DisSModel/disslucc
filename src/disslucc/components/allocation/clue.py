@@ -13,6 +13,14 @@ Note: Allocation reads `<lu>_pot` directly from the shared backend
 (not via a Potential method) -- that's how main does it; the
 indirection through PotentialProtocol.get_potential() was only on
 decoupling.
+
+Deviation from TerraME: LuccME's correctCellChange never runs. Its guard
+is `if (cell.regionregionAloc == rNumber)` (AllocationCClueLike.lua:503,
+a typo for `regionAloc`), which is always false. `_correct_cell_change`
+implements what that step was meant to do and runs by default
+(`cell_correction=True`). With `cell_correction=False` this component
+reproduces TerraME year by year, iteration counts included
+(tests/test_goldens_per_year.py).
 """
 from __future__ import annotations
 
@@ -48,6 +56,7 @@ class AllocationClueLike(SyncRasterModel):
         min_elasticity:      float = 0.001,
         max_elasticity:      float = 1.5,
         allocation_data:     list[AllocationSpec] | None = None,
+        cell_correction:     bool = True,
     ) -> None:
         super().setup(backend)
         self.demand             = demand
@@ -61,6 +70,11 @@ class AllocationClueLike(SyncRasterModel):
         self.initial_elasticity  = initial_elasticity
         self.min_elasticity      = min_elasticity
         self.max_elasticity      = max_elasticity
+        # False reproduces TerraME, where correctCellChange never runs (see module docstring).
+        self.cell_correction     = cell_correction
+        # Iterations of the convergence loop at each step, same meaning as
+        # LuccME's "Number of iterations" (0 = first allocation accepted).
+        self.iterations_per_step: list[int] = []
 
         default = AllocationSpec()
         self.allocation_data = (
@@ -85,10 +99,12 @@ class AllocationClueLike(SyncRasterModel):
         while True:
             if step != 0:
                 self._compute_change(elasticity)
-                self._correct_cell_change()
+                if self.cell_correction:
+                    self._correct_cell_change()
 
             max_diff = self._compare_to_demand(step, elasticity)
             if max_diff <= max_adjust:
+                self.iterations_per_step.append(n_iter)
                 break
 
             n_iter += 1

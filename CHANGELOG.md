@@ -2,7 +2,35 @@
 
 All notable changes to `disslucc` are documented here.
 
-## [0.3.0] -- unreleased
+## [0.4.0] -- 2026-09-23
+
+Reference results now come from
+[LambdaGeo/terrame-docker](https://github.com/LambdaGeo/terrame-docker) v0.1.0,
+and both allocations are validated year by year, iteration counts included.
+
+### Added
+- `benchmark/goldens/`: year-by-year TerraME reference results (every cell,
+  every year, `<lu>_out` and `<lu>_pot`, iteration counts) for `lab01`,
+  `lab01_md1643`, `lab15` and `lab15_md10`, copied from terrame-docker v0.1.0
+  (which has all 21 LuccME labs), and `tests/test_goldens_per_year.py`, which
+  checks iterations and every class year by year.
+- `AllocationClueLike(cell_correction=True)`: `False` skips
+  `_correct_cell_change` and reproduces TerraME, whose `correctCellChange`
+  never runs (a `regionregionAloc` typo). The default is unchanged.
+- `iterations_per_step` on `AllocationClueLike` and `AllocationDClueSLike`.
+
+### Changed
+- `docs/validation.md`: the Lab1 MAE (0.0036) is explained by the cell
+  correction TerraME skips, not by the `maxDifference` tolerance; new
+  "Year by year" section. The numbers themselves are unchanged.
+
+### Removed
+- `benchmark/reference/*.lua` and `benchmark/data/*.zip`, now kept in
+  terrame-docker (`benchmark/references/`). Tests and examples read the last
+  year of `benchmark/goldens/lab01_md1643` and `lab15_md10`, which hold the
+  same values.
+
+## [0.3.0] -- 2026-09-22
 
 First version meant to be independently citable and reproducible
 without `disslucc-continuous` or `disslucc-discrete` cloned alongside

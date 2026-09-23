@@ -1,0 +1,52 @@
+{
+  "lab": "lab15",
+  "source": {
+    "script": "luccme/tests/functional/lab15.lua",
+    "sha256": "bc9faf3a26aafa42c0075f114c0def46a1320e1f89ab52b7886b27ca72075bf7"
+  },
+  "engine": {
+    "image": "terrame-luccme",
+    "terrame": "2.0.1",
+    "terralib": "5.5.1",
+    "luccme_commit": "6244dd461f94259efb6e1d2170d32fc7e28c033c"
+  },
+  "generator": {
+    "script": "benchmark/harness.lua",
+    "sha256": "be7c575428c574da799f7f745da7766a05f6b878df08b12bcd0bab882e346581"
+  },
+  "status": "ok",
+  "years": [
+    1999,
+    2004
+  ],
+  "n_cells": 5914,
+  "columns": [
+    "f_out",
+    "d_out",
+    "o_out",
+    "f_pot",
+    "d_pot",
+    "o_pot"
+  ],
+  "file": {
+    "name": "lab15.csv.gz",
+    "rows": 35484,
+    "sha256": "00c400fe3b1cd15883ee02e7ba2f195becfc4e3d95ddb4dc28dfeeef86108ad9"
+  },
+  "crosscheck_vs_original_output": {
+    "tolerance": 1e-09,
+    "max_abs_diff": {
+      "Lab15_2004.dbf:d_out": 0.0
+    },
+    "note": "último ano do CSV comparado com os .dbf da pasta de saída: a saída do próprio script e, nas referências, a saída original do TerraME"
+  },
+  "iterations_per_year": {
+    "1999": 0,
+    "2000": 0,
+    "2001": 0,
+    "2002": 0,
+    "2003": 0,
+    "2004": 0
+  },
+  "iterations_note": "contínuo: 'Number of iterations' do LuccME; discreto: maior n de 'Iteration -> n' (0 = aceito na 1ª passada)"
+}

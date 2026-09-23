@@ -1,6 +1,6 @@
 [project]
 name = "disslucc"
-version = "0.3.0"
+version = "0.4.0"
 description = "Land Use and Cover Change (LUCC) modeling — continuous and discrete allocation — on top of dissmodel."
 readme = "README.md"
 authors = [{ name = "Sergio Souza Costa", email = "sergio@ufma.br" }]

@@ -981,3 +981,40 @@ the dead `no_data` code in `allocation/clue.py`, now also fixed in the
 one document a student would read *before* the source, making it more
 likely to mislead, not less. Corrected the parameter comment in
 `api.md` to describe the actual behavior.
+
+## Reference data moved to LambdaGeo/terrame-docker; year-by-year goldens; `cell_correction`
+
+**Where the references live.** `benchmark/reference/*.lua` and
+`benchmark/data/*.zip` left this repository. The scripts (unchanged, byte for
+byte, under their original names `lab1_*`/`lab6_*`) and the original TerraME
+outputs now live in [LambdaGeo/terrame-docker](https://github.com/LambdaGeo/terrame-docker)
+(`benchmark/references/`), next to the Docker image (TerraME 2.0.1 + LuccME
+6244dd4) and the generator that produces year-by-year goldens. Here,
+`benchmark/goldens/` keeps only the generated results, so tests run without
+Docker. The two former zips are the last year of `lab01_md1643` and
+`lab15_md10` (max difference 5e-13 and 0); every validation number in
+`docs/validation.md` is unchanged (Lab1 MAE 0.0035832335619404 vs
+0.0035832335619406 before).
+
+terrame-docker (v0.1.0) has goldens for all 21 functional labs of the LuccME
+package, with the package's numbering; this repository keeps only the four its
+tests use and adds others together with the component and test that need them
+(not every LuccME algorithm will be ported). In the package
+labs the allocation is accepted at the first pass every year (0 iterations),
+so only `lab01_md1643`/`lab15_md10` exercise the convergence loop.
+
+**Discrete: convergence confirmed.** Year by year, `AllocationDClueSLike`
+matches TerraME's iteration count (0, 67, 56, 56, 61, 61) and `d_out`/`d_pot`
+exactly. This is the check the Lab15 discriminance warning asked for.
+
+**Continuous: the Lab1 MAE has one cause, and it is a TerraME bug.** The drift
+starts in 2009, a year with 0 iterations on both sides and identical `d_pot`.
+LuccME's `correctCellChange` never runs: its guard reads
+`if (cell.regionregionAloc == rNumber)` (`AllocationCClueLike.lua:503`, a typo
+for `regionAloc`), always false (`CClueLikeSaturation` spells it correctly).
+Decision: keep the intended algorithm. `AllocationClueLike` gains
+`cell_correction: bool = True`; `False` skips `_correct_cell_change` and
+reproduces TerraME year by year, iteration counts included (0, 0, 8, 26, 18,
+17, 17; MAE < 1e-7). The tests against the continuous goldens use `False`;
+`test_lab1_default_cell_correction_deviates_from_terrame` pins the default's
+deviation. Both allocations also record `iterations_per_step`.

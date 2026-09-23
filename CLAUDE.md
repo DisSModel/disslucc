@@ -29,8 +29,7 @@ src/disslucc/
   validation/                                # continuous/discrete; potential + allocation are not
   executors/                                 # ModelExecutor (base.py, continuous.py, discrete.py)
 data/input/            # vendored real input data (shapefiles + demand CSVs)
-benchmark/data/        # vendored TerraME *reference outputs* (expected results)
-benchmark/reference/   # vendored original LuccME .lua *scripts* (provenance) + README.md
+benchmark/goldens/     # TerraME reference results, year by year (copy from LambdaGeo/terrame-docker)
 examples/               # runnable scripts: synthetic, real data, via Executor
 tests/                  # pytest -- validation (exact numbers) + discriminance (does the
                          # benchmark actually constrain the implementation?)
@@ -56,14 +55,18 @@ scripts, then three more `examples/*.py` files found later) -- grep for
 `/home/`, `/tmp/` before assuming a script is portable.
 
 **Data provenance is not "whatever GitHub script has a matching name."**
-`terrame/luccme`'s public `tests/functional/lab01.lua` and `lab15.lua`
-share calibrated coefficients and demand trajectories with the scripts
-that actually generated this repo's reference data, but declare
-different `maxDifference` values (5000 and 300, vs. the 1643 and 10
-actually used) and did **not** generate `benchmark/data/`'s zips. The
-real generating scripts are vendored, unmodified, at
-`benchmark/reference/` -- **read `benchmark/reference/README.md` before
-citing or changing any `max_difference`/`maxDifference` value.**
+The reference results live in `benchmark/goldens/`, a copy of the goldens
+generated in [LambdaGeo/terrame-docker](https://github.com/LambdaGeo/terrame-docker)
+v0.1.0, which keeps the generating scripts, the original TerraME outputs, the
+generator and goldens for all 21 LuccME labs. This repository keeps only the
+goldens its tests use (`lab01`, `lab15`: the LuccME package's labs;
+`lab01_md1643`, `lab15_md10`); add one together with the component and test
+that need it, never ahead of time. `lab01_md1643` and `lab15_md10` are the scenarios behind `docs/validation.md`
+(same coefficients and demand as `lab01`/`lab15`, but `maxDifference` 1643
+and 10 instead of 5000 and 300). **Read terrame-docker's
+`benchmark/references/README.md` before citing or changing any
+`max_difference`/`maxDifference` value.** Never edit a golden by hand --
+regenerate it there and copy it (see `benchmark/README.md`).
 A empirical validation number that stops matching (e.g. MAE jumping from
 0.0036 to above 0.01) is stronger evidence of a wrong parameter than a
 GitHub script that merely looks similar.
@@ -78,9 +81,14 @@ PR/commit and say so explicitly -- don't let it drift silently.
 ```bash
 python -m venv venv && source venv/bin/activate
 pip install -e ".[examples,dev]"
-pytest tests/ -v          # expect: 14 passed, 2 xfailed
+pytest tests/ -v          # expect: 19 passed, 2 xfailed
 mypy src/disslucc         # expect: clean
 ```
+
+`AllocationClueLike(cell_correction=True)` (the default) deliberately differs
+from TerraME: LuccME's `correctCellChange` never runs (a `regionregionAloc`
+typo). Tests that compare against the continuous goldens use
+`cell_correction=False`; don't "fix" the default to make them pass.
 
 The 2 `xfail`s in `tests/test_benchmark_discriminance_lab15.py` are
 intentional and documented (the Lab15 scenario is near-non-discriminative
@@ -90,7 +98,8 @@ dynamic-covariate scenario (see `docs/decisions.md`).
 
 Before changing a `max_difference`/convergence value, a demand table, or
 a regression coefficient anywhere in `src/`, `tests/_lab*_helpers.py`, or
-`examples/`: check `benchmark/reference/` first. If the change isn't
+`examples/`: check the golden's `manifest.json` and the scripts in
+terrame-docker's `benchmark/references/` first. If the change isn't
 traceable to those `.lua` files, it's very likely wrong even if it looks
 locally reasonable.
 

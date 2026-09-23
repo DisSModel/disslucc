@@ -1,0 +1,1643 @@
+
+Verifying Model parameters
+Verifying Demand parameters
+Verifying Potential parameters
+Verifying Allocation parameters
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Time: 1999
+-------------------------------------------------------------------------------
+Cell Area 1
+Num of cells 5914
+Max diff area 10
+Initial area for land use : f -> 5706
+Initial area for land use : d -> 205
+Initial area for land use : o -> 3
+-------------------------------------------------------------------------------
+
+Year: 1999 Iteration -> 0
+f -> 5706		demand -> 5706 difference -> 0
+d -> 205		demand -> 205 difference -> 0
+o -> 3		demand -> 3 difference -> 0
+
+Demand allocated correctly in this time: 1999
+[harness] lab15_md10: Lab6, anos 1999..2004, colunas f_out,d_out,o_out,f_pot,d_pot,o_pot
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Time: 2000
+-------------------------------------------------------------------------------
+Cell Area 1
+Num of cells 5914
+Max diff area 10
+Initial area for land use : f -> 5706
+Initial area for land use : d -> 205
+Initial area for land use : o -> 3
+-------------------------------------------------------------------------------
+
+Year: 2000 Iteration -> 0
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 1
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 2
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 3
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 4
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 5
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 6
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 7
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 8
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 9
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 10
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 11
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 12
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 13
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 14
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 15
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 16
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 17
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 18
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 19
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 20
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 21
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 22
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 23
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 24
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 25
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 26
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 27
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 28
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 29
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 30
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 31
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 32
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 33
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 34
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 35
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 36
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 37
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 38
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 39
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 40
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 41
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 42
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 43
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 44
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 45
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 46
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 47
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 48
+f -> 5706		demand -> 5658 difference -> -48
+d -> 205		demand -> 253 difference -> 48
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 49
+f -> 5705		demand -> 5658 difference -> -47
+d -> 206		demand -> 253 difference -> 47
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 50
+f -> 5705		demand -> 5658 difference -> -47
+d -> 206		demand -> 253 difference -> 47
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 51
+f -> 5704		demand -> 5658 difference -> -46
+d -> 207		demand -> 253 difference -> 46
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 52
+f -> 5702		demand -> 5658 difference -> -44
+d -> 209		demand -> 253 difference -> 44
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 53
+f -> 5701		demand -> 5658 difference -> -43
+d -> 210		demand -> 253 difference -> 43
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 54
+f -> 5700		demand -> 5658 difference -> -42
+d -> 211		demand -> 253 difference -> 42
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 55
+f -> 5697		demand -> 5658 difference -> -39
+d -> 214		demand -> 253 difference -> 39
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 56
+f -> 5694		demand -> 5658 difference -> -36
+d -> 217		demand -> 253 difference -> 36
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 57
+f -> 5689		demand -> 5658 difference -> -31
+d -> 222		demand -> 253 difference -> 31
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 58
+f -> 5687		demand -> 5658 difference -> -29
+d -> 224		demand -> 253 difference -> 29
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 59
+f -> 5686		demand -> 5658 difference -> -28
+d -> 225		demand -> 253 difference -> 28
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 60
+f -> 5685		demand -> 5658 difference -> -27
+d -> 226		demand -> 253 difference -> 27
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 61
+f -> 5681		demand -> 5658 difference -> -23
+d -> 230		demand -> 253 difference -> 23
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 62
+f -> 5680		demand -> 5658 difference -> -22
+d -> 231		demand -> 253 difference -> 22
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 63
+f -> 5676		demand -> 5658 difference -> -18
+d -> 235		demand -> 253 difference -> 18
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 64
+f -> 5672		demand -> 5658 difference -> -14
+d -> 239		demand -> 253 difference -> 14
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 65
+f -> 5669		demand -> 5658 difference -> -11
+d -> 242		demand -> 253 difference -> 11
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 66
+f -> 5669		demand -> 5658 difference -> -11
+d -> 242		demand -> 253 difference -> 11
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2000 Iteration -> 67
+f -> 5667		demand -> 5658 difference -> -9
+d -> 244		demand -> 253 difference -> 9
+o -> 3		demand -> 3 difference -> 0
+
+Demand allocated correctly in this time: 2000
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Time: 2001
+-------------------------------------------------------------------------------
+Cell Area 1
+Num of cells 5914
+Max diff area 10
+Initial area for land use : f -> 5667
+Initial area for land use : d -> 244
+Initial area for land use : o -> 3
+-------------------------------------------------------------------------------
+
+Year: 2001 Iteration -> 0
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 1
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 2
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 3
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 4
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 5
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 6
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 7
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 8
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 9
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 10
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 11
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 12
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 13
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 14
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 15
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 16
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 17
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 18
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 19
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 20
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 21
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 22
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 23
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 24
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 25
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 26
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 27
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 28
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 29
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 30
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 31
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 32
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 33
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 34
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 35
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 36
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 37
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 38
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 39
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 40
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 41
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 42
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 43
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 44
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 45
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 46
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 47
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 48
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 49
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 50
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 51
+f -> 5667		demand -> 5611 difference -> -56
+d -> 244		demand -> 300 difference -> 56
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 52
+f -> 5666		demand -> 5611 difference -> -55
+d -> 245		demand -> 300 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 53
+f -> 5651		demand -> 5611 difference -> -40
+d -> 260		demand -> 300 difference -> 40
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 54
+f -> 5632		demand -> 5611 difference -> -21
+d -> 279		demand -> 300 difference -> 21
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 55
+f -> 5623		demand -> 5611 difference -> -12
+d -> 288		demand -> 300 difference -> 12
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2001 Iteration -> 56
+f -> 5620		demand -> 5611 difference -> -9
+d -> 291		demand -> 300 difference -> 9
+o -> 3		demand -> 3 difference -> 0
+
+Demand allocated correctly in this time: 2001
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Time: 2002
+-------------------------------------------------------------------------------
+Cell Area 1
+Num of cells 5914
+Max diff area 10
+Initial area for land use : f -> 5620
+Initial area for land use : d -> 291
+Initial area for land use : o -> 3
+-------------------------------------------------------------------------------
+
+Year: 2002 Iteration -> 0
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 1
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 2
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 3
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 4
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 5
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 6
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 7
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 8
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 9
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 10
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 11
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 12
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 13
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 14
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 15
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 16
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 17
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 18
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 19
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 20
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 21
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 22
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 23
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 24
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 25
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 26
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 27
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 28
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 29
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 30
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 31
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 32
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 33
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 34
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 35
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 36
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 37
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 38
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 39
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 40
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 41
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 42
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 43
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 44
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 45
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 46
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 47
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 48
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 49
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 50
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 51
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 52
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 53
+f -> 5620		demand -> 5563 difference -> -57
+d -> 291		demand -> 348 difference -> 57
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 54
+f -> 5609		demand -> 5563 difference -> -46
+d -> 302		demand -> 348 difference -> 46
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 55
+f -> 5586		demand -> 5563 difference -> -23
+d -> 325		demand -> 348 difference -> 23
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2002 Iteration -> 56
+f -> 5570		demand -> 5563 difference -> -7
+d -> 341		demand -> 348 difference -> 7
+o -> 3		demand -> 3 difference -> 0
+
+Demand allocated correctly in this time: 2002
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Time: 2003
+-------------------------------------------------------------------------------
+Cell Area 1
+Num of cells 5914
+Max diff area 10
+Initial area for land use : f -> 5570
+Initial area for land use : d -> 341
+Initial area for land use : o -> 3
+-------------------------------------------------------------------------------
+
+Year: 2003 Iteration -> 0
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 1
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 2
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 3
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 4
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 5
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 6
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 7
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 8
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 9
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 10
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 11
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 12
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 13
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 14
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 15
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 16
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 17
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 18
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 19
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 20
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 21
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 22
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 23
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 24
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 25
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 26
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 27
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 28
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 29
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 30
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 31
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 32
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 33
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 34
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 35
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 36
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 37
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 38
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 39
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 40
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 41
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 42
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 43
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 44
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 45
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 46
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 47
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 48
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 49
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 50
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 51
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 52
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 53
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 54
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 55
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 56
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 57
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 58
+f -> 5570		demand -> 5516 difference -> -54
+d -> 341		demand -> 395 difference -> 54
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 59
+f -> 5547		demand -> 5516 difference -> -31
+d -> 364		demand -> 395 difference -> 31
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 60
+f -> 5529		demand -> 5516 difference -> -13
+d -> 382		demand -> 395 difference -> 13
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2003 Iteration -> 61
+f -> 5523		demand -> 5516 difference -> -7
+d -> 388		demand -> 395 difference -> 7
+o -> 3		demand -> 3 difference -> 0
+
+Demand allocated correctly in this time: 2003
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Time: 2004
+-------------------------------------------------------------------------------
+Cell Area 1
+Num of cells 5914
+Max diff area 10
+Initial area for land use : f -> 5523
+Initial area for land use : d -> 388
+Initial area for land use : o -> 3
+-------------------------------------------------------------------------------
+
+Year: 2004 Iteration -> 0
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 1
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 2
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 3
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 4
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 5
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 6
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 7
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 8
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 9
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 10
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 11
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 12
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 13
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 14
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 15
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 16
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 17
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 18
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 19
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 20
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 21
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 22
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 23
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 24
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 25
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 26
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 27
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 28
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 29
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 30
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 31
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 32
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 33
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 34
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 35
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 36
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 37
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 38
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 39
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 40
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 41
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 42
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 43
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 44
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 45
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 46
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 47
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 48
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 49
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 50
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 51
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 52
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 53
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 54
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 55
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 56
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 57
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 58
+f -> 5523		demand -> 5468 difference -> -55
+d -> 388		demand -> 443 difference -> 55
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 59
+f -> 5511		demand -> 5468 difference -> -43
+d -> 400		demand -> 443 difference -> 43
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 60
+f -> 5479		demand -> 5468 difference -> -11
+d -> 432		demand -> 443 difference -> 11
+o -> 3		demand -> 3 difference -> 0
+
+Year: 2004 Iteration -> 61
+f -> 5469		demand -> 5468 difference -> -1
+d -> 442		demand -> 443 difference -> 1
+o -> 3		demand -> 3 difference -> 0
+
+Demand allocated correctly in this time: 2004
+
+Saving Lab6_2004.
+Elapsed time: 00:00:11 hh:mm:ss
+
+End of Simulation
+[harness] lab15_md10: CSV gravado em /work/out/lab15_md10
