@@ -95,9 +95,17 @@ class AllocationDClueSLike(SyncRasterModel):
 
         iter_vec = np.zeros(n_lu, dtype=np.float64)
 
+        # `<lu>_pot` is written once by Potential.execute(), before this
+        # component runs, and nothing in this loop ever writes it back --
+        # only iter_vec changes between iterations. Hoisting both `pot` and
+        # `1.0 + tau` out of the loop skips re-reading/re-stacking backend
+        # arrays on every one of the (often dozens of) convergence
+        # iterations, for the same result every time.
+        pot = np.stack([self.backend.get(lu + "_pot").ravel() for lu in lu_types], axis=1)
+        one_plus_tau = 1.0 + tau
+
         for n_iter in range(self.max_iteration + 1):
-            pot = np.stack([self.backend.get(lu + "_pot").ravel() for lu in lu_types], axis=1)
-            scores = (1.0 + tau) * pot + iter_vec[np.newaxis, :]
+            scores = one_plus_tau * pot + iter_vec[np.newaxis, :]
             scores = np.where(allowed, scores, -np.inf)
 
             best_lu_idx = np.argmax(scores, axis=1)  # (n_cells,)
@@ -107,7 +115,10 @@ class AllocationDClueSLike(SyncRasterModel):
                 self.backend.arrays[lu] = np.where(mask, new_arr, self.backend.get(lu))
 
             diff = self._calc_diff(mask)
-            max_diff = float(np.max(np.abs(list(diff.values()))))
+            # diff has one scalar per land-use class (a handful) -- plain
+            # max()/abs() is the idiomatic way to reduce that, no need to
+            # round-trip through a NumPy array for a handful of Python floats.
+            max_diff = max(abs(v) for v in diff.values())
 
             if max_diff <= self.max_difference:
                 break

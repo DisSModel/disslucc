@@ -21,11 +21,21 @@ class RegressionSpec:
     explicitly: it's the `const` value already adjusted by
     `_adapt_constants()` each step -- mutable by design, not a typo
     for `const`.
+
+    `init=False`: `PotentialLinearRegression.setup()`/`execute()`
+    always overwrite it with `spec.newconst = spec.const` before ever
+    reading it (every step, not just once), so a value passed to the
+    constructor would be silently discarded on the first run -- this
+    is internal runtime state the model manages, not something a
+    caller configures. Excluded from `__init__`/`repr`/`==` so
+    `RegressionSpec(const=0.5, newconst=99)` is a clear TypeError
+    instead of a silent no-op, and two specs that only differ in
+    runtime-mutated state still compare equal.
     """
     const:     float
     betas:     dict[str, float] = field(default_factory=dict)
     is_log:    bool = False
-    newconst:  float = 0.0
+    newconst:  float = field(default=0.0, init=False, repr=False, compare=False)
 
 
 @dataclass

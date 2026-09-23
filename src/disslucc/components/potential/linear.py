@@ -90,6 +90,13 @@ class PotentialLinearRegression(SyncRasterModel):
         reg = np.clip(reg, 0.0, 1.0)
 
         if self.land_use_no_data:
+            # NOTE: despite the parameter's name, this is not a binary
+            # "missing data" mask -- it's the fraction of the cell already
+            # committed to a non-transitionable "other" class (real-valued,
+            # e.g. 0.37), so potential is scaled down proportionally, not
+            # zeroed out. Confirmed against data/input/csAC.zip's `outros`
+            # column before touching this line -- don't replace it with
+            # numpy.ma or any hard/boolean mask.
             no_data_arr = self.backend.get(self.land_use_no_data).astype(np.float32)
             reg = reg * (1.0 - no_data_arr)
 
