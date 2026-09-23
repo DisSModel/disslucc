@@ -755,3 +755,229 @@ received when TerraME/LuccME's own active development moved on. Not
 yet done as of this entry; this repo's own migration status section
 in `README.md` already anticipates it ("will be released, tagged,
 archived, and kept citable once this migration completes").
+
+## Readability pass on `potential/`, for PIBIC onboarding: `scipy.special.expit` adopted, `numpy.ma` and `tensordot` rejected
+
+Requested while preparing onboarding material for PIBIC students who
+will read `potential/linear.py` and `potential/logistic.py`: "does
+anything here have an obvious simplification using something the
+Python/NumPy/SciPy community already provides?" Three candidates were
+tried; only one was kept, for reasons worth recording so they aren't
+re-litigated later.
+
+**Adopted -- `logistic.py`'s hand-rolled sigmoid replaced with
+`scipy.special.expit`.** The code manually clipped `z` to
+`[-50, 50]` before `1 / (1 + exp(-z))`, with a comment explaining the
+clip exists only to avoid `exp()` overflow on nodata cells. `expit`
+is SciPy's numerically stable sigmoid -- exactly what that comment
+was working around by hand -- so the clip and the manual formula both
+go away. `scipy` was already an installed, transitive dependency (via
+`dissmodel`'s own deps), but was not a *declared* one; added it
+directly to `pyproject.toml`'s `dependencies`, since `disslucc` now
+imports it itself rather than relying on an accident of what
+`dissmodel` happens to pull in. Verified bit-for-bit identical output
+on both Lab1 and Lab15 (same `mae`/`rmse`/`quantity_disagreement`/
+`allocation_disagreement` to full float precision, not just "within
+tolerance") before and after -- `docs/validation.md` needs no update.
+
+**Rejected -- `numpy.ma` for `land_use_no_data` in `linear.py`.** The
+suggestion was to replace `reg = reg * (1.0 - no_data_arr)` with a
+masked array, on the reasoning that `land_use_no_data` sounds like a
+binary "missing data" flag. Checked the actual values behind it first
+(`data/input/csAC.zip`'s `outros` column, as loaded for the Lab1
+scenario): real-valued, 2183 distinct values between ~0 and 1, not a
+0/1 mask. It's the *fraction* of a cell already committed to a
+non-transitionable "other" class, and potential is scaled down
+proportionally -- not zeroed out. `numpy.ma` is for hard/boolean
+masking; using it here would have silently changed the science despite
+looking like a pure refactor. Left the line as-is, added a comment
+recording this so the next person doesn't repeat the same
+name-implies-semantics mistake. Good example, for the PIBIC material
+itself, of why to check the data before trusting a parameter's name.
+
+**Rejected (for now) -- vectorizing `const + sum(beta_k * driver_k)`
+with `np.stack`/`np.tensordot` instead of the Python `for col, beta in
+spec.betas.items()` loop.** Mathematically the same linear
+combination, and arguably more idiomatic NumPy for a small number of
+drivers. Tried it in both `linear.py` and `logistic.py` and reran the
+full validation: Lab15 (binary, exact-match assertions) was
+unaffected, but Lab1's `mae` moved from `0.0035832335619405574` to
+`0.003583233421432411` -- floating-point summation reordering, not a
+bug, and still far inside the `0.01` tolerance both
+`tests/test_validation_lab1.py` and `disslucc-continuous`'s own
+criterion use. Reverted anyway: this repo's own rule (see top of this
+file, and `docs/validation.md`'s header) is that `docs/validation.md`'s
+numbers are cited in `dissmodel`'s JOSS paper, and "the rounded number
+published doesn't change" is a weaker bar than "bit-identical unless a
+change is deliberately about the science." A cosmetic vectorization
+isn't worth even a last-decimal-digit drift here. Revisit only if a
+real performance need shows up (many drivers, large rasters) that
+would justify accepting that tradeoff explicitly and re-publishing
+`docs/validation.md`'s numbers alongside it.
+
+## Same pass, `allocation/clue.py`: two safe cosmetic fixes, one documented-not-fixed dead branch
+
+Continuation of the readability pass above, this time over
+`AllocationClueLike` (the CLUE-like continuous allocator). Same
+discipline: verify bit-for-bit identical Lab1/Lab15 output, run the
+full suite, before keeping any change.
+
+**Applied -- two zero-risk stylistic fixes in `_correct_cell_change`.**
+`flat = lambda lu: ...` (a lambda assigned to a name -- PEP 8 E731, and
+it shows as `<lambda>` in tracebacks instead of a real function name)
+became a nested `def flat(lu: str) -> np.ndarray: ...`. Needed a
+`cast(np.ndarray, ...)` inside it to keep mypy clean (`self.backend.get()`
+returns `Any`), matching the pattern `_mask()` already uses just above
+it. `[self.allocation_data[i].min_value for i in range(len(lus))]` (and
+the `max_value` line next to it) became
+`[spec.min_value for spec in self.allocation_data]` -- `allocation_data`
+is already in `land_use_types` order, so indexing through `range(len(...))`
+bought nothing. Verified identical Lab1 `mae`/`rmse` and Lab15
+disagreement to full float precision before/after; `pytest`/`mypy`/`ruff`
+all clean.
+
+**Found, documented, deliberately not fixed -- the `no_data` exclusion
+in `_apply_complementar`'s deficit-correction branch is dead on two
+levels.** `no_data = getattr(self, "land_use_no_data", None)`: that
+attribute is a `PotentialLinearRegression.setup()` parameter (see
+`potential/linear.py`) that `AllocationClueLike.setup()` never accepts
+-- so `no_data` is always `None`, and `lu != None` is always `True` for
+a class name, meaning the `eligible = [lu for lu in others if lu !=
+no_data]` filter never actually excludes anything. Traced the likely
+original intent by checking Lab1's real config
+(`examples/run_lab1_real.py`): `land_use_no_data="outros"` (on
+`Potential`) and `static["outros"] == 1` (on `Allocation`) name the
+same class, so this was almost certainly meant to protect the
+region's fixed/static class from this branch's deficit correction --
+the same protection `_compute_change`/`_correct_cell_change` already
+give `static == 1` classes elsewhere in this same file, just spelled
+with the wrong variable here. Also instrumented all 7 Lab1 steps:
+`deficit.any()` was never `True` once -- this whole branch is
+unexercised by every scenario in the repository, with no test proving
+either the current or a fixed version behaves correctly.
+
+Decided not to fix this now, on both counts: (1) the correct fix
+isn't "wire `land_use_no_data` through" -- it's changing the criterion
+to `self.static[lu] != 1`, a different and more invasive change than
+it looks like at first; (2) there is zero test coverage of this
+branch, current or fixed, and this repository's whole discipline
+(`docs/validation.md` numbers cited in `dissmodel`'s JOSS paper) is
+built on not changing unverified behavior without a benchmark to
+check it against. A synthetic scenario that forces `deficit.any()`
+would be the right way to close this gap, but that's new test-writing
+work, not a readability pass. Recorded here, and as an inline comment
+at the call site, so the next person doesn't need to re-derive this
+from scratch, and doesn't mistake "wiring `land_use_no_data` through"
+for the actual fix.
+
+## Same pass, `allocation/clue_s.py`: one applied, two considered and rejected
+
+Continuation of the readability pass, now over `AllocationDClueSLike`
+(discrete CLUE-S allocation). Same discipline as the two entries above:
+bit-for-bit Lab1/Lab15 comparison before keeping anything.
+
+**Applied.** `max_diff = float(np.max(np.abs(list(diff.values()))))` --
+`diff` is a plain `dict[str, float]` with one scalar per land-use class
+(a handful of classes, not per-cell). Round-tripping a handful of
+Python floats through `list -> np.array -> np.abs -> np.max -> float`
+buys nothing; `max(abs(v) for v in diff.values())` is the same value,
+plain stdlib. Verified bit-for-bit identical Lab1/Lab15 metrics;
+`pytest`/`mypy`/`ruff` all clean.
+
+**Considered, rejected -- `numpy.ma` for the masked argmax
+(`scores = np.where(allowed, scores, -np.inf); np.argmax(scores, axis=1)`).**
+This *looks* like the textbook `numpy.ma` use case (a real boolean mask,
+unlike the `land_use_no_data` false alarm in `clue.py`), but the
+`-np.inf` sentinel is already the standard, well-understood idiom for
+"argmax over allowed choices only", and masked-array argmax has its own
+sharp edge -- behavior on a fully-masked row (a cell with zero allowed
+transitions) isn't obviously the same as `-np.inf`'s behavior (picks
+index 0 deterministically) without checking. No test exercises a
+transition matrix with a fully-blocked cell, so there's no way to
+verify equivalence. Not worth the swap for a purely cosmetic gain over
+already-correct, already-idiomatic code.
+
+**Considered, rejected -- restructuring the `for n_iter in
+range(self.max_iteration + 1): ... if n_iter >= self.max_iteration:
+raise` convergence loop** into a cleaner `for/else`. Mechanically
+sound, but touches the exact iteration count at which non-convergence
+raises `RuntimeError`, and no test in this repository exercises that
+failure path (Lab1/Lab15 always converge well within their configured
+`max_iteration`). Changing loop bounds with zero test coverage of the
+boundary condition it changes is exactly the kind of "looks safe,
+unverifiable" edit this readability pass has been avoiding throughout
+`potential/` and `allocation/`.
+
+## `allocation/clue_s.py`: hoisting `pot`/`1+tau` out of the convergence loop -- an actual algorithmic improvement, not just readability
+
+Different category from the three entries above: this one changes
+*what the algorithm does* (fewer redundant recomputations per call),
+not just how it's written, so it got measured, not just diffed.
+
+`pot = np.stack([self.backend.get(lu + "_pot").ravel() for lu in
+lu_types], axis=1)` was being recomputed **every iteration** of
+`execute()`'s convergence loop, even though `<lu>_pot` is written once
+by `Potential.execute()` before `Allocation.execute()` runs at all, and
+nothing inside this loop ever writes it back -- only `iter_vec` changes
+between iterations. Same for `1.0 + tau`. Instrumented Lab15 first
+(before touching anything): `execute()` took between 1 and 68
+iterations per time step across the 6 steps, so this was a real,
+measurable amount of repeated work, not a one-off.
+
+Hoisted both `pot` and `one_plus_tau = 1.0 + tau` above the loop.
+Verified bit-for-bit identical Lab1/Lab15 metrics (this change only
+touches `clue_s.py`, so Lab1 was never going to move, but checked
+anyway per this session's own discipline). Measured wall-clock time
+for `run_lab15_raster()` (8 repetitions each, sorted):
+
+    before: median 0.4792s, min 0.4510s
+    after:  median 0.4283s, min 0.4077s  (~10-11% faster end to end)
+
+That end-to-end number includes shapefile loading (a fixed cost this
+change doesn't touch), so the saving *inside* the allocation loop
+itself is proportionally larger and should grow with raster size and
+iteration count -- the avoided work scales with
+`n_iterations * n_classes * n_cells` per step, while the I/O floor
+stays constant. Not benchmarked at larger scale; if raster size grows
+significantly in a future scenario, worth re-measuring rather than
+assuming the same ~10% holds.
+
+`pytest`/`mypy`/`ruff` all clean after the change.
+
+## Ecosystem-wide review pass (PIBIC-focused): `RegressionSpec.newconst` footgun and an `api.md` inaccuracy
+
+Broader pass across the whole package (not just `potential/`/`allocation/`
+this time), specifically looking for anything that would confuse an
+undergraduate reading this code for the first time. Two real findings,
+both fixed.
+
+**`schemas.RegressionSpec.newconst` was a silent-no-op constructor
+trap.** It's a regular dataclass field (`newconst: float = 0.0`),
+so `RegressionSpec(const=0.5, newconst=99)` was accepted -- but
+`PotentialLinearRegression.setup()`/`execute()` always overwrite it
+with `spec.newconst = spec.const` before ever reading it, on every
+single step, not just the first. So any value passed at construction
+time was silently discarded, immediately. Confirmed with `grep` that
+nothing in `src/`/`examples/`/`tests/` ever constructs a
+`RegressionSpec` with `newconst=...` -- this was a purely latent trap
+for a future caller, not a bug that ever fired. Fixed with
+`field(default=0.0, init=False, repr=False, compare=False)`:
+`newconst` is internal runtime state the model manages, not something
+a caller configures, so it's no longer part of `__init__`, doesn't
+clutter `repr()`, and doesn't affect `==` between two specs that only
+differ in runtime-mutated state. Verified: `RegressionSpec(const=0.5,
+newconst=99)` now raises `TypeError` immediately instead of silently
+accepting and discarding the value. Bit-for-bit identical Lab1/Lab15
+metrics; `pytest`/`mypy`/`ruff` all clean.
+
+**`docs/api.md` mischaracterized `land_use_no_data`.** It described the
+parameter as "class to exclude from the calculation (e.g. water)" --
+which is exactly the wrong mental model this session already
+disproved by checking the real data (see the `potential/linear.py`
+entry above): it's a real-valued `[0,1]` array that scales potential
+down proportionally (`reg * (1 - value)`), not a binary
+exclusion/no-data mask. This is the same misconception that produced
+the dead `no_data` code in `allocation/clue.py`, now also fixed in the
+one document a student would read *before* the source, making it more
+likely to mislead, not less. Corrected the parameter comment in
+`api.md` to describe the actual behavior.

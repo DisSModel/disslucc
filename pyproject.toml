@@ -8,6 +8,11 @@ license = { text = "MIT" }
 requires-python = ">=3.11"
 dependencies = [
     "dissmodel>=0.6.4,<0.7.0",
+    # scipy.special.expit (potential/logistic.py) -- was already pulled
+    # in transitively by dissmodel's own deps, but disslucc now imports
+    # it directly, so it needs to be a declared dependency, not an
+    # accident of what dissmodel happens to require today.
+    "scipy",
 ]
 
 [project.optional-dependencies]

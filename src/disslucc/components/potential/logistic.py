@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import numpy as np
 from dissmodel.geo import SyncRasterModel
+from scipy.special import expit
 
 from ...schemas import LogisticRegressionSpec
 
@@ -73,14 +74,10 @@ class PotentialDLogisticRegression(SyncRasterModel):
         for col, beta in spec.betas.items():
             z = z + beta * self.backend.get(col).astype(np.float32)
 
-        # cells outside the mask (filled with nodata, e.g. -1) can produce
-        # extreme z with the real coefficients -- clip avoids overflow in
-        # exp() without changing the result (sigmoid already saturates
-        # well before +-50)
-        z = np.clip(z, -50.0, 50.0)
-
-        # numerically stable sigmoid
-        prob = 1.0 / (1.0 + np.exp(-z))
+        # scipy.special.expit is the standard, numerically stable sigmoid
+        # (no manual overflow clipping needed -- it handles extreme z from
+        # cells outside the mask, e.g. nodata=-1, without over/underflow).
+        prob = expit(z)
         elas = np.where(self.backend.get(lu) == 1, spec.elasticity, 0.0).astype(np.float32)
         pot = prob + elas
 

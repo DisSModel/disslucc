@@ -146,15 +146,17 @@ class AllocationClueLike(SyncRasterModel):
         TOL   = 0.005
         MAX_L = 25
 
-        alloc_min = np.array([self.allocation_data[i].min_value for i in range(len(lus))])
-        alloc_max = np.array([self.allocation_data[i].max_value for i in range(len(lus))])
+        alloc_min = np.array([spec.min_value for spec in self.allocation_data])
+        alloc_max = np.array([spec.max_value for spec in self.allocation_data])
         static    = np.array([self.static[lu] for lu in lus])
 
         mask      = self._mask()
         shape     = self.shape
         flat_mask = mask.ravel()
 
-        flat      = lambda lu: self.backend.get(lu).ravel().astype(np.float32)
+        def flat(lu: str) -> np.ndarray:
+            return cast(np.ndarray, self.backend.get(lu).ravel().astype(np.float32))
+
         originals = {lu: flat(lu) for lu in lus}
         vals      = np.stack([flat(lu) for lu in lus], axis=1)
         pasts     = np.stack([flat(lu + "_past") for lu in lus], axis=1)
@@ -238,6 +240,25 @@ class AllocationClueLike(SyncRasterModel):
         comp_original = self.backend.get(self.complementar_lu).astype(np.float32)
         self.backend.arrays[self.complementar_lu] = np.where(mask, comp, comp_original)
 
+        # NOTE: this whole branch is unexercised by every scenario in this
+        # repository -- instrumented Lab1's 7 steps and `deficit.any()` was
+        # never True. No test proves it behaves correctly, as-is or fixed.
+        #
+        # `no_data` is also dead on arrival: `land_use_no_data` is a
+        # PotentialLinearRegression.setup() parameter (see potential/linear.py)
+        # that AllocationClueLike.setup() never accepts, so
+        # `getattr(self, "land_use_no_data", None)` is always None here, and
+        # `lu != None` is always True -- the filter below never actually
+        # excludes anything. In Lab1, `land_use_no_data="outros"` and
+        # `static["outros"] == 1` happen to name the same class, which is
+        # almost certainly the real intent: protect the region's fixed/static
+        # class from being reduced just to close this deficit, the same way
+        # `_compute_change`/`_correct_cell_change` already protect it via
+        # `self.static[lu] == 1` / `is_static`. If this branch is ever made
+        # reachable (a synthetic scenario that forces `deficit.any()`), fix
+        # the criterion to `self.static[lu] != 1`, not to wiring
+        # `land_use_no_data` through -- that would still be the wrong
+        # protection, just no longer silently broken.
         deficit = np.maximum(0.0, total - 1.0)
         if deficit.any():
             no_data  = getattr(self, "land_use_no_data", None)

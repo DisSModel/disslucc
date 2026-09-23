@@ -77,7 +77,7 @@ PotentialLinearRegression(
     potential_data: list[list[RegressionSpec]],  # [region][class]
     demand,                                        # object with DemandProtocol
     land_use_types: list[str],
-    land_use_no_data: str | None = None,  # class to exclude from the calculation (e.g. water)
+    land_use_no_data: str | None = None,  # array in [0,1]: scales potential down by (1 - value); NOT a binary exclusion mask
     region_attr: str = "region",           # region array in the backend; created as 1 if absent
 )
 ```
