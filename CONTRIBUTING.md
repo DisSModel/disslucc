@@ -92,7 +92,7 @@ pip install -e ".[examples,dev]"
 pytest tests/ -v
 ```
 
-Expect `14 passed, 2 xfailed` on a clean checkout (the two `xfail` cases are
+Expect `19 passed, 2 xfailed` on a clean checkout (the two `xfail` cases are
 documented, known limitations of the Lab15 discriminance test -- see
 `tests/test_benchmark_discriminance_lab15.py`). If your change makes that
 number change unexpectedly, treat it as a regression until proven otherwise.
@@ -118,7 +118,7 @@ have their own conventions:
   -- the numbers they produce are cited in `dissmodel`'s JOSS paper.
 - **Reference results** (`benchmark/goldens/`) are a copy of the goldens this
   repository's tests use, generated in [LambdaGeo/terrame-docker](https://github.com/LambdaGeo/terrame-docker)
-  v0.1.0 (which has goldens for all 21 LuccME labs; copy one here only with
+  v0.1.1 (which has goldens for all 21 LuccME labs; copy one here only with
   the component and test that use it),
   which also keeps the original LuccME "Model Configurator" scripts, the
   original TerraME outputs and the generator. Never edit a golden by hand:

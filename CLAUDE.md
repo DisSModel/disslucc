@@ -57,7 +57,7 @@ scripts, then three more `examples/*.py` files found later) -- grep for
 **Data provenance is not "whatever GitHub script has a matching name."**
 The reference results live in `benchmark/goldens/`, a copy of the goldens
 generated in [LambdaGeo/terrame-docker](https://github.com/LambdaGeo/terrame-docker)
-v0.1.0, which keeps the generating scripts, the original TerraME outputs, the
+v0.1.1, which keeps the generating scripts, the original TerraME outputs, the
 generator and goldens for all 21 LuccME labs. This repository keeps only the
 goldens its tests use (`lab01`, `lab15`: the LuccME package's labs;
 `lab01_md1643`, `lab15_md10`); add one together with the component and test

@@ -40,7 +40,7 @@ allocated quantity, not position.
 Reproduce: `examples/run_lab1_validation.py`.
 
 Provenance: the original LuccME scripts that generated this reference
-(`Lab1`, `maxDifference=1643`) are vendored at
+(`Lab1`, `maxDifference=1643`) are kept in
 terrame-docker's `benchmark/references/lab01_md1643/` (`lab1_main.lua` +
 `lab1_submodel.lua`, with the original TerraME output zip). These are
 **not** the same scripts as `terrame/luccme`'s public
