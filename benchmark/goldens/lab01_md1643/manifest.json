@@ -18,7 +18,7 @@
   },
   "generator": {
     "script": "benchmark/harness.lua",
-    "sha256": "be7c575428c574da799f7f745da7766a05f6b878df08b12bcd0bab882e346581"
+    "sha256": "5f7504f11442d83981565676635ffd996034f721a5ad08ec0cab082d2e948a97"
   },
   "status": "ok",
   "years": [
@@ -37,7 +37,7 @@
   "file": {
     "name": "lab01_md1643.csv.gz",
     "rows": 46018,
-    "sha256": "c0a46b524be5e482921c7fd10239168b3f472636dd762b18df34056793803c46"
+    "sha256": "979d63d14ebed6040ee3000b91939abdb050924be36385503cd1d74a2744759f"
   },
   "crosscheck_vs_original_output": {
     "tolerance": 1e-09,
@@ -45,7 +45,7 @@
       "Lab1_2014.dbf:d_out": 4.999993474807951e-13,
       "original_Lab1_2014.dbf:d_out": 4.999993474807951e-13
     },
-    "note": "último ano do CSV comparado com os .dbf da pasta de saída: a saída do próprio script e, nas referências, a saída original do TerraME"
+    "note": "last year of the CSV compared with the .dbf files of the output folder: the script's own output and, for references, the original TerraME output"
   },
   "iterations_per_year": {
     "2008": 0,
@@ -56,5 +56,5 @@
     "2013": 17,
     "2014": 17
   },
-  "iterations_note": "contínuo: 'Number of iterations' do LuccME; discreto: maior n de 'Iteration -> n' (0 = aceito na 1ª passada)"
+  "iterations_note": "continuous: LuccME's 'Number of iterations'; discrete: largest n in 'Iteration -> n' (0 = first pass accepted)"
 }

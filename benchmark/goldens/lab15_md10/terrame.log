@@ -24,7 +24,7 @@ d -> 205		demand -> 205 difference -> 0
 o -> 3		demand -> 3 difference -> 0
 
 Demand allocated correctly in this time: 1999
-[harness] lab15_md10: Lab6, anos 1999..2004, colunas f_out,d_out,o_out,f_pot,d_pot,o_pot
+[harness] lab15_md10: Lab6, years 1999..2004, columns f_out,d_out,o_out,f_pot,d_pot,o_pot
 
 Executing Demand component
 Executing Potential component
@@ -1637,7 +1637,7 @@ o -> 3		demand -> 3 difference -> 0
 Demand allocated correctly in this time: 2004
 
 Saving Lab6_2004.
-Elapsed time: 00:00:11 hh:mm:ss
+Elapsed time: 00:00:07 hh:mm:ss
 
 End of Simulation
-[harness] lab15_md10: CSV gravado em /work/out/lab15_md10
+[harness] lab15_md10: CSV written to /work/out/lab15_md10

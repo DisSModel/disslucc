@@ -2,6 +2,14 @@
 
 All notable changes to `disslucc` are documented here.
 
+## [Unreleased]
+
+### Changed
+- `benchmark/goldens/` updated to terrame-docker v0.1.1: same results (CSVs within
+  1e-12), with `terrame.log` and `manifest.json` in English; `benchmark/README.md`
+  translated to English.
+- `CONTRIBUTING.md` and the onboarding issue template expect `19 passed, 2 xfailed`.
+
 ## [0.4.0] -- 2026-09-23
 
 Reference results now come from

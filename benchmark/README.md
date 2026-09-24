@@ -1,52 +1,52 @@
-# Goldens do TerraME/LuccME
+# TerraME/LuccME goldens
 
-`goldens/` é uma cópia dos goldens gerados em
-[LambdaGeo/terrame-docker](https://github.com/LambdaGeo/terrame-docker)
-**v0.1.0** (`benchmark/goldens/`), com TerraME 2.0.1 + LuccME `6244dd4`. É contra eles que o
-disslucc é validado, algoritmo por algoritmo.
+`goldens/` is a copy of goldens generated in
+[LambdaGeo/terrame-docker](https://github.com/LambdaGeo/terrame-docker) **v0.1.1**
+(`benchmark/goldens/`), with TerraME 2.0.1 + LuccME `6244dd4`. disslucc is validated
+against them, one algorithm at a time.
 
-Scripts, saídas originais do TerraME e o gerador ficam **só** no terrame-docker; aqui
-fica só o resultado, para os testes rodarem sem Docker.
+The scripts, the original TerraME outputs and the generator live **only** in
+terrame-docker; this repository keeps only the results, so the tests run without Docker.
 
-## O que há em `goldens/<nome>/`
+## Contents of `goldens/<name>/`
 
-| Arquivo | Conteúdo |
+| File | Contents |
 |---|---|
-| `<nome>.csv.gz` | estado de cada célula ao fim de cada ano: `year,id,col,row`, `<classe>_out` e `<classe>_pot`, 12 casas decimais |
-| `terrame.log` | saída do TerraME (demanda, área alocada, iterações por ano) |
-| `manifest.json` | script de origem e SHA-256, versões, anos, colunas, iterações por ano (`iterations_per_year`) e a verificação cruzada |
+| `<name>.csv.gz` | state of every cell at the end of every year: `year,id,col,row`, `<class>_out` and `<class>_pot`, 12 decimal places |
+| `terrame.log` | TerraME output (demand, allocated area, iterations per year) |
+| `manifest.json` | source script and SHA-256, versions, years, columns, iterations per year (`iterations_per_year`) and the cross-check |
 
-`col`/`row` alinham com `data/input/csAC.zip` (`col`, `row`) e `cs_moju.zip` (`col`, `lin`).
+`col`/`row` match `data/input/csAC.zip` (`col`, `row`) and `cs_moju.zip` (`col`, `lin`).
 
-## Quais são
+## Which ones
 
-Só os goldens que os testes deste repositório usam. Os outros (os 21 labs do pacote
-LuccME) ficam no terrame-docker e entram aqui quando o componente correspondente for
-implementado, junto com o teste que os usa.
+Only the goldens this repository's tests use. The others (the 21 labs of the LuccME
+package) stay in terrame-docker and come here when the corresponding component is
+implemented, together with the test that uses them.
 
-| Golden | Componentes | Usado em |
+| Golden | Components | Used in |
 |---|---|---|
 | `lab01` | PreComputedValues + CLinearRegression + CClueLike (`maxDifference` 5000) | `test_goldens_per_year.py` |
-| `lab01_md1643` | idem, `maxDifference` 1643: itera 8–26 vezes por ano | `test_goldens_per_year.py`, `test_validation_lab1.py`, discriminância |
+| `lab01_md1643` | same, `maxDifference` 1643: iterates up to 26 times per year | `test_goldens_per_year.py`, `test_validation_lab1.py`, discriminance |
 | `lab15` | PreComputedValues + DLogisticRegression + DClueSLike (`maxDifference` 300) | `test_goldens_per_year.py` |
-| `lab15_md10` | idem, `maxDifference` 10: itera 56–67 vezes por ano | `test_goldens_per_year.py`, `test_validation_lab15.py`, discriminância |
+| `lab15_md10` | same, `maxDifference` 10: iterates 56–67 times per year | `test_goldens_per_year.py`, `test_validation_lab15.py`, discriminance |
 
-O último ano de `lab01_md1643` e de `lab15_md10` é a antiga referência deste repositório
+The last year of `lab01_md1643` and of `lab15_md10` is this repository's former reference
 (`benchmark/data/*.zip`).
 
-## Antes de usar como prova
+## Before using them as evidence
 
-- Nos labs do pacote a alocação aceita a primeira passada em todos os anos; só as
-  variantes `_md` testam o laço de convergência.
-- Nos labs com `CClueLike`, o TerraME nunca executa `correctCellChange` (typo
-  `regionregionAloc`). O disslucc executa por padrão; compare com
-  `cell_correction=False`. Ver `docs/validation.md`.
-- Compare com tolerância (1e-9 no arquivo; os testes usam MAE < 1e-6), nunca pelo
-  SHA-256: de uma geração para outra, algumas células mudam na 12ª casa decimal.
+- In the package labs the allocation is accepted at the first pass every year; only the
+  `_md` variants test the convergence loop.
+- In the labs with `CClueLike`, TerraME never runs `correctCellChange` (a
+  `regionregionAloc` typo). disslucc runs it by default; compare with
+  `cell_correction=False`. See `docs/validation.md`.
+- Compare with a tolerance (1e-9 in the file; the tests use MAE < 1e-6), never by
+  SHA-256: from one generation to the next, a few cells change in the 12th decimal place.
 
-## Adicionar ou atualizar
+## Adding or updating
 
-Copie a pasta do golden de `benchmark/goldens/<nome>/` do terrame-docker, na mesma versão
-(`v0.1.0`), para `benchmark/goldens/<nome>/` aqui, no mesmo commit do teste que passa a
-usá-lo. Nunca edite um golden à mão; para regenerar, use `benchmark/generate.sh <nome>`
-no terrame-docker.
+Copy the golden's folder from terrame-docker's `benchmark/goldens/<name>/`, at the same
+version (`v0.1.1`), to `benchmark/goldens/<name>/` here, in the same commit as the test
+that starts using it. Never edit a golden by hand; to regenerate one, run
+`benchmark/generate.sh <name>` in terrame-docker.
