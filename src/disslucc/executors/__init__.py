@@ -21,8 +21,9 @@ if TYPE_CHECKING:
     from .base import LuccExecutorBase as LuccExecutorBase
     from .continuous import LuccContinuousExecutor as LuccContinuousExecutor
     from .discrete import LuccDiscreteExecutor as LuccDiscreteExecutor
+    from .saturation import LuccSaturationExecutor as LuccSaturationExecutor
 
-__all__ = ["LuccContinuousExecutor", "LuccDiscreteExecutor", "LuccExecutorBase"]
+__all__ = ["LuccContinuousExecutor", "LuccDiscreteExecutor", "LuccExecutorBase", "LuccSaturationExecutor"]
 
 
 def __getattr__(name: str):
@@ -35,4 +36,7 @@ def __getattr__(name: str):
     if name == "LuccDiscreteExecutor":
         from .discrete import LuccDiscreteExecutor
         return LuccDiscreteExecutor
+    if name == "LuccSaturationExecutor":
+        from .saturation import LuccSaturationExecutor
+        return LuccSaturationExecutor
     raise AttributeError(f"module {__name__!r} has no attribute {name!r}")

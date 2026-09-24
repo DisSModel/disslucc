@@ -81,7 +81,7 @@ PR/commit and say so explicitly -- don't let it drift silently.
 ```bash
 python -m venv venv && source venv/bin/activate
 pip install -e ".[examples,dev]"
-pytest tests/ -v          # expect: 70 passed, 2 xfailed (35 passed, 1 skipped without lupa)
+pytest tests/ -v          # expect: 73 passed, 2 xfailed (38 passed, 1 skipped without lupa)
 mypy src/disslucc         # expect: clean
 ```
 

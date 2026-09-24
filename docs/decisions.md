@@ -1061,3 +1061,27 @@ results only again.
 version of the step LuccME skips there; the Saturation variant's
 `correctCellChange` is LuccME's own. Whether the first should follow the second
 is a separate question, not settled here.
+
+## `LuccSaturationExecutor`, with raster input (2026-09-24, #6)
+
+LuccME-BR is run from a model TOML, not a script: the same second entry point
+the continuous and discrete executors are (entry "The Executor came back").
+`LuccSaturationExecutor` builds the three components from `record.parameters`
+and differs from `LuccContinuousExecutor` where that model needs it:
+
+- **raster input.** A continental cellular space (≈ 260 k cells, 15+ drivers)
+  is built once, as a raster, by the data pipeline (DisSCube in
+  luccmebr-reconstruction); rasterizing a vector at every run, as the base's
+  `load()` does, is the wrong way round there. So `load()` reads a GeoTIFF
+  whose bands carry their names (`dissmodel.io.load_dataset(fmt="raster")`,
+  the format `save()` already writes), and falls back to the base for vectors.
+  `_read_geotiff` returns the georeference in `meta`, not in the backend, so
+  `load()` copies it over — `save()` needs it.
+- **regions** are named per entry (`lu`, `region`) instead of implied by list
+  position, because LuccME-BR has three regions × six classes.
+- **`save_steps`**: a model checked against maps of intermediate years
+  (LuccME-BR: IBGE 2010, 2012, 2014) needs those states, not only the last.
+
+Checked end to end through the CLI: `examples/dissmodel-configs/lucc_saturation.toml`
+is lab03, and its run matches the lab03 golden in 2011 and 2014
+(`tests/test_executor_saturation.py`).

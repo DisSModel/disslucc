@@ -435,6 +435,30 @@ run the model on top of it and return
 `static`/`complementar_lu`/`allocation_data` for `transition_matrix`
 (`list[list[list[int]]]`, `[region][from][to]`).
 
+### `LuccSaturationExecutor`
+
+`name = "lucc_continuous_saturation"`: `DemandPreComputedValues` +
+`PotentialSpatialLagRegression` + `AllocationClueLikeSaturation`, the
+continuous model of LuccME-BR. Parameters as the components', plus:
+
+- each `potential_data`/`allocation_data` entry names its class (`lu`) and,
+  optionally, its `region` (default 1) — one entry per class per region;
+- `record.source.uri` may be a **GeoTIFF with named bands** (a `name` tag per
+  band, as `dissmodel.io.save_geotiff` writes): land uses, drivers and,
+  optionally, `mask`, `region`/`regionAloc` and the cell order (`order_attr`);
+  a vector input still goes through the base's rasterization;
+- `save_steps: list[int]` writes those steps too, as `<output>_step<k>.tif`.
+
+`examples/dissmodel-configs/lucc_saturation.toml` is LuccME's lab03;
+`tests/test_executor_saturation.py` runs it through the local CLI and matches
+the lab03 golden:
+
+```bash
+python -m disslucc.executors.saturation run \
+    --toml examples/dissmodel-configs/lucc_saturation.toml \
+    --input cellspace.tif --param demand_csv=demand.csv --output out.tif
+```
+
 ### Example
 
 ```python
