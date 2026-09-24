@@ -121,9 +121,9 @@ against the TerraME log -- done now, year by year, in the next section.
 for every cell and every simulated year, `<lu>_out` and `<lu>_pot`, plus
 TerraME's convergence-loop iteration count per year. terrame-docker has 23
 (the 21 functional labs of the LuccME package and the two scenarios above);
-this repository keeps the four its tests use (`lab01`, `lab01_md1643`,
-`lab15`, `lab15_md10`), and adds the others as their components are
-implemented.
+this repository keeps the ones its tests use (`lab01`, `lab01_md1643`,
+`lab15`, `lab15_md10`, and `lab03`/`lab06` for the components of the next
+section), and adds the others as their components are implemented.
 `tests/test_goldens_per_year.py` checks the iteration count per year
 (exact) and every class per year (MAE < 1e-6):
 
@@ -142,6 +142,35 @@ This closes the gap left by the Lab15 discriminance warning: the final map
 alone could not tell a correct CLUE-S from a static ranking, but the
 iteration counts can, and they match in every year.
 
+## Spatial-lag potential and saturation allocation (lab03, lab06)
+
+`PotentialSpatialLagRegression` and `AllocationClueLikeSaturation` port the two
+LuccME components LuccME-BR (Bezerra et al. 2022) is built from. `lab03` and
+`lab06` are the two LuccME labs that combine exactly
+`DemandPreComputedValues` + `PotentialCSpatialLagRegression` +
+`AllocationCClueLikeSaturation` (csAC, 2008–2014); `lab06` also replaces the
+driver `ti` in 2009 (`updateYears`).
+
+| Check | Result | Test |
+|---|---|---|
+| potential alone, each year from the golden's previous land use | every cell, year and class, \|Δ\| < 1e-10 (the goldens keep 12 decimals) | `test_spatial_lag_golden.py` |
+| whole model (potential + allocation) run from 2008 on its own | every cell's `<lu>_out` and `<lu>_pot`, every year to 2014, \|Δ\| < 1e-9 | `test_saturation_golden.py` |
+| TerraME log, per year | iterations (0 every year) and "Maximum error" identical (rel. 1e-9) | `test_saturation_golden.py` |
+
+What the goldens also tell apart: a non-cumulative constant adaptation (the
+reading `PotentialLinearRegression` uses) misses from 2010 on; `lab06`'s
+dynamic variables paired by `object_id0` instead of by position (LuccME's
+`forEachCellPair`; `csAC_2009` is not in `csAC`'s order) misses by 0.045.
+
+What they do **not** reach: no cell ever needs `correctCellChange`, no cell is
+saturated (`changeLimiarValue = 1`), and csAC has no isolated cell — the cells'
+visiting order has no effect either. Those parts are checked against the
+original Lua functions (`tests/lua/`, run with `lupa`) on synthetic cases that
+reach every branch, within 1e-12 (`test_lua_differential.py`); ports broken on
+purpose (`BACKP` reset per cell, the 3 × 3 window without the cell, an isolated
+cell using its own share) fail them. Not tested at all: `modify_driver`, called
+only after 500 iterations.
+
 ## Summary
 
 | Scenario | Type | MAE | Match | What it proves |
@@ -149,6 +178,7 @@ iteration counts can, and they match in every year.
 | Lab1 | continuous | 0.0036 | -- | full model (Demand+Potential+Allocation), within the official tolerance; the whole MAE is the cell correction that TerraME skips |
 | Lab15 | discrete | 0.0 | 100% | correct regression coefficients |
 | Lab1, Lab15 year by year | both | < 1e-7 | iterations exact | CLUE-S convergence confirmed; CLUE identical to TerraME with `cell_correction=False` |
+| lab03, lab06 year by year | continuous | < 1e-9 | iterations and max error exact | spatial-lag potential + saturation allocation identical to TerraME; the branches the labs don't reach, identical to the Lua |
 
 ## What these numbers DON'T prove: engineering validation ≠ scientific validation
 

@@ -27,3 +27,13 @@ class DemandProtocol(Protocol):
 @runtime_checkable
 class PotentialProtocol(Protocol):
     def modify(self, r_number: int, lu_idx: int, direction: int) -> None: ...
+
+
+@runtime_checkable
+class RegionalPotentialProtocol(PotentialProtocol, Protocol):
+    """What AllocationClueLikeSaturation needs from its potential: the
+    number of potential regions (it adapts the elasticities once per
+    region, as LuccME does) and LuccME's `modifyDriver`, called when the
+    allocation has not converged after half its iterations."""
+    potential_data: list
+    def modify_driver(self, attr_protection: str, rate: float) -> None: ...

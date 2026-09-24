@@ -30,6 +30,8 @@ implemented, together with the test that uses them.
 | `lab01_md1643` | same, `maxDifference` 1643: iterates up to 26 times per year | `test_goldens_per_year.py`, `test_validation_lab1.py`, discriminance |
 | `lab15` | PreComputedValues + DLogisticRegression + DClueSLike (`maxDifference` 300) | `test_goldens_per_year.py` |
 | `lab15_md10` | same, `maxDifference` 10: iterates 56–67 times per year | `test_goldens_per_year.py`, `test_validation_lab15.py`, discriminance |
+| `lab03` | PreComputedValues + CSpatialLagRegression + CClueLikeSaturation (`maxDifference` 1643) | `test_spatial_lag_golden.py`, `test_saturation_golden.py` |
+| `lab06` | same as `lab03`, plus `updateYears = {2009}` (`ti` from `csAC_2009`, `data/input/csAC_2009.zip`) | `test_spatial_lag_golden.py`, `test_saturation_golden.py` |
 
 The last year of `lab01_md1643` and of `lab15_md10` is this repository's former reference
 (`benchmark/data/*.zip`).

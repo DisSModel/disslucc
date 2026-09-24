@@ -117,6 +117,34 @@ feedback, it adjusts a global correction vector in
 
 ---
 
+### `PotentialSpatialLagRegression` (continuous)
+
+Port of LuccME's `PotentialCSpatialLagRegression`, the potential of LuccME-BR.
+For each class: `reg = newconst + Σ beta·x + ro·Y`, where `Y` is the mean share
+of the class over the cell and its Moore neighbours (each share divided by
+`1 - no-data share`; all-no-data neighbours left out); cells whose
+`const + Σ beta·x + ro·Y` exceeds `max_reg` get 1, below `min_reg` get 0; then
+`reg · (1 - no-data share)`, and `pot = reg - past share`. Writes `<lu>_pot` and
+`<lu>_reg`.
+
+```python
+PotentialSpatialLagRegression(
+    backend,
+    potential_data: list[list[SpatialLagRegressionSpec]],  # [region][class]
+    demand,                                  # DemandProtocol
+    land_use_types: list[str],
+    land_use_no_data: str | None = None,     # share of the no-data class, as in PotentialLinearRegression
+    region_attr: str = "region",             # created as 1 if absent
+    mask_attr: str = "mask",                 # cells that exist; created as 1 if absent
+)
+```
+
+Unlike `PotentialLinearRegression`, the constant adaptation **accumulates**
+(LuccME writes the adapted value back into `const` every step), and
+`modify_driver(attr, rate)` ports LuccME's `modifyDriver` (used by
+`AllocationClueLikeSaturation`). The pure function `spatial_lag_regression()`
+in the same module computes one class, for tests and reuse.
+
 ## Allocation
 
 ### `AllocationClueLike` (continuous)
@@ -194,6 +222,47 @@ accepted). It matches TerraME in every year of `lab15_md10` (0, 67, 56, 56, 61, 
 
 ---
 
+### `AllocationClueLikeSaturation` (continuous)
+
+Port of LuccME's `AllocationCClueLikeSaturation`, the allocation of LuccME-BR:
+`AllocationClueLike`'s CLUE loop plus a per-cell **saturation indicator** —
+the share of the available area (not no-data, not protected) no longer in
+`complementar_lu`, averaged over the 3 × 3 window with the cell, recomputed each
+step. Where it exceeds a class's `change_limiar_value`, the change in the
+demand's direction is halved or capped at `max_change_above_limiar`.
+
+```python
+AllocationClueLikeSaturation(
+    backend,
+    demand,                                   # DemandProtocol
+    potential,                                # RegionalPotentialProtocol
+    land_use_types: list[str],
+    allocation_data: list[list[SaturationAllocationSpec]],  # [region][class], static per class
+    complementar_lu: str,
+    cell_area: float,
+    land_use_no_data: str | None = None,
+    attr_protection: str | None = None,       # protected share, left out of the indicator
+    saturation_indicator: str = "saturationLimiar",  # array written each step
+    max_difference: float = 1643,
+    max_iteration: int = 1000,
+    initial_elasticity: float = 0.1,
+    min_elasticity: float = 0.001,
+    max_elasticity: float = 1.5,
+    region_attr: str = "regionAloc",
+    mask_attr: str = "mask",
+    order_attr: str | None = None,            # LuccME's cell order (see below); default row-major
+)
+```
+
+> Unlike `AllocationClueLike`, this is LuccME's own `correctCellChange`, which
+> runs in the Saturation variant (the region test is spelled right there). Its
+> `BACKP` is declared outside the loop over cells, so a cell that lowers it lowers
+> it for the cells visited after it: the result depends on the order of the
+> cells, which `order_attr` gives (TerraME visits them in the order of the layer).
+>
+> `iterations_per_step` and `max_error_per_step` record, per step, what LuccME
+> logs as "Number of iterations" and "Maximum error".
+
 ## Validation
 
 ### `pontius_millones(pred, ref) -> dict`
@@ -256,6 +325,25 @@ class AllocationSpec:
     max_value: float = 1.0
     min_change: float = 0.0
     max_change: float = 1.0
+
+@dataclass
+class SpatialLagRegressionSpec:
+    const: float                  # adapted every step, cumulatively
+    ro: float                     # spatial autoregressive coefficient
+    betas: dict[str, float] = {}
+    is_log: bool = False
+    min_reg: float = 0.0
+    max_reg: float = 1.0
+
+@dataclass
+class SaturationAllocationSpec:
+    static: int = -1
+    min_value: float = 0.0
+    max_value: float = 1.0
+    min_change: float = 0.0
+    max_change: float = 1.0
+    change_limiar_value: float = 1.0      # saturation above this limits the change...
+    max_change_above_limiar: float = 0.0  # ...to half, or to this
 ```
 
 ---
@@ -274,6 +362,10 @@ class DemandProtocol(Protocol):
 
 class PotentialProtocol(Protocol):
     def modify(self, r_number: int, lu_idx: int, direction: int) -> None: ...
+
+class RegionalPotentialProtocol(PotentialProtocol, Protocol):   # AllocationClueLikeSaturation
+    potential_data: list                                         # one entry per region
+    def modify_driver(self, attr_protection: str, rate: float) -> None: ...
 ```
 
 ---

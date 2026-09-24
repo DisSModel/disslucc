@@ -1018,3 +1018,46 @@ reproduces TerraME year by year, iteration counts included (0, 0, 8, 26, 18,
 17, 17; MAE < 1e-7). The tests against the continuous goldens use `False`;
 `test_lab1_default_cell_correction_deviates_from_terrame` pins the default's
 deviation. Both allocations also record `iterations_per_step`.
+
+## Spatial-lag potential and saturation allocation, for LuccME-BR (2026-09-24, #6)
+
+**What and why.** `PotentialSpatialLagRegression` and
+`AllocationClueLikeSaturation` port LuccME's `PotentialCSpatialLagRegression`
+and `AllocationCClueLikeSaturation` (LuccME `6244dd4`), the components LuccME-BR
+(Bezerra et al. 2022, PLOS ONE e0256052) is built from. They were written and
+validated first in [profsergiocosta/luccmebr-reconstruction](https://github.com/profsergiocosta/luccmebr-reconstruction),
+with this package's interfaces, and moved here so that repository keeps only
+the model. Nothing existing changed: Lab1/Lab15 numbers are the same.
+
+**Faithful to the Lua, including what looks accidental** — each point is pinned
+by a test that fails on the other reading:
+- the potential's constant adaptation accumulates year to year (LuccME writes
+  it back into `const`), unlike `PotentialLinearRegression`;
+- `lab06`'s `updateYears` copies the new drivers into the cells by position
+  (`forEachCellPair`), and `csAC_2009` is not in `csAC`'s order;
+- `correctCellChange` runs here (the Saturation variant spells `regionAloc`
+  right), as the Lua writes it — not `AllocationClueLike`'s own version —
+  and its `BACKP`, declared outside the loop over cells, carries over from cell
+  to cell: the cells' order matters, given by `order_attr`;
+- the neighbourhood LuccME names "11x11" is `createNeighborhood{strategy="mxn"}`
+  with no `m`/`n`: TerraME's default, 3 × 3 with the cell
+  (`packages/base/lua/CellularSpace.lua`).
+
+**Validation, and the Lua in `tests/lua/`.** The `lab03`/`lab06` goldens match
+cell for cell, year by year, iterations and maximum error included
+(`docs/validation.md`). But those labs never reach `correctCellChange`, the
+saturation branch or an isolated cell. For those, `tests/test_lua_differential.py`
+runs the original Lua functions with `lupa` on synthetic cases that reach every
+branch. That brings Lua source back into this repository, after the reference
+scripts left it for terrame-docker (entry above) — deliberately, and
+**provisionally**: these are component sources needed to test branches, not
+reference scripts, and `lupa` + stubs is not TerraME. The intended replacement
+is component-level goldens generated in terrame-docker (the same synthetic
+cases run in the real TerraME, inputs and outputs as CSV); when they exist,
+`tests/lua/` and the `lupa` dependency go, and `benchmark/goldens/` holds
+results only again.
+
+**Left open.** `AllocationClueLike`'s `cell_correction=True` is an intended
+version of the step LuccME skips there; the Saturation variant's
+`correctCellChange` is LuccME's own. Whether the first should follow the second
+is a separate question, not settled here.
