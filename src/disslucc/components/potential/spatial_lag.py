@@ -35,7 +35,7 @@ from __future__ import annotations
 import math
 
 import numpy as np
-from dissmodel.geo import SyncRasterModel
+from dissmodel.geo import RasterBackend, SyncRasterModel
 
 from ...protocols import DemandProtocol
 from ...schemas import SpatialLagRegressionSpec
@@ -43,16 +43,6 @@ from ...schemas import SpatialLagRegressionSpec
 MOORE = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
 LOG_OFFSET = 0.0001  # LuccME's "ANAP" offset for log-transformed classes
 CONST_CHANGE = 0.1  # LuccME's constChange: the allocation's step on newconst
-
-
-def _shifted(a: np.ndarray, dr: int, dc: int, fill) -> np.ndarray:
-    """a[r + dr, c + dc] at (r, c); ``fill`` outside the grid."""
-    out = np.full_like(a, fill)
-    rows, cols = a.shape
-    r0, r1 = max(0, -dr), min(rows, rows - dr)
-    c0, c1 = max(0, -dc), min(cols, cols - dc)
-    out[r0:r1, c0:c1] = a[r0 + dr : r1 + dr, c0 + dc : c1 + dc]
-    return out
 
 
 def spatial_lag_regression(
@@ -82,10 +72,10 @@ def spatial_lag_regression(
     count = np.zeros(past.shape, dtype=np.int64)
     exists = np.zeros(past.shape, dtype=np.int64)
     for dr, dc in MOORE:
-        e = _shifted(eligible, dr, dc, False)
-        neigh_sum += np.where(e, _shifted(scaled, dr, dc, 0.0), 0.0)
+        e = RasterBackend.shift2d(eligible, dr, dc)
+        neigh_sum += np.where(e, RasterBackend.shift2d(scaled, dr, dc), 0.0)
         count += e
-        exists += _shifted(valid, dr, dc, False)
+        exists += RasterBackend.shift2d(valid, dr, dc)
 
     y = np.where(count > 0, (scaled + neigh_sum) / (count + 1), np.where(exists > 0, scaled, 0.0))
     if spec.is_log:

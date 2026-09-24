@@ -391,9 +391,13 @@ premature abstraction. Provides:
 - `validate()` -- checks `record.source.uri` and
   `self.required_parameters` (list of required keys, declared per
   subclass)
-- `load()` -- loads the GeoDataFrame via `load_dataset`, applies
-  `column_map`, **and already rasterizes** (`vector_to_raster_backend`)
-  -- returns the `RasterBackend` ready to use, not the GeoDataFrame.
+- `load()` -- a `.tif`/`.tiff` source is a **GeoTIFF with named bands**
+  (a `name` tag per band, as `dissmodel.io.save_geotiff` writes): read as
+  it is, with its georeference, after checking that every land use and
+  driver has a band. Any other source is loaded as a GeoDataFrame via
+  `load_dataset`, gets `column_map`, **and is already rasterized**
+  (`vector_to_raster_backend`). Either way it returns the `RasterBackend`
+  ready to use, not the GeoDataFrame.
   Same convention as the real `LUCCRasterExecutor`, checked against the
   source: rasterizing is expensive, it runs once inside `load()`,
   never inside `run()`.
@@ -402,8 +406,8 @@ premature abstraction. Provides:
   -- local path or `s3://` (MinIO), via `dissmodel.io.raster.save_geotiff`
   -- then `record.metrics.update(result["metrics"])`, output checksum
   (of the written file), status, final log. `crs`/`transform` come
-  straight off the `RasterBackend` (`load()` already sets both via
-  `vector_to_raster_backend`). Same mechanism as
+  straight off the `RasterBackend` (`load()` sets both, from the
+  GeoTIFF or via `vector_to_raster_backend`). Same mechanism as
   `brmangue-dissmodel`'s `RasterExecutor.save()`.
 
 `run(data, record)` remains abstract -- `data` arrives as the
@@ -443,10 +447,9 @@ continuous model of LuccME-BR. Parameters as the components', plus:
 
 - each `potential_data`/`allocation_data` entry names its class (`lu`) and,
   optionally, its `region` (default 1) — one entry per class per region;
-- `record.source.uri` may be a **GeoTIFF with named bands** (a `name` tag per
-  band, as `dissmodel.io.save_geotiff` writes): land uses, drivers and,
-  optionally, `mask`, `region`/`regionAloc` and the cell order (`order_attr`);
-  a vector input still goes through the base's rasterization;
+- `record.source.uri` is usually a **GeoTIFF with named bands** (read by the
+  base's `load()`): land uses, drivers and, optionally, `mask`,
+  `region`/`regionAloc` and the cell order (`order_attr`);
 - `save_steps: list[int]` writes those steps too, as `<output>_step<k>.tif`.
 
 `examples/dissmodel-configs/lucc_saturation.toml` is LuccME's lab03;

@@ -10,12 +10,11 @@ parameters per class and per region, from a model TOML
 Differs from `LuccContinuousExecutor` in three ways, each because of what
 this model needs:
 
-- **raster input.** `record.source.uri` may be a GeoTIFF whose bands are
-  named (a `name` tag per band, as `dissmodel.io.save_geotiff` writes them):
-  the land uses, the drivers and, optionally, `mask`, `region`,
-  `regionAloc` and the cell order. A continental cellular space is built
-  once as a raster; rasterizing a vector at every run would be the wrong
-  way round. A vector input still goes through the base's `load()`.
+- **raster input.** `record.source.uri` is usually a GeoTIFF whose bands
+  are named (read by the base's `load()`): the land uses, the drivers and,
+  optionally, `mask`, `region`, `regionAloc` and the cell order. A
+  continental cellular space is built once as a raster; rasterizing a
+  vector at every run would be the wrong way round.
 - **regions.** Each `potential_data`/`allocation_data` entry names its
   class (`lu`) and, optionally, its `region` (default 1); the executor
   groups them into the `[region][class]` lists the components take.
@@ -33,7 +32,6 @@ import numpy as np
 from dissmodel.core import Environment, Model
 from dissmodel.executor import ExperimentRecord
 from dissmodel.geo import RasterBackend
-from dissmodel.io import load_dataset
 from dissmodel.io.raster import save_geotiff
 
 from ..components.allocation import AllocationClueLikeSaturation
@@ -41,8 +39,6 @@ from ..components.demand import DemandPreComputedValues, load_demand_csv
 from ..components.potential import PotentialSpatialLagRegression
 from ..schemas import SaturationAllocationSpec, SpatialLagRegressionSpec
 from .base import LuccExecutorBase
-
-RASTER_SUFFIXES = (".tif", ".tiff")
 
 
 def _by_region(entries: list[dict[str, Any]], land_use_types: list[str], build) -> list[list[Any]]:
@@ -99,22 +95,6 @@ class LuccSaturationExecutor(LuccExecutorBase):
     required_parameters: ClassVar[list[str]] = [
         "land_use_types", "demand_csv", "potential_data", "complementar_lu", "allocation_data",
     ]
-
-    def load(self, record: ExperimentRecord) -> RasterBackend:
-        uri = record.source.uri
-        if not uri.lower().endswith(RASTER_SUFFIXES):
-            return super().load(record)
-        (backend, meta), checksum = load_dataset(uri, fmt="raster")
-        record.source.checksum = checksum
-        backend.transform = meta["transform"]
-        backend.crs = meta["crs"]
-        p = record.parameters
-        needed = set(p["land_use_types"]) | {k for d in p["potential_data"] for k in d.get("betas", {})}
-        missing = sorted(needed - set(backend.arrays))
-        if missing:
-            raise ValueError(f"{uri}: bands missing: {missing}")
-        record.add_log(f"Loaded raster: shape={backend.shape}, {len(backend.arrays)} bands")
-        return backend
 
     def run(self, data: RasterBackend, record: ExperimentRecord) -> dict:
         p = record.parameters

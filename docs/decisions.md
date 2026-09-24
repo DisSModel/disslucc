@@ -1085,3 +1085,19 @@ and differs from `LuccContinuousExecutor` where that model needs it:
 Checked end to end through the CLI: `examples/dissmodel-configs/lucc_saturation.toml`
 is lab03, and its run matches the lab03 golden in 2011 and 2014
 (`tests/test_executor_saturation.py`).
+
+## GeoTIFF input moved to the base executor (2026-09-24, #6)
+
+The named-band GeoTIFF reading `LuccSaturationExecutor.load()` introduced
+(entry above) is not specific to that model: any LUCC executor whose
+cellular space is built once by a data pipeline wants it. It now lives in
+`LuccExecutorBase.load()` -- a `.tif`/`.tiff` source is read as it is,
+anything else is rasterized as before -- and `LuccSaturationExecutor` no
+longer overrides `load()`. The georeference is still copied from `meta`:
+dissmodel releases up to 0.6.5 keep it only there.
+
+In the same pass, the spatial lag's private shift helper gave way to
+`dissmodel`'s `RasterBackend.shift2d`: same slices, opposite sign
+convention, and the Moore neighbourhood is symmetric, so the sums are the
+same (the golden and Lua-differential tests pass unchanged).
+
