@@ -1,0 +1,2293 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://dissmodel.github.io/disslucc/decisions/">
+      
+      
+        <link rel="prev" href="../validation/">
+      
+      
+        <link rel="next" href="../examples/notebooks/continuous_synthetic/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Decisions - disslucc</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#decision-history-disslucc" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="disslucc" class="md-header__button md-logo" aria-label="disslucc" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            disslucc
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Decisions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="green"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DisSModel/disslucc" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    disslucc
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="disslucc" class="md-nav__button md-logo" aria-label="disslucc" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    disslucc
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DisSModel/disslucc" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    disslucc
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisions
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#whats-faithful-to-the-original-and-what-was-dropped" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What's faithful to the original, and what was dropped
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shared-layer-demand-and-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shared layer: demand/ and validation/
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bringing-discrete-into-this-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bringing discrete into this repository
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-would-be-left-for-later-if-this-path-holds-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What would be left for later, if this path holds up
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-executor-came-back" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Executor came back
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registrypy-removed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        registry.py removed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validationpontiuspy-identified-as-a-dissmodel-candidate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        validation/pontius.py identified as a dissmodel candidate
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#demandpotentialallocation-moved-into-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        demand/potential/allocation moved into components/
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mypy-added-protocolspy-stops-being-just-a-promise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mypy added -- protocols.py stops being just a promise
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#executorsbasepy-shared-base-extracted-after-measuring-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        executors/base.py -- shared base, extracted after measuring first
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#load-returns-the-backend-not-the-geodataframe-fixed-after-being-asked" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        load() returns the backend, not the GeoDataFrame -- fixed after being asked
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-any-data-rasterbackend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        data: Any -&gt; data: RasterBackend
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roadmap-disslucc-as-the-single-successor-post-joss-decided-2026-09-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roadmap: disslucc as the single successor, post-JOSS (decided 2026-09-22)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#toml-config-example-added-for-the-executors-path-2026-09-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TOML config example added for the executors path (2026-09-22)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#discrete-toml-example-readmeapimd-cross-links-added" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Discrete TOML example + README/api.md cross-links added
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resolved-local-cli-now-wired-up-upstream-fix-sent-to-dissmodel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resolved: local CLI now wired up, upstream fix sent to dissmodel
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#save-now-actually-writes-the-output-raster" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        save() now actually writes the output raster
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#third-reason-to-migrate-bugs-found-this-session-would-otherwise-need-fixing-three-times" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Third reason to migrate: bugs found this session would otherwise need fixing three times
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dissmodel-paperreadme-citations-consolidated-to-disslucc-review-stall-changes-the-calculus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dissmodel paper/README citations consolidated to disslucc; review stall changes the calculus
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#readability-pass-on-potential-for-pibic-onboarding-scipyspecialexpit-adopted-numpyma-and-tensordot-rejected" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Readability pass on potential/, for PIBIC onboarding: scipy.special.expit adopted, numpy.ma and tensordot rejected
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#same-pass-allocationcluepy-two-safe-cosmetic-fixes-one-documented-not-fixed-dead-branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Same pass, allocation/clue.py: two safe cosmetic fixes, one documented-not-fixed dead branch
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#same-pass-allocationclue_spy-one-applied-two-considered-and-rejected" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Same pass, allocation/clue_s.py: one applied, two considered and rejected
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#allocationclue_spy-hoisting-pot1tau-out-of-the-convergence-loop-an-actual-algorithmic-improvement-not-just-readability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        allocation/clue_s.py: hoisting pot/1+tau out of the convergence loop -- an actual algorithmic improvement, not just readability
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ecosystem-wide-review-pass-pibic-focused-regressionspecnewconst-footgun-and-an-apimd-inaccuracy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ecosystem-wide review pass (PIBIC-focused): RegressionSpec.newconst footgun and an api.md inaccuracy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-data-moved-to-lambdageoterrame-docker-year-by-year-goldens-cell_correction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference data moved to LambdaGeo/terrame-docker; year-by-year goldens; cell_correction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spatial-lag-potential-and-saturation-allocation-for-luccme-br-2026-09-24-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spatial-lag potential and saturation allocation, for LuccME-BR (2026-09-24, #6)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#luccsaturationexecutor-with-raster-input-2026-09-24-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LuccSaturationExecutor, with raster input (2026-09-24, #6)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geotiff-input-moved-to-the-base-executor-2026-09-24-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GeoTIFF input moved to the base executor (2026-09-24, #6)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notebooks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Notebooks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/notebooks/continuous_synthetic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LUCC Continuous (CLUE) — a synthetic example
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/notebooks/discrete_synthetic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LUCC Discrete (CLUE-S) — a synthetic example
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#whats-faithful-to-the-original-and-what-was-dropped" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What's faithful to the original, and what was dropped
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shared-layer-demand-and-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shared layer: demand/ and validation/
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bringing-discrete-into-this-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bringing discrete into this repository
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-would-be-left-for-later-if-this-path-holds-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What would be left for later, if this path holds up
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-executor-came-back" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Executor came back
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registrypy-removed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        registry.py removed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validationpontiuspy-identified-as-a-dissmodel-candidate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        validation/pontius.py identified as a dissmodel candidate
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#demandpotentialallocation-moved-into-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        demand/potential/allocation moved into components/
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mypy-added-protocolspy-stops-being-just-a-promise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mypy added -- protocols.py stops being just a promise
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#executorsbasepy-shared-base-extracted-after-measuring-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        executors/base.py -- shared base, extracted after measuring first
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#load-returns-the-backend-not-the-geodataframe-fixed-after-being-asked" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        load() returns the backend, not the GeoDataFrame -- fixed after being asked
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-any-data-rasterbackend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        data: Any -&gt; data: RasterBackend
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roadmap-disslucc-as-the-single-successor-post-joss-decided-2026-09-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roadmap: disslucc as the single successor, post-JOSS (decided 2026-09-22)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#toml-config-example-added-for-the-executors-path-2026-09-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TOML config example added for the executors path (2026-09-22)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#discrete-toml-example-readmeapimd-cross-links-added" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Discrete TOML example + README/api.md cross-links added
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resolved-local-cli-now-wired-up-upstream-fix-sent-to-dissmodel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resolved: local CLI now wired up, upstream fix sent to dissmodel
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#save-now-actually-writes-the-output-raster" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        save() now actually writes the output raster
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#third-reason-to-migrate-bugs-found-this-session-would-otherwise-need-fixing-three-times" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Third reason to migrate: bugs found this session would otherwise need fixing three times
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dissmodel-paperreadme-citations-consolidated-to-disslucc-review-stall-changes-the-calculus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dissmodel paper/README citations consolidated to disslucc; review stall changes the calculus
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#readability-pass-on-potential-for-pibic-onboarding-scipyspecialexpit-adopted-numpyma-and-tensordot-rejected" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Readability pass on potential/, for PIBIC onboarding: scipy.special.expit adopted, numpy.ma and tensordot rejected
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#same-pass-allocationcluepy-two-safe-cosmetic-fixes-one-documented-not-fixed-dead-branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Same pass, allocation/clue.py: two safe cosmetic fixes, one documented-not-fixed dead branch
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#same-pass-allocationclue_spy-one-applied-two-considered-and-rejected" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Same pass, allocation/clue_s.py: one applied, two considered and rejected
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#allocationclue_spy-hoisting-pot1tau-out-of-the-convergence-loop-an-actual-algorithmic-improvement-not-just-readability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        allocation/clue_s.py: hoisting pot/1+tau out of the convergence loop -- an actual algorithmic improvement, not just readability
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ecosystem-wide-review-pass-pibic-focused-regressionspecnewconst-footgun-and-an-apimd-inaccuracy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ecosystem-wide review pass (PIBIC-focused): RegressionSpec.newconst footgun and an api.md inaccuracy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-data-moved-to-lambdageoterrame-docker-year-by-year-goldens-cell_correction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference data moved to LambdaGeo/terrame-docker; year-by-year goldens; cell_correction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spatial-lag-potential-and-saturation-allocation-for-luccme-br-2026-09-24-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spatial-lag potential and saturation allocation, for LuccME-BR (2026-09-24, #6)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#luccsaturationexecutor-with-raster-input-2026-09-24-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LuccSaturationExecutor, with raster input (2026-09-24, #6)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geotiff-input-moved-to-the-base-executor-2026-09-24-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GeoTIFF input moved to the base executor (2026-09-24, #6)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="decision-history-disslucc">Decision history — disslucc</h1>
+<blockquote>
+<p>This file is the "why": decisions made, tests already run, what was
+tried and dropped. For "how to use it", see <a href="../quickstart/"><code>quickstart.md</code></a>
+and <a href="../api/"><code>api.md</code></a>. For "what's faithful/simplified/new relative
+to the original repositories", see <a href="../architecture/"><code>architecture.md</code></a>.
+Simplified port of <a href="https://github.com/DisSModel/disslucc-continuous"><code>disslucc-continuous</code></a>,
+<strong><code>main</code> branch</strong> (not <code>decoupling</code> -- that one was experimental:
+introduced <code>PotentialProtocol.get_potential()</code>, <code>from_spec()</code>/TOML, a
+registry with a parameter schema. None of that is here on purpose).</p>
+</blockquote>
+<p>Two deliberate decisions:</p>
+<ol>
+<li><strong>Raster only.</strong> The original repository keeps vector and raster in
+   parallel; the decision here was to drop vector -- for LUCC models
+   with large data, raster is the better path, and keeping both
+   substrates creates complication without proportional payoff right
+   now.</li>
+<li><strong>Script-first.</strong> No <code>ModelExecutor</code>/<code>ExperimentRecord</code>/TOML/CLI --
+   a Python script builds the components directly, the way an
+   original LuccME <code>.lua</code> script built <code>P1 = PotentialCLinearRegression{...};
+   LuccMEModel{potential=P1, ...}</code>. See <code>examples/run_script.py</code>.</li>
+</ol>
+<h2 id="whats-faithful-to-the-original-and-what-was-dropped">What's faithful to the original, and what was dropped</h2>
+<p><strong>Faithful, not simplified</strong>: the CLUE algorithm itself --
+<code>AllocationClueLike</code> (elasticity, iterative convergence, proportional
+correction between classes, <code>complementar_lu</code>) and
+<code>PotentialLinearRegression</code> (regression + <code>_adapt_constants</code> +
+<code>modify</code>) are near byte-for-byte ports of
+<code>components/allocation/raster/clue.py</code> and
+<code>components/potential/raster/linear.py</code> from <code>main</code>. The science
+didn't change.</p>
+<p><strong>Dropped, on purpose</strong>: <code>from_spec()</code>/TOML, <code>ModelExecutor</code>,
+<code>components/registry.py</code> (doesn't even exist on <code>main</code>),
+<code>schemas/params.py</code> (Pydantic, only on <code>decoupling</code>). A much simpler
+<code>registry.py</code> (a plain name→class dict, no registry class) was added
+here as an optional convenience -- doesn't exist in the original, it's
+just a catalog for when/if a TOML or GUI needs to resolve name→class.</p>
+<p><strong>Detail that only shows up when comparing branches</strong>: on <code>decoupling</code>,
+<code>AllocationClueLike</code> reads the potential via
+<code>self.potential.get_potential(lu)</code> (indirection through a Protocol).
+On <code>main</code> -- and here -- it reads <code>self.backend.get(lu + "_pot")</code>
+directly. More coupled, but it's what's in production; that's why
+<code>PotentialProtocol</code> only declares <code>modify</code>, not <code>get_potential</code>.</p>
+<h2 id="structure">Structure</h2>
+<p>Each role (demand/potential/allocation) became a package (a folder,
+an <code>__init__.py</code> re-exporting) instead of a single file -- same
+convention as the original repository
+(<code>components/potential/raster/__init__.py</code> re-exporting from
+<code>linear.py</code>), just without the <code>raster/</code> level because only one
+substrate exists now. Reason: the real LuccME has more than one
+strategy per role (<code>PotentialCLinearRegression</code>,
+<code>PotentialCSpatialLagRegression</code>, <code>PotentialCSampleBased</code>, ...) -- one
+file per strategy keeps this extensible without reopening an
+already-large file every time a new one comes in.</p>
+<div class="highlight"><pre><span></span><code>disslucc/
+├── src/disslucc/
+│   ├── protocols.py         # DemandProtocol, PotentialProtocol
+│   ├── schemas.py            # RegressionSpec, AllocationSpec, LogisticRegressionSpec
+│   ├── registry.py           # plain name-&gt;class dict (doesn't exist in the original)
+│   ├── demand/                     # shared continuous+discrete
+│   │   ├── precomputed.py    # DemandPreComputedValues (faithful to main)
+│   │   └── inline.py         # DemandInline (my own convenience, doesn't exist on main)
+│   ├── validation/                  # shared continuous+discrete
+│   │   └── pontius.py        # Pontius &amp; Millones, generalized for continuous fraction
+│   ├── potential/
+│   │   ├── linear.py         # PotentialLinearRegression (continuous, faithful to main)
+│   │   └── logistic.py        # PotentialDLogisticRegression (discrete, new raster)
+│   └── allocation/
+│       ├── clue.py           # AllocationClueLike (continuous, faithful to main)
+│       └── clue_s.py          # AllocationDClueSLike (discrete, new raster)
+└── examples/
+    ├── scenario.py                 # synthetic/theoretical raster scenario (no real data)
+    ├── run_script.py               # direct script, synthetic data (continuous)
+    ├── run_lab1_real.py            # direct script, REAL Lab1 data (csAC.zip)
+    ├── run_lab1_validation.py       # validates against real TerraME (continuous)
+    └── run_lab15_validation.py      # validates against real TerraME (discrete, new)
+</code></pre></div>
+<p>Each strategy folder is the only place that changes when a new one
+comes in -- <code>registry.py</code> gains one line in the dict, the rest of the
+package doesn't need to know it exists.</p>
+<h2 id="running-it">Running it</h2>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">".[examples]"</span>
+<span class="nb">cd</span><span class="w"> </span>examples<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>python3<span class="w"> </span>run_script.py
+</code></pre></div>
+<p>Scenario: 30x30 grid, synthetic drivers (<code>dist_road</code>, <code>slope</code>), 3
+classes (<code>forest</code> complementary, <code>agriculture</code>, <code>urban</code>), growing
+demand over 8 steps. No real geospatial data -- just to prove the
+algorithm runs end to end.</p>
+<p>Typical result (<code>max_difference=5.0</code>, convergence tolerance): urban
+converges almost exactly on target; agriculture stays within
+tolerance. <code>quicklook.png</code> shows the continuous spatial pattern --
+smooth gradient around the "road", not discrete blocks, because the
+change is proportional to potential at every cell, not a hard cutoff
+by ranking (unlike the discrete version that existed in an earlier
+prototype in this conversation).</p>
+<h2 id="shared-layer-demand-and-validation">Shared layer: <code>demand/</code> and <code>validation/</code></h2>
+<p><code>demand/</code> already was, with no changes needed: I checked with <code>diff</code>
+that <code>DemandPreComputedValues</code> is byte-for-byte identical (only
+formatting differs) between <code>disslucc-continuous</code> and
+<code>disslucc-discrete</code> -- the two real repositories already duplicate this
+class today. Here it exists only once.</p>
+<p><code>validation/pontius.py</code> is new: the Pontius &amp; Millones (2011)
+decomposition into quantity + allocation disagreement, generalized for
+CONTINUOUS maps (0-1 fraction per cell), not just 0/1 categorical. The
+real <code>disslucc-discrete</code> only has the binarized version
+(<code>lucc_validation_executor.py::_discrete_metrics</code>, 0.5 threshold
+before comparing); <code>disslucc-continuous</code> has no validation at all. The
+version here proves by algebraic identity that it reduces exactly to
+the classic discrete formula when the data is pure 0/1 (test embedded
+in the file) -- and happens to already match the continuous formula
+that <code>lucc_benchmark_executor.py::_metrics</code> (also real, also not
+ported before) already used to compare Vector/Raster/TerraME on Lab1.</p>
+<p><strong>Real validation, not just a self-test</strong>:
+<code>examples/run_lab1_validation.py</code> runs our disslucc over the full Lab1
+scenario and compares cell by cell against the real TerraME reference
+(<code>benchmark/data/LUCCME_Lab1_2014.zip</code>), using the same <code>row</code>/<code>col</code>
+alignment method as the original benchmark (not the resolution-based
+resampling <code>run_lab1_real.py</code> uses -- that introduces alignment error
+the direct comparison doesn't have).</p>
+<p>Result: <strong>MAE = 0.0036</strong> -- within the 0.01 tolerance that
+<code>test_benchmark_validation.py</code> uses to consider something "equivalent
+to TerraME". <code>quantity_disagreement</code> (0.0032) dominates over
+<code>allocation_disagreement</code> (0.0004): the spatial pattern matches almost
+perfectly, the small difference is in total quantity, not location.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>examples<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>python3<span class="w"> </span>run_lab1_validation.py
+</code></pre></div>
+<h2 id="bringing-discrete-into-this-repository">Bringing discrete into this repository</h2>
+<p><code>disslucc-discrete</code> (a separate repository) only existed in vector --
+<code>potential/vector/logistic_regression.py</code>,
+<code>allocation/vector/clue_s.py</code>. I ported both to raster here (not a
+literal translation like the continuous modules "faithful to main" --
+they're rewritten following the same mask/backend pattern already used
+in <code>potential/linear.py</code>/<code>allocation/clue.py</code>, because no original
+raster version exists to copy):</p>
+<ul>
+<li><code>potential/logistic.py</code> — <code>PotentialDLogisticRegression</code> (logistic
+  regression + spatial lock-in elasticity, CLUE-S)</li>
+<li><code>allocation/clue_s.py</code> — <code>AllocationDClueSLike</code> (cell-by-cell
+  competition with transition matrix + global correction vector)</li>
+<li><code>LogisticRegressionSpec</code> added to <code>schemas.py</code> (alongside
+  <code>RegressionSpec</code>/<code>AllocationSpec</code>, which were already shared)</li>
+</ul>
+<p><code>demand/</code> and <code>validation/</code> needed nothing -- they were already
+shared, and that's exactly why the move paid off:
+<code>DemandPreComputedValues</code> and <code>pontius_millones()</code> serve both without
+duplication.</p>
+<p><strong>Real validation against TerraME</strong> (<code>examples/run_lab15_validation.py</code>,
+real Lab15/cs_moju data + <code>benchmark/data/Lab15_2004.zip</code> from
+<code>disslucc-discrete</code>, same coefficients/transition matrix as the
+original executor): <strong>MAE = 0.0, 100% cell-by-cell agreement, F1 = 1.0</strong>
+-- exactly the result documented in the original <code>disslucc-discrete</code>.</p>
+<p><strong>Discriminance warning, inherited from the original repository</strong> (not
+my own achievement, it's a caveat that already existed there,
+<code>benchmark/validate_lab15.py</code>): the Lab15 scenario is nearly
+non-discriminative -- a trivial static ranking by <code>(prob_d - prob_f)</code>,
+with no CLUE-S, no iteration at all, already reproduces the same
+cell-by-cell output. This result confirms the logistic regression
+coefficients were transcribed correctly -- it is NOT proof that the
+allocation algorithm (CLUE-S with iteration/convergence) is faithful.
+Proving that would require a scenario where allocation genuinely needs
+to compete/iterate to converge, and comparing the iteration count
+against the TerraME log (which <code>disslucc-discrete</code> also documents:
+61-67 iterations per step) -- I didn't do that check here.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>examples<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>python3<span class="w"> </span>run_lab15_validation.py
+</code></pre></div>
+<h2 id="what-would-be-left-for-later-if-this-path-holds-up">What would be left for later, if this path holds up</h2>
+<ul>
+<li><strong><code>confusion_metrics()</code></strong> (accuracy/precision/recall/F1, binarized)
+  exists in <code>validation/pontius.py</code> but hasn't been exercised against
+  real data yet -- only makes sense for categorical comparison.</li>
+<li><strong><code>DemandInline</code> doesn't exist on <code>main</code></strong> (only on <code>decoupling</code>) --
+  kept it because it's small and genuinely useful for scripts (no CSV
+  needed), but it's my own addition, not a port.</li>
+<li><strong>If <code>disslucc-discrete</code> migrates to this base</strong>, <code>demand/</code> and
+  <code>validation/</code> would already serve it with no change -- that's
+  exactly the design that motivated separating them from the rest.</li>
+</ul>
+<h2 id="the-executor-came-back">The Executor came back</h2>
+<p>After noticing, while reviewing the JOSS paper draft, that "automatic
+reproducibility via <code>ExperimentRecord</code>" is cited as a central
+<code>dissmodel</code> argument (Statement of Need and Summary, twice) -- and
+that this package had dropped that entirely in favor of script-first
+only -- I reintroduced <code>ModelExecutor</code> as a SECOND entry point,
+without removing the first.</p>
+<p><code>executors/continuous.py</code> (<code>LuccContinuousExecutor</code>) and
+<code>executors/discrete.py</code> (<code>LuccDiscreteExecutor</code>) follow the same
+<code>validate -&gt; load -&gt; run -&gt; save</code> contract as the real
+<code>LUCCRasterExecutor</code>, but resolve <code>potential_data</code>/<code>allocation_data</code>
+from <code>record.parameters</code> as plain dicts (TOML/JSON-compatible) instead
+of hardcoded module constants -- more general than the original
+executor, which hardcodes the Lab1 coefficients directly in the Python
+file.</p>
+<p>Tested by running the SAME already-validated Lab1/Lab15 scenarios
+against TerraME, now through the Executor:</p>
+<ul>
+<li><strong>Lab1</strong> (<code>examples/run_lab1_via_executor.py</code>): final areas
+  <code>f=134724.38, d=23136.42, outros=6489.21</code> -- identical, digit for
+  digit, to the direct script's result (<code>run_lab1_real.py</code>). Gains
+  input checksum, per-phase timing (<code>validate/load/run/save</code>), logs,
+  output checksum.</li>
+<li><strong>Lab15</strong> (<code>examples/run_lab15_via_executor.py</code>): converged with
+  <code>max_difference=100</code> instead of <code>10</code> -- resolution-based
+  rasterization (<code>vector_to_raster_backend</code>, the production path for a
+  new dataset) doesn't reproduce TerraME's exact original grid cell
+  count (5,842 vs 5,914 valid cells), so the convergence tolerance
+  calibrated for the exact grid (<code>run_lab15_validation.py</code>, direct
+  <code>row</code>/<code>col</code> alignment) doesn't apply here without adjustment.
+  Documented in the script itself -- not a regression, a difference in
+  rasterization method.</li>
+</ul>
+<p>Also found and fixed a <code>RuntimeWarning: overflow in exp</code> in
+<code>potential/logistic.py</code>: cells outside the mask (filled with nodata,
+e.g. -1) produced extreme <code>z</code> with Lab15's real coefficients. Added
+<code>np.clip(z, -50, 50)</code> before the sigmoid -- doesn't change any result
+(the sigmoid already saturates well before that), just silences the
+warning. Retested <code>run_lab15_validation.py</code> after the fix: MAE still
+0.0, F1 still 1.0.</p>
+<h2 id="registrypy-removed">registry.py removed</h2>
+<p>Asked "what's the registry for", I checked with <code>grep</code> and found that
+nothing in the package did a lookup by name in the dicts
+(<code>DEMAND_STRATEGIES</code>/<code>POTENTIAL_STRATEGIES</code>/<code>ALLOCATION_STRATEGIES</code>)
+-- not even <code>executors/</code>, which import <code>PotentialLinearRegression</code> etc.
+directly in Python code. It was infrastructure built "for when it's
+needed", with no real consumer -- the same problem that had already
+brought down the generic <code>StageRegistry</code> before it.</p>
+<p>Removed: <code>src/disslucc/registry.py</code> and the re-export line in
+<code>__init__.py</code>. Comes back if/when <code>executors/</code> starts resolving
+<code>potential_strategy</code>/<code>allocation_strategy</code> by name from
+<code>record.parameters</code> instead of importing the class directly -- a
+natural candidate (it's where choosing by name coming from the
+outside, TOML or an API, makes sense), but not implemented yet.</p>
+<h2 id="validationpontiuspy-identified-as-a-dissmodel-candidate">validation/pontius.py identified as a dissmodel candidate</h2>
+<p>Asked whether <code>pontius_millones()</code>/<code>confusion_metrics()</code> are generic
+enough for <code>dissmodel</code> instead of <code>disslucc</code>, I checked with <code>grep</code>:
+zero code reference to <code>land_use_types</code>/<code>backend</code>/Demand/Potential/
+Allocation -- it only takes two arrays. Same test we'd already used to
+separate <code>pipeline_core.py</code> (generic) from <code>protocols.py</code> (knows
+LUCC) in an earlier prototype.</p>
+<p>Found stronger evidence than any earlier candidate: the JOSS paper
+draft already cites Pontius &amp; Millones validating
+<code>brmangue-dissmodel</code> (a different domain -- coastal dynamics, not
+LUCC). A second real consumer already exists, satisfying the criterion
+<code>dissmodel</code>'s issue #128 uses to decide on extraction.</p>
+<p>Not moved now -- same three reasons as <code>_generic</code> before: waiting on
+JOSS, <code>brmangue-dissmodel</code> isn't this team's, one-repo-per-fellow
+structure. Only documented in <code>architecture.md</code>.</p>
+<h2 id="demandpotentialallocation-moved-into-components">demand/potential/allocation moved into components/</h2>
+<p>A suggestion to match the real convention of the two original
+repositories exactly: <code>disslucc_continuous/components/demand/</code>,
+<code>components/potential/raster/</code>, <code>components/allocation/raster/</code> --
+"components" was already the name used there, just without the extra
+<code>raster/</code> level (which we'd already dropped before, being raster-only).</p>
+<p>Moved: <code>demand/</code>, <code>potential/</code>, <code>allocation/</code> into <code>components/</code>.
+<code>validation/</code> stayed OUTSIDE on purpose -- there's no "validation
+component" in the original repositories (Pontius &amp; Millones lived
+inside the executor, not as a reusable module), and we'd already
+identified <code>validation/pontius.py</code> as a <code>dissmodel</code> candidate, not a
+LUCC component -- mixing it inside <code>components/</code> would hide that
+difference. <code>protocols.py</code>/<code>schemas.py</code> stay loose at the package root
+(in the originals they live inside a <code>schemas/</code> folder, but that
+wasn't asked for, didn't touch it).</p>
+<p>Fixed: relative imports in each moved file (<code>..</code> -&gt; <code>...</code>), the
+top-level <code>__init__.py</code>, both <code>executors/</code>, and two example scripts
+that imported <code>disslucc.demand</code> directly instead of going through
+<code>disslucc.components.demand</code> (<code>run_lab1_real.py</code>,
+<code>run_lab1_validation.py</code> -- only those two, the others already
+imported via <code>from disslucc import ...</code> at the top level, which
+doesn't change).</p>
+<p>Retested the six example scripts after the change -- all OK, identical
+result (same MAE/F1 as always).</p>
+<h2 id="mypy-added-protocolspy-stops-being-just-a-promise">mypy added -- protocols.py stops being just a promise</h2>
+<p>Asked whether <code>protocols.py</code> was actually used: yes, but only as a type
+hint in <code>AllocationClueLike</code>/<code>AllocationDClueSLike</code> -- no real
+<code>isinstance()</code> anywhere, and with no mypy configured, the annotation
+had no enforcement at all. Added <code>[tool.mypy]</code> to <code>pyproject.toml</code> and
+<code>mypy</code> as an optional (<code>dev</code>) dependency.</p>
+<p>Running it for the first time: 12 real errors, not noise. Fixed:
+- <code>load_demand_csv</code> didn't handle <code>reader.fieldnames is None</code> (empty
+  CSV) -- crashed with an ugly <code>TypeError</code>; now a clear <code>ValueError</code>.
+- <code>RegressionSpec.newconst</code> was created dynamically, never declared --
+  <strong>the real disslucc-continuous has exactly the same problem</strong>
+  (checked on the real main, same <code>spec.newconst = spec.const</code> pattern
+  with the field not declared). Declared the field explicitly here;
+  doesn't change behavior, just describes what was already happening.
+- Two <code>_mask()</code> functions returning <code>Any</code> instead of <code>np.ndarray</code> --
+  explicit <code>cast()</code>.</p>
+<p>After: <code>mypy src/disslucc</code> clean (0 errors, 18 files). Retested the
+six example scripts -- Lab1 checksum identical
+(<code>853e0e1e65f3ea12c9b49a33f45a4c3521c6d4de8a1b3249c486c2bd95fec90d</code>),
+Lab1/Lab15 MAE/F1 unchanged. Zero regression, three real bugs fixed --
+one of them inherited from the original repository itself.</p>
+<h2 id="executorsbasepy-shared-base-extracted-after-measuring-first">executors/base.py -- shared base, extracted after measuring first</h2>
+<p>Question: without generalizing Demand/Potential/Allocation, wouldn't
+similar executors explode into duplication? I measured the two
+existing executors with <code>diff -y</code> before deciding: <code>validate()</code>/<code>load()</code>
+were identical, <code>save()</code> had the same skeleton. Real duplication, not
+hypothetical -- unlike the <code>Pipeline</code>/<code>StageRegistry</code> we'd already
+reverted (that one generalized Demand/Potential/Allocation themselves,
+with only 2-3 classes per role, with no real code duplication to
+justify it).</p>
+<p>Extracted <code>executors/base.py</code> (<code>LuccExecutorBase</code>): <code>validate()</code>,
+<code>load()</code>, <code>_rasterize()</code> (helper for building the raster backend), and
+<code>save()</code> (with a default) in the base; <code>run()</code> stays abstract in each
+subclass, because that's where continuous and discrete genuinely
+diverge (which Demand/Potential/Allocation to build). Common method
+template, no dispatch by name, no registry.</p>
+<p>Honest number: total executor line count went up (237 -&gt; 286),
+<code>base.py</code>'s docstring is heavy. The gain isn't "less code" -- it's zero
+duplication of identical logic between the two files (<code>diff -y</code>
+afterward shows only the ~60 lines that genuinely diverge, against
+several dozen identical lines before).</p>
+<p>Retested the six example scripts after the refactor -- identical
+result, digit for digit (same Lab1 checksum
+<code>853e0e1e65f3ea12c9b49a33f45a4c3521c6d4de8a1b3249c486c2bd95fec90d</code>,
+same MAE 0.0035832335619405574, same F1 1.0). <code>mypy src/disslucc</code>
+clean (19 files now, was 18).</p>
+<h2 id="load-returns-the-backend-not-the-geodataframe-fixed-after-being-asked">load() returns the backend, not the GeoDataFrame -- fixed after being asked</h2>
+<p>Asked why <code>_rasterize()</code> existed inside <code>run()</code> instead of <code>load()</code>,
+given the package is raster-only: it really was a workaround, admitted
+as such at the time -- a way to test with vector data while no real
+raster backend had been generated yet. I checked the real
+<code>LUCCRasterExecutor</code> source (disslucc-continuous) instead of trusting
+memory: there, <code>load()</code> already calls <code>vector_to_raster_backend</code> and
+returns the <code>RasterBackend</code>; <code>run(self, data, ...)</code> receives <code>data</code>
+already rasterized. The comment in the real code is explicit:
+rasterizing is expensive, <code>load()</code> runs only once in the Executor's
+lifecycle, never run it twice.</p>
+<p>Fixed: <code>LuccExecutorBase.load()</code> now rasterizes and returns the
+backend; <code>_rasterize()</code> as a separate method is gone (the logic moved
+into <code>load()</code>); <code>run()</code> on both subclasses receives <code>data</code> already as
+the backend, with nothing left to call to rasterize.</p>
+<p>Good, unexpected side effect: <code>ExperimentRecord</code>'s timing became more
+honest. Before, the expensive rasterization cost counted inside
+<code>time_run_sec</code>, hiding where the time went. Now it shows up in
+<code>time_load_sec</code> (Lab1: 3.08s) and <code>time_run_sec</code> drops to the real
+cost of running the model (Lab1: 0.21s) -- the automatic provenance
+that motivated bringing the Executor back became more accurate because
+of the fix.</p>
+<p>Retested the six scripts -- identical result (same Lab1 checksum
+<code>853e0e1e65f3ea12c9b49a33f45a4c3521c6d4de8a1b3249c486c2bd95fec90d</code>,
+same Lab15 counts). <code>mypy src/disslucc</code> clean.</p>
+<h2 id="data-any-data-rasterbackend">data: Any -&gt; data: RasterBackend</h2>
+<p>Asked whether <code>data</code> could be typed instead of left as <code>Any</code> -- it
+could, it was just not done yet: <code>RasterBackend</code> is already importable
+(<code>from dissmodel.geo import RasterBackend</code>) and already used in the
+example scripts. Swapped <code>Any</code> for <code>RasterBackend</code> in
+<code>LuccExecutorBase.load()</code>'s return type and in both subclasses'
+<code>run()</code> (<code>data</code> parameter). <code>Any</code> stays imported where it still makes
+sense (<code>_spec_from_dict(d: dict[str, Any])</code>, parsing a loose dict
+coming from TOML/JSON).</p>
+<p><code>mypy src/disslucc</code> clean after the change. Retested the six scripts --
+Lab1 checksum identical, Lab1/Lab15 MAE/accuracy unchanged.</p>
+<h2 id="roadmap-disslucc-as-the-single-successor-post-joss-decided-2026-09-22">Roadmap: <code>disslucc</code> as the single successor, post-JOSS (decided 2026-09-22)</h2>
+<p>Originally recorded 2026-09-19 as intent, not yet decided. As of
+2026-09-22, two of the three open questions below <strong>are now decided</strong>;
+what remains is timing and execution, not whether.</p>
+<p><strong>The decision.</strong> <code>disslucc</code> is becoming the single successor
+repository to <code>disslucc-continuous</code> and <code>disslucc-discrete</code>, mirroring
+<code>terrame/luccme</code> itself -- one repository, with continuous and discrete
+as components side by side, instead of split by paradigm. Two reasons,
+stated plainly:</p>
+<ol>
+<li><strong>Efficiency.</strong> As more Demand/Potential/Allocation strategies get
+   developed, maintaining two parallel implementations (vector +
+   raster, continuous repo + discrete repo, each duplicating its own
+   Demand/validation code) doesn't scale and gets confusing. A single
+   raster-only package, with Demand and Pontius &amp; Millones validation
+   already shared across both paradigms (see "Bringing discrete into
+   this repository" above), removes that duplication going forward.</li>
+<li><strong>One clear reference.</strong> A single repository citable as "LuccME in
+   Python" is a stronger story than two packages that together
+   replicate it -- and after the LICENSE/CI/<code>pytest</code>/<code>CITATION.cff</code>/
+   <code>ModelExecutor</code>/provenance work already done here, <code>disslucc</code> isn't
+   behind the two separate repos on engineering grounds anymore.</li>
+</ol>
+<p><strong>Also decided 2026-09-22: raster stays permanent, not provisional.</strong>
+The "raster only" choice at the top of this file was originally framed
+as a pragmatic simplification for this port. It is now the ecosystem's
+permanent direction, precisely <em>because</em> new algorithms are coming:
+keeping a vector substrate alive in parallel while the component
+catalog grows would mean duplicating every new strategy twice and
+testing both, for a substrate whose main advantage (fidelity to how
+LuccME/TerraME originally worked) is bought at a real, recurring
+maintenance cost. Consequence: <code>paper.md</code>'s <code>Vector vs Raster</code>
+cross-substrate check (from <code>disslucc-continuous</code>) is retired going
+forward, not replaced -- see the Research Impact rewrite item below.</p>
+<p><strong>What's still pending -- timing and execution, not the decision
+itself:</strong></p>
+<ol>
+<li><code>paper.md</code>'s Lab1 section reports <code>Vector vs TerraME</code> <em>and</em>
+   <code>Raster vs TerraME</code> (both 87.37%), plus a <code>Vector vs Raster</code>
+   cross-substrate consistency check. That comes from
+   <code>disslucc-continuous</code>, which keeps both substrates. Now that raster
+   is decided as permanent, dropping the vector comparison from the
+   paper needs to be <em>an explicit rewrite</em>, not an accidental loss.</li>
+<li>The paper's "Research Impact Statement" uses the fact that
+   <code>disslucc-continuous</code>, <code>disslucc-discrete</code>, <code>brmangue-dissmodel</code> and
+   <code>disscube</code> are independently owned repositories as evidence that
+   the <code>ModelExecutor</code> contract generalizes across packages without
+   core changes -- tied to H1 in the CNPq proposal (fellow-owned
+   repos). Collapsing them weakens that specific argument unless the
+   text is rewritten alongside the migration.</li>
+<li><code>dissmodel</code> is currently under JOSS review citing
+   <code>disslucc-continuous</code>/<code>disslucc-discrete</code> by name
+   (<code>[@DisSLUCCDiscrete]</code> in <code>paper.bib</code>). Changing what's cited
+   mid-review is friction worth avoiding.</li>
+</ol>
+<p><strong>Conditions to revisit this:</strong></p>
+<ul>
+<li>[ ] JOSS review of <code>dissmodel</code> reaches a final decision (accept or
+      otherwise) -- don't touch the citation while it's still open.
+      This is the main thing execution is still waiting on.</li>
+<li>[x] ~~Decide, explicitly, whether the vector substrate is ever
+      coming back to <code>disslucc</code>~~ -- decided 2026-09-22: raster only,
+      permanently, for the whole ecosystem going forward. See above.</li>
+<li>[ ] Move the repository from <code>github.com/LambdaGeo/disslucc</code> to
+      <code>github.com/DisSModel/disslucc</code> (GitHub's transfer preserves the
+      old URL as a redirect, so this is low-risk once done -- but
+      needs an org owner to actually run it; not something a patch can
+      do). Update <code>CITATION.cff</code>'s <code>repository-code</code> and
+      <code>CONTRIBUTING.md</code>'s clone/PR-target URLs alongside it (done
+      ahead of the actual transfer in this commit, since GitHub
+      redirects the old URL either way).</li>
+<li>[ ] If unifying: release a final tagged version of
+      <code>disslucc-continuous</code> and <code>disslucc-discrete</code>, mint a Zenodo DOI
+      for each, then archive (not delete) both -- so every citation
+      already printed in the accepted paper keeps resolving.</li>
+<li>[ ] Rewrite the paper's Research Impact paragraph to describe
+      <code>disslucc</code> as the unified successor, without losing the
+      "independently owned packages" evidence for H1 -- possibly by
+      keeping <code>brmangue-dissmodel</code>/<code>disscube</code> as the examples for that
+      specific claim instead.</li>
+<li>[ ] Lab15's discriminance gap (a trivial static ranking currently
+      reproduces the TerraME output cell-for-cell) is a weaker spot to
+      have in the flagship repo than in a secondary one; the planned
+      dynamic-covariate scenario should probably land before <code>disslucc</code>
+      becomes the primary citation, not after.</li>
+</ul>
+<h2 id="toml-config-example-added-for-the-executors-path-2026-09-22">TOML config example added for the executors path (2026-09-22)</h2>
+<p>Clarified a point of confusion: dropping TOML in the "Two deliberate
+decisions" section at the top of this file was about the default,
+script-first path only (<code>examples/run_script.py</code>) -- not about
+<code>src/disslucc/executors/</code>. The executors path already exists
+specifically to be registered in
+<a href="https://github.com/DisSModel/dissmodel-configs"><code>dissmodel-configs</code></a>
+and run through <code>dissmodel-platform</code>, and that registration is a TOML
+file by convention (see <code>dissmodel-configs/models/*.toml</code> for the
+sibling packages). There was no example of that TOML for <code>disslucc</code>
+in this repo, unlike <code>disslucc-continuous</code>/<code>disslucc-discrete</code>, which
+is what prompted this entry.</p>
+<p>Added <code>examples/dissmodel-configs/lucc_continuous.toml</code>, adapted from
+<code>disslucc-continuous</code>'s <code>lucc_continuous_vector.toml</code> (real file in
+<code>dissmodel-configs</code>) to this repo's actual executor: <code>name</code>/<code>class</code>
+become <code>"lucc_continuous"</code> (<code>LuccContinuousExecutor.name</code>, raster-only
+-- no <code>lucc_vector</code>/<code>lucc_raster</code> split here), <code>executor_module =
+"disslucc.executors"</code>, <code>package = "git+https://github.com/DisSModel/disslucc@main"</code>.
+Encodes the same Lab1 coefficients as
+<code>examples/run_lab1_via_executor.py</code>'s hand-built <code>ExperimentRecord</code>,
+so the two are directly comparable.</p>
+<p><strong>Open item, not fixed here</strong>: <code>dissmodel.executor.cli.run_cli</code>'s local
+<code>--toml</code> loader (<code>dissmodel/executor/cli.py</code>, <code>_load_toml</code>) only lifts
+<code>[model.parameters]</code> into <code>record.parameters</code> -- everything else under
+<code>[model]</code> (<code>land_use_types</code>, <code>[[model.potential]]</code>,
+<code>[[model.allocation]]</code>, <code>[model.static]</code>) lands only in
+<code>record.resolved_spec</code>. <code>LuccContinuousExecutor</code>/<code>LuccDiscreteExecutor</code>
+read <code>land_use_types</code>/<code>potential_data</code>/<code>static</code>/<code>allocation_data</code>
+directly from <code>record.parameters</code> (confirmed against
+<code>src/disslucc/executors/continuous.py</code> and <code>discrete.py</code>), matching
+<code>ModelExecutor.run()</code>'s documented contract that it "receives record
+with resolved_spec and parameters already merged" -- but that merge is
+platform-side (<code>dissmodel-platform</code>, not in this repo or in
+<code>dissmodel</code> itself). So <code>examples/dissmodel-configs/lucc_continuous.toml</code>
+is correct for platform registration, but is <strong>not</strong> yet a working
+<code>--toml</code> argument for <code>python -m disslucc.executors.continuous run
+--toml ...</code> locally -- that would need either <code>dissmodel</code>'s local CLI
+to do the same resolved_spec merge, or the executors here to read
+<code>record.resolved_spec["model"]</code> as a fallback. Left open; affects
+<code>dissmodel</code> (the CLI), not <code>disslucc</code> alone.</p>
+<h2 id="discrete-toml-example-readmeapimd-cross-links-added">Discrete TOML example + README/api.md cross-links added</h2>
+<p>Follow-up to "TOML config example added for the executors path":
+that entry only covered <code>LuccContinuousExecutor</code>, and neither the
+README nor <code>docs/api.md</code> pointed at <code>examples/dissmodel-configs/</code>,
+so it was easy to miss even after landing.</p>
+<p>Added <code>examples/dissmodel-configs/lucc_discrete.toml</code>, same
+convention as the continuous one, encoding the same Lab15/Moju
+coefficients as <code>examples/run_lab15_via_executor.py</code> (<code>transition_matrix</code>,
+three <code>[[model.potential]]</code> entries with <code>elasticity</code>). Verified
+end-to-end (not just parsed): loaded both TOMLs with <code>tomllib</code>,
+simulated the platform-side <code>resolved_spec</code> -&gt; <code>parameters</code> merge by
+hand, ran <code>LuccContinuousExecutor</code>/<code>LuccDiscreteExecutor</code> through
+<code>execute_lifecycle</code>, and diffed the resulting <code>record.metrics</code> against
+the corresponding <code>run_*_via_executor.py</code> script run in the same
+environment -- identical in both cases (continuous: same three final
+areas to the full float; discrete: same <code>final_f_cells</code>/<code>final_d_cells</code>/
+<code>final_o_cells</code> -- 5474/365/3).</p>
+<p>Cross-linked from both README.md (the <code>disslucc.executors</code> paragraph)
+and <code>docs/api.md</code> (new "Registering with dissmodel-configs (TOML)"
+subsection under Executors), so the TOML path is discoverable from
+where a reader already learns the executors exist, not just from this
+log.</p>
+<h2 id="resolved-local-cli-now-wired-up-upstream-fix-sent-to-dissmodel">Resolved: local CLI now wired up, upstream fix sent to <code>dissmodel</code></h2>
+<p>Follow-up closing the open item from the two entries above. Two
+separate problems had to be fixed, one in each repository:</p>
+<p><strong>In <code>dissmodel</code> (upstream, not this repo).</strong> Confirmed the gap
+against a <em>fresh</em> <code>git clone</code> of <code>DisSModel/dissmodel@main</code> (not a
+possibly-stale local copy) -- <code>dissmodel/executor/cli.py</code>'s
+<code>_load_toml</code>/<code>_build_record</code> only ever copied <code>[model.parameters]</code>
+into <code>record.parameters</code>; every other <code>[model]</code>-level key
+(<code>land_use_types</code>, <code>[[model.potential]]</code>, ...) landed only in
+<code>record.resolved_spec</code>, contradicting <code>ModelExecutor.run()</code>'s own
+docstring ("receives record with resolved_spec and parameters already
+merged") and <code>dissmodel</code>'s own <code>docs/api/executor/cli.md</code>, whose
+<code>model.toml</code> example already showed a <code>[[model.potential]]</code> section
+with no explanation of how it would reach the executor. Wrote a fix
+(<code>_load_toml</code> now merges <code>[model]</code> keys other than a fixed metadata
+set -- <code>executor_module</code>/<code>name</code>/<code>class</code>/<code>description</code>/<code>package</code>/
+<code>dissmodel</code> -- into <code>params</code>, <code>[model.parameters]</code> still winning on
+overlap, <code>--param</code> still winning over both), 11 new regression tests
+in <code>tests/executor/test_cli.py</code>, and updated
+<code>docs/api/executor/cli.md</code>. Full <code>dissmodel</code> suite: 441 -&gt; 449 passed,
+2 skipped, <code>mypy dissmodel</code> clean, <code>mkdocs build --strict</code> clean. Not
+yet merged/released -- <code>disslucc</code> still pins <code>dissmodel==0.6.3</code>
+exactly, which predates the fix. (Shipped in <code>dissmodel</code> 0.6.4;
+<code>disslucc</code> now pins <code>dissmodel&gt;=0.6.4</code> -- see README.md/<code>api.md</code> for
+the current, working state rather than this entry's snapshot.)</p>
+<p><strong>In <code>disslucc</code> (this repo).</strong> Once the upstream fix made local
+<code>--toml</code> runs reach <code>validate()</code>, it surfaced a second, independent
+problem: <code>examples/dissmodel-configs/*.toml</code> used <code>[[model.potential]]</code>/
+<code>[[model.allocation]]</code> (copied from the real <code>dissmodel-configs</code> entry
+for <code>disslucc-continuous</code> given as a reference), but
+<code>LuccContinuousExecutor</code>/<code>LuccDiscreteExecutor</code>'s <code>required_parameters</code>
+expect <code>potential_data</code>/<code>allocation_data</code> -- this package's own
+parameter names, unrelated to the CLI merge fix. Renamed the TOML
+table names (data only, no code change) to match. Also added
+<code>if __name__ == "__main__": run_cli(...)</code> to both
+<code>src/disslucc/executors/continuous.py</code> and <code>discrete.py</code> -- neither
+had one, so <code>python -m disslucc.executors.&lt;name&gt; run ...</code> didn't work
+at all before this, independent of both TOML issues.</p>
+<p><strong>Verified together, not separately</strong>: built a <code>dissmodel</code> venv with
+the fix installed, ran both commands for real --
+<code>python -m disslucc.executors.continuous run --toml
+examples/dissmodel-configs/lucc_continuous.toml --input
+data/input/csAC.zip --param demand_csv=data/input/examples_demand_lab1.csv</code>
+and the discrete equivalent -- end to end through the actual CLI
+(not a hand-simulated merge like the previous two entries). Continuous
+output checksum: <code>853e0e1e65f3ea12c9b49a33f45a4c3521c6d4de8a1b3249c486c2bd95fec90d</code>
+-- identical to the Lab1 checksum recorded in <code>CLAUDE.md</code>. Discrete
+final counts: <code>{'f': 5474, 'd': 365, 'o': 3}</code> -- identical to
+<code>run_lab15_via_executor.py</code>. <code>disslucc</code>'s own suite (against the fixed
+<code>dissmodel</code>): 14 passed, 2 xfailed, unchanged.</p>
+<p>README.md and <code>docs/api.md</code> updated with the real, working command --
+with an explicit callout that it needs a <code>dissmodel</code> release past
+0.6.3, since <code>pip install -e .</code> today still installs the pinned,
+unfixed 0.6.3.</p>
+<h2 id="save-now-actually-writes-the-output-raster"><code>save()</code> now actually writes the output raster</h2>
+<p>Found while answering a question about <code>--output</code>: <code>LuccExecutorBase.save()</code>
+never wrote anything to disk. It hashed the backend's raw array bytes
+in memory into <code>record.artifacts["output"]</code>, set <code>status="completed"</code>,
+and returned -- <code>record.output_path</code>/<code>--output</code> were accepted and
+echoed in the CLI's summary (<code>output: outputs/result_&lt;id&gt;.tif</code>) but no
+such file was ever created. Confirmed by re-running a prior <code>--output</code>
+test and checking the path with <code>ls</code> afterward: not found.</p>
+<p>Checked how <code>brmangue-dissmodel</code> (a sibling package, further along --
+this is where a QGIS plugin was built reading simulation output
+straight from MinIO) solves this, against its actual source, not from
+memory: <code>RasterExecutor.save()</code> calls
+<code>dissmodel.io.raster.save_geotiff((backend, meta), uri, band_spec=...)</code>,
+which writes a local file or, for an <code>s3://</code> URI, uploads via
+<code>dissmodel.io._storage.get_default_client().put_object(...)</code>. <code>meta</code>
+there comes from <code>load_geotiff()</code>. <code>disslucc</code>'s own <code>load()</code> uses
+<code>vector_to_raster_backend()</code> instead, which doesn't return a separate
+meta dict -- but it does set <code>crs</code>/<code>transform</code> directly as attributes
+on the <code>RasterBackend</code> it constructs (checked against
+<code>dissmodel/io/convert.py</code>), so <code>save()</code> can build the
+<code>{"crs": backend.crs, "transform": backend.transform}</code> dict itself
+from the backend already in hand, with no change needed to <code>load()</code>.</p>
+<p>Fixed: <code>LuccExecutorBase.save()</code> now calls <code>save_geotiff</code> with a
+<code>band_spec</code> built from <code>result["land_use_types"]</code> (+ <code>"mask"</code> if
+present in the backend), writes to <code>record.output_path</code> (defaulting to
+<code>output_&lt;experiment_id[:8]&gt;.tif</code> if <code>--output</code> wasn't given, same
+convention as <code>brmangue</code>'s <code>default_output_uri</code>), and stores the
+checksum of the actual written file in <code>record.artifacts["output"]</code>.</p>
+<p><strong>Side effect worth flagging explicitly</strong>: the checksum value changes.
+Before, <code>record.artifacts["output"]</code> hashed raw NumPy bytes; now it
+hashes the written GeoTIFF (different framing/compression -- same
+data, different bytes). The Lab1 checksum narrated across this file
+(<code>853e0e1e65f3ea12c9b49a33f45a4c3521c6d4de8a1b3249c486c2bd95fec90d</code>)
+is the <em>old</em> (in-memory-bytes) value and is not reproduced by a fresh
+run with this fix -- confirmed nothing in <code>tests/</code> asserts that exact
+string (only this file's own narrative history cites it, left as-is).
+A new run with <code>--output</code> now produces a real file whose checksum can
+be cited instead, going forward.</p>
+<p>Verified: ran both executors via the real CLI with <code>--output</code>, opened
+the resulting <code>.tif</code> with <code>rasterio</code> -- correct CRS (<code>EPSG:29101</code>
+continuous / <code>EPSG:4618</code> discrete), correct transform (5000 m
+resolution for continuous, matching the TOML), correct shape matching
+the rasterized backend, one band per land-use class tagged with its
+name (<code>dst.update_tags(i, name=name)</code>, e.g. <code>{"name": "f"}</code>) plus a
+<code>mask</code> band whose sum equals the loaded feature count exactly (6,574
+for Lab1 -- matches <code>Loaded: 6,574 features</code> in the same run's log).
+pytest: 14 passed, 2 xfailed, unchanged (no test exercises <code>save()</code>'s
+disk I/O). mypy: same 3 pre-existing, unrelated errors.</p>
+<h2 id="third-reason-to-migrate-bugs-found-this-session-would-otherwise-need-fixing-three-times">Third reason to migrate: bugs found this session would otherwise need fixing three times</h2>
+<p>Adds to "Roadmap: <code>disslucc</code> as the single successor, post-JOSS" above,
+not a new decision -- concrete evidence for one already made.</p>
+<p>This session found and fixed three real, independent bugs in the
+executors/CLI/output path: no local CLI entry point at all (no
+<code>if __name__ == "__main__"</code>), TOML table names not matching
+<code>required_parameters</code> (<code>potential</code>/<code>allocation</code> vs. this package's
+<code>potential_data</code>/<code>allocation_data</code>), and <code>save()</code> never writing the
+output raster to disk (accepted <code>--output</code>/<code>record.output_path</code>,
+silently did nothing with them -- see "<code>save()</code> now actually writes
+the output raster" above). None of these are <code>disslucc</code>-specific
+science bugs; they're the same executor-lifecycle plumbing
+(<code>ModelExecutor</code>/<code>ExperimentRecord</code>/CLI) that <code>disslucc-continuous</code>
+and <code>disslucc-discrete</code> each carry their own copy of. Staying split
+means each of those two would need the same three fixes applied and
+verified separately -- not a reason to migrate on its own, but a
+concrete cost of <em>not</em> migrating that wasn't part of the original
+two-reason case (Efficiency, One clear reference).</p>
+<p>Weighed against the one real cost of migrating before JOSS concludes
+(<code>dissmodel</code>'s paper currently cites <code>disslucc-continuous</code>/
+<code>disslucc-discrete</code> by name mid-review -- see "Conditions to revisit
+this" above): judged worth accepting that citation noise rather than
+fixing the same three bugs three times. This doesn't by itself check
+off the JOSS-review condition in the list above -- that's still an
+external, ongoing process -- but it does mean the cost side of that
+tradeoff is now backed by a concrete, first-hand instance, not just
+the general "duplication doesn't scale" argument from the original
+entry.</p>
+<h2 id="dissmodel-paperreadme-citations-consolidated-to-disslucc-review-stall-changes-the-calculus"><code>dissmodel</code> paper/README citations consolidated to <code>disslucc</code>; review stall changes the calculus</h2>
+<p>The JOSS reviewer for <code>dissmodel</code>'s paper stalled; the editor is
+likely to reassign. Given that, plus <code>disslucc-continuous</code>/
+<code>disslucc-discrete</code> being unused by anyone else and carrying the
+three plumbing bugs fixed this session (see above), decided the
+"citation noise mid-review" cost accepted in the previous entry is no
+longer worth avoiding -- <code>dissmodel</code>'s <code>paper.md</code>/<code>paper.bib</code> and
+<code>README.md</code> now cite/list <code>disslucc</code> only, not the two source repos.
+This is <code>dissmodel</code>-repo work, not <code>disslucc</code>-repo work; noted here
+because it's the trigger for the next step below.</p>
+<p>Changes made in <code>dissmodel</code> (separate repo, own commits/patches):
+<code>paper.bib</code> merges the two <code>@software</code> entries into one <code>@DisSLUCC</code>
+entry pointing at <code>github.com/DisSModel/disslucc</code>; <code>paper.md</code> updates
+all prose mentions (Summary, Lab1/Lab15 paragraphs, Research Impact
+Statement, Author Contributions -- <code>J.M.P.A.</code> now credited for
+<code>disslucc</code>, AI Usage Disclosure) accordingly, including replacing the
+Lab15 discrete speed figure (56.8 ms/step, measured on
+<code>disslucc-discrete</code>'s vector-only executor -- not valid for
+<code>disslucc</code>'s raster path, so dropped rather than kept or fabricated)
+with 10.3 ms/step, measured fresh against <code>disslucc</code>'s own
+<code>examples/dissmodel-configs/lucc_discrete.toml</code> (Lab15/Moju, 6 steps,
+0.062s run phase via the CLI's profiling report -- ModelExecutor
+lifecycle <code>run</code> phase only, not load/save). <code>README.md</code>'s specialized
+model libraries table merges the two rows into one, pointing at
+<code>github.com/LambdaGeo/disslucc</code> (not yet <code>DisSModel/disslucc</code> --
+matches this repo's current, not future, location).</p>
+<p>Next: the user (maintainer) plans to archive <code>disslucc-continuous</code>
+and <code>disslucc-discrete</code> separately (own repos, not tracked in this
+decision log) with a note in each that there's no guarantee of
+compatibility with newer <code>dissmodel</code> releases and that development
+moved to <code>disslucc</code> -- the same treatment <code>terrame/luccme</code> itself
+received when TerraME/LuccME's own active development moved on. Not
+yet done as of this entry; this repo's own migration status section
+in <code>README.md</code> already anticipates it ("will be released, tagged,
+archived, and kept citable once this migration completes").</p>
+<h2 id="readability-pass-on-potential-for-pibic-onboarding-scipyspecialexpit-adopted-numpyma-and-tensordot-rejected">Readability pass on <code>potential/</code>, for PIBIC onboarding: <code>scipy.special.expit</code> adopted, <code>numpy.ma</code> and <code>tensordot</code> rejected</h2>
+<p>Requested while preparing onboarding material for PIBIC students who
+will read <code>potential/linear.py</code> and <code>potential/logistic.py</code>: "does
+anything here have an obvious simplification using something the
+Python/NumPy/SciPy community already provides?" Three candidates were
+tried; only one was kept, for reasons worth recording so they aren't
+re-litigated later.</p>
+<p><strong>Adopted -- <code>logistic.py</code>'s hand-rolled sigmoid replaced with
+<code>scipy.special.expit</code>.</strong> The code manually clipped <code>z</code> to
+<code>[-50, 50]</code> before <code>1 / (1 + exp(-z))</code>, with a comment explaining the
+clip exists only to avoid <code>exp()</code> overflow on nodata cells. <code>expit</code>
+is SciPy's numerically stable sigmoid -- exactly what that comment
+was working around by hand -- so the clip and the manual formula both
+go away. <code>scipy</code> was already an installed, transitive dependency (via
+<code>dissmodel</code>'s own deps), but was not a <em>declared</em> one; added it
+directly to <code>pyproject.toml</code>'s <code>dependencies</code>, since <code>disslucc</code> now
+imports it itself rather than relying on an accident of what
+<code>dissmodel</code> happens to pull in. Verified bit-for-bit identical output
+on both Lab1 and Lab15 (same <code>mae</code>/<code>rmse</code>/<code>quantity_disagreement</code>/
+<code>allocation_disagreement</code> to full float precision, not just "within
+tolerance") before and after -- <code>docs/validation.md</code> needs no update.</p>
+<p><strong>Rejected -- <code>numpy.ma</code> for <code>land_use_no_data</code> in <code>linear.py</code>.</strong> The
+suggestion was to replace <code>reg = reg * (1.0 - no_data_arr)</code> with a
+masked array, on the reasoning that <code>land_use_no_data</code> sounds like a
+binary "missing data" flag. Checked the actual values behind it first
+(<code>data/input/csAC.zip</code>'s <code>outros</code> column, as loaded for the Lab1
+scenario): real-valued, 2183 distinct values between ~0 and 1, not a
+0/1 mask. It's the <em>fraction</em> of a cell already committed to a
+non-transitionable "other" class, and potential is scaled down
+proportionally -- not zeroed out. <code>numpy.ma</code> is for hard/boolean
+masking; using it here would have silently changed the science despite
+looking like a pure refactor. Left the line as-is, added a comment
+recording this so the next person doesn't repeat the same
+name-implies-semantics mistake. Good example, for the PIBIC material
+itself, of why to check the data before trusting a parameter's name.</p>
+<p><strong>Rejected (for now) -- vectorizing <code>const + sum(beta_k * driver_k)</code>
+with <code>np.stack</code>/<code>np.tensordot</code> instead of the Python <code>for col, beta in
+spec.betas.items()</code> loop.</strong> Mathematically the same linear
+combination, and arguably more idiomatic NumPy for a small number of
+drivers. Tried it in both <code>linear.py</code> and <code>logistic.py</code> and reran the
+full validation: Lab15 (binary, exact-match assertions) was
+unaffected, but Lab1's <code>mae</code> moved from <code>0.0035832335619405574</code> to
+<code>0.003583233421432411</code> -- floating-point summation reordering, not a
+bug, and still far inside the <code>0.01</code> tolerance both
+<code>tests/test_validation_lab1.py</code> and <code>disslucc-continuous</code>'s own
+criterion use. Reverted anyway: this repo's own rule (see top of this
+file, and <code>docs/validation.md</code>'s header) is that <code>docs/validation.md</code>'s
+numbers are cited in <code>dissmodel</code>'s JOSS paper, and "the rounded number
+published doesn't change" is a weaker bar than "bit-identical unless a
+change is deliberately about the science." A cosmetic vectorization
+isn't worth even a last-decimal-digit drift here. Revisit only if a
+real performance need shows up (many drivers, large rasters) that
+would justify accepting that tradeoff explicitly and re-publishing
+<code>docs/validation.md</code>'s numbers alongside it.</p>
+<h2 id="same-pass-allocationcluepy-two-safe-cosmetic-fixes-one-documented-not-fixed-dead-branch">Same pass, <code>allocation/clue.py</code>: two safe cosmetic fixes, one documented-not-fixed dead branch</h2>
+<p>Continuation of the readability pass above, this time over
+<code>AllocationClueLike</code> (the CLUE-like continuous allocator). Same
+discipline: verify bit-for-bit identical Lab1/Lab15 output, run the
+full suite, before keeping any change.</p>
+<p><strong>Applied -- two zero-risk stylistic fixes in <code>_correct_cell_change</code>.</strong>
+<code>flat = lambda lu: ...</code> (a lambda assigned to a name -- PEP 8 E731, and
+it shows as <code>&lt;lambda&gt;</code> in tracebacks instead of a real function name)
+became a nested <code>def flat(lu: str) -&gt; np.ndarray: ...</code>. Needed a
+<code>cast(np.ndarray, ...)</code> inside it to keep mypy clean (<code>self.backend.get()</code>
+returns <code>Any</code>), matching the pattern <code>_mask()</code> already uses just above
+it. <code>[self.allocation_data[i].min_value for i in range(len(lus))]</code> (and
+the <code>max_value</code> line next to it) became
+<code>[spec.min_value for spec in self.allocation_data]</code> -- <code>allocation_data</code>
+is already in <code>land_use_types</code> order, so indexing through <code>range(len(...))</code>
+bought nothing. Verified identical Lab1 <code>mae</code>/<code>rmse</code> and Lab15
+disagreement to full float precision before/after; <code>pytest</code>/<code>mypy</code>/<code>ruff</code>
+all clean.</p>
+<p><strong>Found, documented, deliberately not fixed -- the <code>no_data</code> exclusion
+in <code>_apply_complementar</code>'s deficit-correction branch is dead on two
+levels.</strong> <code>no_data = getattr(self, "land_use_no_data", None)</code>: that
+attribute is a <code>PotentialLinearRegression.setup()</code> parameter (see
+<code>potential/linear.py</code>) that <code>AllocationClueLike.setup()</code> never accepts
+-- so <code>no_data</code> is always <code>None</code>, and <code>lu != None</code> is always <code>True</code> for
+a class name, meaning the <code>eligible = [lu for lu in others if lu !=
+no_data]</code> filter never actually excludes anything. Traced the likely
+original intent by checking Lab1's real config
+(<code>examples/run_lab1_real.py</code>): <code>land_use_no_data="outros"</code> (on
+<code>Potential</code>) and <code>static["outros"] == 1</code> (on <code>Allocation</code>) name the
+same class, so this was almost certainly meant to protect the
+region's fixed/static class from this branch's deficit correction --
+the same protection <code>_compute_change</code>/<code>_correct_cell_change</code> already
+give <code>static == 1</code> classes elsewhere in this same file, just spelled
+with the wrong variable here. Also instrumented all 7 Lab1 steps:
+<code>deficit.any()</code> was never <code>True</code> once -- this whole branch is
+unexercised by every scenario in the repository, with no test proving
+either the current or a fixed version behaves correctly.</p>
+<p>Decided not to fix this now, on both counts: (1) the correct fix
+isn't "wire <code>land_use_no_data</code> through" -- it's changing the criterion
+to <code>self.static[lu] != 1</code>, a different and more invasive change than
+it looks like at first; (2) there is zero test coverage of this
+branch, current or fixed, and this repository's whole discipline
+(<code>docs/validation.md</code> numbers cited in <code>dissmodel</code>'s JOSS paper) is
+built on not changing unverified behavior without a benchmark to
+check it against. A synthetic scenario that forces <code>deficit.any()</code>
+would be the right way to close this gap, but that's new test-writing
+work, not a readability pass. Recorded here, and as an inline comment
+at the call site, so the next person doesn't need to re-derive this
+from scratch, and doesn't mistake "wiring <code>land_use_no_data</code> through"
+for the actual fix.</p>
+<h2 id="same-pass-allocationclue_spy-one-applied-two-considered-and-rejected">Same pass, <code>allocation/clue_s.py</code>: one applied, two considered and rejected</h2>
+<p>Continuation of the readability pass, now over <code>AllocationDClueSLike</code>
+(discrete CLUE-S allocation). Same discipline as the two entries above:
+bit-for-bit Lab1/Lab15 comparison before keeping anything.</p>
+<p><strong>Applied.</strong> <code>max_diff = float(np.max(np.abs(list(diff.values()))))</code> --
+<code>diff</code> is a plain <code>dict[str, float]</code> with one scalar per land-use class
+(a handful of classes, not per-cell). Round-tripping a handful of
+Python floats through <code>list -&gt; np.array -&gt; np.abs -&gt; np.max -&gt; float</code>
+buys nothing; <code>max(abs(v) for v in diff.values())</code> is the same value,
+plain stdlib. Verified bit-for-bit identical Lab1/Lab15 metrics;
+<code>pytest</code>/<code>mypy</code>/<code>ruff</code> all clean.</p>
+<p><strong>Considered, rejected -- <code>numpy.ma</code> for the masked argmax
+(<code>scores = np.where(allowed, scores, -np.inf); np.argmax(scores, axis=1)</code>).</strong>
+This <em>looks</em> like the textbook <code>numpy.ma</code> use case (a real boolean mask,
+unlike the <code>land_use_no_data</code> false alarm in <code>clue.py</code>), but the
+<code>-np.inf</code> sentinel is already the standard, well-understood idiom for
+"argmax over allowed choices only", and masked-array argmax has its own
+sharp edge -- behavior on a fully-masked row (a cell with zero allowed
+transitions) isn't obviously the same as <code>-np.inf</code>'s behavior (picks
+index 0 deterministically) without checking. No test exercises a
+transition matrix with a fully-blocked cell, so there's no way to
+verify equivalence. Not worth the swap for a purely cosmetic gain over
+already-correct, already-idiomatic code.</p>
+<p><strong>Considered, rejected -- restructuring the <code>for n_iter in
+range(self.max_iteration + 1): ... if n_iter &gt;= self.max_iteration:
+raise</code> convergence loop</strong> into a cleaner <code>for/else</code>. Mechanically
+sound, but touches the exact iteration count at which non-convergence
+raises <code>RuntimeError</code>, and no test in this repository exercises that
+failure path (Lab1/Lab15 always converge well within their configured
+<code>max_iteration</code>). Changing loop bounds with zero test coverage of the
+boundary condition it changes is exactly the kind of "looks safe,
+unverifiable" edit this readability pass has been avoiding throughout
+<code>potential/</code> and <code>allocation/</code>.</p>
+<h2 id="allocationclue_spy-hoisting-pot1tau-out-of-the-convergence-loop-an-actual-algorithmic-improvement-not-just-readability"><code>allocation/clue_s.py</code>: hoisting <code>pot</code>/<code>1+tau</code> out of the convergence loop -- an actual algorithmic improvement, not just readability</h2>
+<p>Different category from the three entries above: this one changes
+<em>what the algorithm does</em> (fewer redundant recomputations per call),
+not just how it's written, so it got measured, not just diffed.</p>
+<p><code>pot = np.stack([self.backend.get(lu + "_pot").ravel() for lu in
+lu_types], axis=1)</code> was being recomputed <strong>every iteration</strong> of
+<code>execute()</code>'s convergence loop, even though <code>&lt;lu&gt;_pot</code> is written once
+by <code>Potential.execute()</code> before <code>Allocation.execute()</code> runs at all, and
+nothing inside this loop ever writes it back -- only <code>iter_vec</code> changes
+between iterations. Same for <code>1.0 + tau</code>. Instrumented Lab15 first
+(before touching anything): <code>execute()</code> took between 1 and 68
+iterations per time step across the 6 steps, so this was a real,
+measurable amount of repeated work, not a one-off.</p>
+<p>Hoisted both <code>pot</code> and <code>one_plus_tau = 1.0 + tau</code> above the loop.
+Verified bit-for-bit identical Lab1/Lab15 metrics (this change only
+touches <code>clue_s.py</code>, so Lab1 was never going to move, but checked
+anyway per this session's own discipline). Measured wall-clock time
+for <code>run_lab15_raster()</code> (8 repetitions each, sorted):</p>
+<div class="codehilite"><pre><span></span><code><span class="nv">before</span>:<span class="w"> </span><span class="nv">median</span><span class="w"> </span><span class="mi">0</span>.<span class="mi">4792</span><span class="nv">s</span>,<span class="w"> </span><span class="nv">min</span><span class="w"> </span><span class="mi">0</span>.<span class="mi">4510</span><span class="nv">s</span>
+<span class="nv">after</span>:<span class="w">  </span><span class="nv">median</span><span class="w"> </span><span class="mi">0</span>.<span class="mi">4283</span><span class="nv">s</span>,<span class="w"> </span><span class="nv">min</span><span class="w"> </span><span class="mi">0</span>.<span class="mi">4077</span><span class="nv">s</span><span class="w">  </span><span class="ss">(</span><span class="o">~</span><span class="mi">10</span><span class="o">-</span><span class="mi">11</span><span class="o">%</span><span class="w"> </span><span class="nv">faster</span><span class="w"> </span><span class="k">end</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="k">end</span><span class="ss">)</span>
+</code></pre></div>
+
+<p>That end-to-end number includes shapefile loading (a fixed cost this
+change doesn't touch), so the saving <em>inside</em> the allocation loop
+itself is proportionally larger and should grow with raster size and
+iteration count -- the avoided work scales with
+<code>n_iterations * n_classes * n_cells</code> per step, while the I/O floor
+stays constant. Not benchmarked at larger scale; if raster size grows
+significantly in a future scenario, worth re-measuring rather than
+assuming the same ~10% holds.</p>
+<p><code>pytest</code>/<code>mypy</code>/<code>ruff</code> all clean after the change.</p>
+<h2 id="ecosystem-wide-review-pass-pibic-focused-regressionspecnewconst-footgun-and-an-apimd-inaccuracy">Ecosystem-wide review pass (PIBIC-focused): <code>RegressionSpec.newconst</code> footgun and an <code>api.md</code> inaccuracy</h2>
+<p>Broader pass across the whole package (not just <code>potential/</code>/<code>allocation/</code>
+this time), specifically looking for anything that would confuse an
+undergraduate reading this code for the first time. Two real findings,
+both fixed.</p>
+<p><strong><code>schemas.RegressionSpec.newconst</code> was a silent-no-op constructor
+trap.</strong> It's a regular dataclass field (<code>newconst: float = 0.0</code>),
+so <code>RegressionSpec(const=0.5, newconst=99)</code> was accepted -- but
+<code>PotentialLinearRegression.setup()</code>/<code>execute()</code> always overwrite it
+with <code>spec.newconst = spec.const</code> before ever reading it, on every
+single step, not just the first. So any value passed at construction
+time was silently discarded, immediately. Confirmed with <code>grep</code> that
+nothing in <code>src/</code>/<code>examples/</code>/<code>tests/</code> ever constructs a
+<code>RegressionSpec</code> with <code>newconst=...</code> -- this was a purely latent trap
+for a future caller, not a bug that ever fired. Fixed with
+<code>field(default=0.0, init=False, repr=False, compare=False)</code>:
+<code>newconst</code> is internal runtime state the model manages, not something
+a caller configures, so it's no longer part of <code>__init__</code>, doesn't
+clutter <code>repr()</code>, and doesn't affect <code>==</code> between two specs that only
+differ in runtime-mutated state. Verified: <code>RegressionSpec(const=0.5,
+newconst=99)</code> now raises <code>TypeError</code> immediately instead of silently
+accepting and discarding the value. Bit-for-bit identical Lab1/Lab15
+metrics; <code>pytest</code>/<code>mypy</code>/<code>ruff</code> all clean.</p>
+<p><strong><code>docs/api.md</code> mischaracterized <code>land_use_no_data</code>.</strong> It described the
+parameter as "class to exclude from the calculation (e.g. water)" --
+which is exactly the wrong mental model this session already
+disproved by checking the real data (see the <code>potential/linear.py</code>
+entry above): it's a real-valued <code>[0,1]</code> array that scales potential
+down proportionally (<code>reg * (1 - value)</code>), not a binary
+exclusion/no-data mask. This is the same misconception that produced
+the dead <code>no_data</code> code in <code>allocation/clue.py</code>, now also fixed in the
+one document a student would read <em>before</em> the source, making it more
+likely to mislead, not less. Corrected the parameter comment in
+<code>api.md</code> to describe the actual behavior.</p>
+<h2 id="reference-data-moved-to-lambdageoterrame-docker-year-by-year-goldens-cell_correction">Reference data moved to LambdaGeo/terrame-docker; year-by-year goldens; <code>cell_correction</code></h2>
+<p><strong>Where the references live.</strong> <code>benchmark/reference/*.lua</code> and
+<code>benchmark/data/*.zip</code> left this repository. The scripts (unchanged, byte for
+byte, under their original names <code>lab1_*</code>/<code>lab6_*</code>) and the original TerraME
+outputs now live in <a href="https://github.com/LambdaGeo/terrame-docker">LambdaGeo/terrame-docker</a>
+(<code>benchmark/references/</code>), next to the Docker image (TerraME 2.0.1 + LuccME
+6244dd4) and the generator that produces year-by-year goldens. Here,
+<code>benchmark/goldens/</code> keeps only the generated results, so tests run without
+Docker. The two former zips are the last year of <code>lab01_md1643</code> and
+<code>lab15_md10</code> (max difference 5e-13 and 0); every validation number in
+<code>docs/validation.md</code> is unchanged (Lab1 MAE 0.0035832335619404 vs
+0.0035832335619406 before).</p>
+<p>terrame-docker (v0.1.0) has goldens for all 21 functional labs of the LuccME
+package, with the package's numbering; this repository keeps only the four its
+tests use and adds others together with the component and test that need them
+(not every LuccME algorithm will be ported). In the package
+labs the allocation is accepted at the first pass every year (0 iterations),
+so only <code>lab01_md1643</code>/<code>lab15_md10</code> exercise the convergence loop.</p>
+<p><strong>Discrete: convergence confirmed.</strong> Year by year, <code>AllocationDClueSLike</code>
+matches TerraME's iteration count (0, 67, 56, 56, 61, 61) and <code>d_out</code>/<code>d_pot</code>
+exactly. This is the check the Lab15 discriminance warning asked for.</p>
+<p><strong>Continuous: the Lab1 MAE has one cause, and it is a TerraME bug.</strong> The drift
+starts in 2009, a year with 0 iterations on both sides and identical <code>d_pot</code>.
+LuccME's <code>correctCellChange</code> never runs: its guard reads
+<code>if (cell.regionregionAloc == rNumber)</code> (<code>AllocationCClueLike.lua:503</code>, a typo
+for <code>regionAloc</code>), always false (<code>CClueLikeSaturation</code> spells it correctly).
+Decision: keep the intended algorithm. <code>AllocationClueLike</code> gains
+<code>cell_correction: bool = True</code>; <code>False</code> skips <code>_correct_cell_change</code> and
+reproduces TerraME year by year, iteration counts included (0, 0, 8, 26, 18,
+17, 17; MAE &lt; 1e-7). The tests against the continuous goldens use <code>False</code>;
+<code>test_lab1_default_cell_correction_deviates_from_terrame</code> pins the default's
+deviation. Both allocations also record <code>iterations_per_step</code>.</p>
+<h2 id="spatial-lag-potential-and-saturation-allocation-for-luccme-br-2026-09-24-6">Spatial-lag potential and saturation allocation, for LuccME-BR (2026-09-24, #6)</h2>
+<p><strong>What and why.</strong> <code>PotentialSpatialLagRegression</code> and
+<code>AllocationClueLikeSaturation</code> port LuccME's <code>PotentialCSpatialLagRegression</code>
+and <code>AllocationCClueLikeSaturation</code> (LuccME <code>6244dd4</code>), the components LuccME-BR
+(Bezerra et al. 2022, PLOS ONE e0256052) is built from. They were written and
+validated first in <a href="https://github.com/profsergiocosta/luccmebr-reconstruction">profsergiocosta/luccmebr-reconstruction</a>,
+with this package's interfaces, and moved here so that repository keeps only
+the model. Nothing existing changed: Lab1/Lab15 numbers are the same.</p>
+<p><strong>Faithful to the Lua, including what looks accidental</strong> — each point is pinned
+by a test that fails on the other reading:
+- the potential's constant adaptation accumulates year to year (LuccME writes
+  it back into <code>const</code>), unlike <code>PotentialLinearRegression</code>;
+- <code>lab06</code>'s <code>updateYears</code> copies the new drivers into the cells by position
+  (<code>forEachCellPair</code>), and <code>csAC_2009</code> is not in <code>csAC</code>'s order;
+- <code>correctCellChange</code> runs here (the Saturation variant spells <code>regionAloc</code>
+  right), as the Lua writes it — not <code>AllocationClueLike</code>'s own version —
+  and its <code>BACKP</code>, declared outside the loop over cells, carries over from cell
+  to cell: the cells' order matters, given by <code>order_attr</code>;
+- the neighbourhood LuccME names "11x11" is <code>createNeighborhood{strategy="mxn"}</code>
+  with no <code>m</code>/<code>n</code>: TerraME's default, 3 × 3 with the cell
+  (<code>packages/base/lua/CellularSpace.lua</code>).</p>
+<p><strong>Validation, and the Lua in <code>tests/lua/</code>.</strong> The <code>lab03</code>/<code>lab06</code> goldens match
+cell for cell, year by year, iterations and maximum error included
+(<code>docs/validation.md</code>). But those labs never reach <code>correctCellChange</code>, the
+saturation branch or an isolated cell. For those, <code>tests/test_lua_differential.py</code>
+runs the original Lua functions with <code>lupa</code> on synthetic cases that reach every
+branch. That brings Lua source back into this repository, after the reference
+scripts left it for terrame-docker (entry above) — deliberately, and
+<strong>provisionally</strong>: these are component sources needed to test branches, not
+reference scripts, and <code>lupa</code> + stubs is not TerraME. The intended replacement
+is component-level goldens generated in terrame-docker (the same synthetic
+cases run in the real TerraME, inputs and outputs as CSV); when they exist,
+<code>tests/lua/</code> and the <code>lupa</code> dependency go, and <code>benchmark/goldens/</code> holds
+results only again.</p>
+<p><strong>Left open.</strong> <code>AllocationClueLike</code>'s <code>cell_correction=True</code> is an intended
+version of the step LuccME skips there; the Saturation variant's
+<code>correctCellChange</code> is LuccME's own. Whether the first should follow the second
+is a separate question, not settled here.</p>
+<h2 id="luccsaturationexecutor-with-raster-input-2026-09-24-6"><code>LuccSaturationExecutor</code>, with raster input (2026-09-24, #6)</h2>
+<p>LuccME-BR is run from a model TOML, not a script: the same second entry point
+the continuous and discrete executors are (entry "The Executor came back").
+<code>LuccSaturationExecutor</code> builds the three components from <code>record.parameters</code>
+and differs from <code>LuccContinuousExecutor</code> where that model needs it:</p>
+<ul>
+<li><strong>raster input.</strong> A continental cellular space (≈ 260 k cells, 15+ drivers)
+  is built once, as a raster, by the data pipeline (DisSCube in
+  luccmebr-reconstruction); rasterizing a vector at every run, as the base's
+  <code>load()</code> does, is the wrong way round there. So <code>load()</code> reads a GeoTIFF
+  whose bands carry their names (<code>dissmodel.io.load_dataset(fmt="raster")</code>,
+  the format <code>save()</code> already writes), and falls back to the base for vectors.
+  <code>_read_geotiff</code> returns the georeference in <code>meta</code>, not in the backend, so
+  <code>load()</code> copies it over — <code>save()</code> needs it.</li>
+<li><strong>regions</strong> are named per entry (<code>lu</code>, <code>region</code>) instead of implied by list
+  position, because LuccME-BR has three regions × six classes.</li>
+<li><strong><code>save_steps</code></strong>: a model checked against maps of intermediate years
+  (LuccME-BR: IBGE 2010, 2012, 2014) needs those states, not only the last.</li>
+</ul>
+<p>Checked end to end through the CLI: <code>examples/dissmodel-configs/lucc_saturation.toml</code>
+is lab03, and its run matches the lab03 golden in 2011 and 2014
+(<code>tests/test_executor_saturation.py</code>).</p>
+<h2 id="geotiff-input-moved-to-the-base-executor-2026-09-24-6">GeoTIFF input moved to the base executor (2026-09-24, #6)</h2>
+<p>The named-band GeoTIFF reading <code>LuccSaturationExecutor.load()</code> introduced
+(entry above) is not specific to that model: any LUCC executor whose
+cellular space is built once by a data pipeline wants it. It now lives in
+<code>LuccExecutorBase.load()</code> -- a <code>.tif</code>/<code>.tiff</code> source is read as it is,
+anything else is rasterized as before -- and <code>LuccSaturationExecutor</code> no
+longer overrides <code>load()</code>. The georeference is still copied from <code>meta</code>:
+dissmodel releases up to 0.6.5 keep it only there.</p>
+<p>In the same pass, the spatial lag's private shift helper gave way to
+<code>dissmodel</code>'s <code>RasterBackend.shift2d</code>: same slices, opposite sign
+convention, and the Moore neighbourhood is symmetric, so the sums are the
+same (the golden and Lua-differential tests pass unchanged).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

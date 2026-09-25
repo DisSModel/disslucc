@@ -1,0 +1,1122 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://dissmodel.github.io/disslucc/validation/">
+      
+      
+        <link rel="prev" href="../architecture/">
+      
+      
+        <link rel="next" href="../decisions/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Validation - disslucc</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#validation-disslucc-vs-terrame" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="disslucc" class="md-header__button md-logo" aria-label="disslucc" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            disslucc
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Validation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="green"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DisSModel/disslucc" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    disslucc
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="disslucc" class="md-nav__button md-logo" aria-label="disslucc" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    disslucc
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DisSModel/disslucc" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    disslucc
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Validation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lab1-continuous-amazon-deforestation-csac-region" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab1 (continuous) — Amazon deforestation, csAC region
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab15-discrete-deforestation-moju-region" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab15 (discrete) — deforestation, Moju region
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab15 (discrete) — deforestation, Moju region">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discriminance-warning-inherited-not-my-own-achievement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Discriminance warning (inherited, not my own achievement)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#year-by-year-with-iteration-counts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Year by year, with iteration counts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spatial-lag-potential-and-saturation-allocation-lab03-lab06" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spatial-lag potential and saturation allocation (lab03, lab06)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-these-numbers-dont-prove-engineering-validation-scientific-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What these numbers DON'T prove: engineering validation ≠ scientific validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notebooks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Notebooks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/notebooks/continuous_synthetic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LUCC Continuous (CLUE) — a synthetic example
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/notebooks/discrete_synthetic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LUCC Discrete (CLUE-S) — a synthetic example
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lab1-continuous-amazon-deforestation-csac-region" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab1 (continuous) — Amazon deforestation, csAC region
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab15-discrete-deforestation-moju-region" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab15 (discrete) — deforestation, Moju region
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab15 (discrete) — deforestation, Moju region">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discriminance-warning-inherited-not-my-own-achievement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Discriminance warning (inherited, not my own achievement)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#year-by-year-with-iteration-counts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Year by year, with iteration counts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spatial-lag-potential-and-saturation-allocation-lab03-lab06" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spatial-lag potential and saturation allocation (lab03, lab06)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-these-numbers-dont-prove-engineering-validation-scientific-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What these numbers DON'T prove: engineering validation ≠ scientific validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="validation-disslucc-vs-terrame">Validation — disslucc vs TerraME</h1>
+<p>Two real scenarios, two numeric results against the original
+TerraME/LuccME reference -- not just "runs without error".</p>
+<h2 id="lab1-continuous-amazon-deforestation-csac-region">Lab1 (continuous) — Amazon deforestation, csAC region</h2>
+<p>Real data: <code>data/input/csAC.zip</code> (shapefile, 6,574 cells) +
+<code>data/input/examples_demand_lab1.csv</code>, both originally from
+<code>disslucc-continuous</code>. Real calibrated regression coefficients (not
+synthetic). Reference: the last year (2014) of the golden
+<code>benchmark/goldens/lab01_md1643</code> -- the same values as the former
+<code>benchmark/data/LUCCME_Lab1_2014.zip</code> from <code>disslucc-continuous</code> (max
+difference 5e-13), now kept together with its generating scripts in
+<a href="https://github.com/LambdaGeo/terrame-docker">LambdaGeo/terrame-docker</a>
+(<code>benchmark/references/lab01_md1643/</code>).</p>
+<p>Method: raster grid built via direct <code>row</code>/<code>col</code> mapping (each
+shapefile polygon already knows its position in the original grid --
+not spatial resampling by resolution, which would introduce alignment
+error). Same method as
+<code>lucc_benchmark_executor.py::_build_mock_raster</code>.</p>
+<div class="highlight"><pre><span></span><code>Pontius &amp; Millones -- disslucc vs TerraME, class 'd' (deforestation):
+  n:                        6574
+  mae:                      0.003583
+  quantity_disagreement:    0.003210
+  allocation_disagreement:  0.000373
+  total_disagreement:       0.003583
+</code></pre></div>
+<p><strong>MAE = 0.0036, within the 0.01 tolerance</strong> that
+<code>disslucc-continuous/tests/test_benchmark_validation.py</code> uses to
+consider something "equivalent to TerraME". <code>quantity_disagreement</code>
+dominates over <code>allocation_disagreement</code> by nearly 10x -- the spatial
+pattern matches almost perfectly; the small difference is in total
+allocated quantity, not position.</p>
+<p>Reproduce: <code>examples/run_lab1_validation.py</code>.</p>
+<p>Provenance: the original LuccME scripts that generated this reference
+(<code>Lab1</code>, <code>maxDifference=1643</code>) are kept in
+terrame-docker's <code>benchmark/references/lab01_md1643/</code> (<code>lab1_main.lua</code> +
+<code>lab1_submodel.lua</code>, with the original TerraME output zip). These are
+<strong>not</strong> the same scripts as <code>terrame/luccme</code>'s public
+<code>tests/functional/lab01.lua</code>, which shares this scenario's coefficients
+and demand but declares a different <code>maxDifference</code> (5000) and did not
+generate this data -- see <code>benchmark/references/README.md</code> there.</p>
+<p><strong>Where this MAE comes from.</strong> All of it is one deliberate deviation:
+LuccME's <code>correctCellChange</code> never runs (its guard reads
+<code>cell.regionregionAloc</code>, a typo, in <code>AllocationCClueLike.lua</code>), while
+disslucc runs the correction by default (<code>cell_correction=True</code>, the
+intended algorithm). With <code>cell_correction=False</code>, disslucc matches TerraME
+in every year and every iteration count (MAE &lt; 1e-7, float32 noise) -- see
+"Year by year" below.</p>
+<h2 id="lab15-discrete-deforestation-moju-region">Lab15 (discrete) — deforestation, Moju region</h2>
+<p>Real data: <code>data/input/cs_moju.zip</code> (shapefile, 5,914 cells), originally
+from <code>disslucc-discrete</code>. Real logistic regression coefficients, real
+transition matrix (irreversible deforestation: forest can become
+deforested, deforested doesn't go back to forest). Reference:
+the last year (2004) of the golden <code>benchmark/goldens/lab15_md10</code> -- the
+same values as the former <code>benchmark/data/Lab15_2004.zip</code> from
+<code>disslucc-discrete</code> (identical), now kept with its generating scripts in
+terrame-docker (<code>benchmark/references/lab15_md10/</code>).</p>
+<div class="highlight"><pre><span></span><code>Pontius &amp; Millones -- disslucc vs TerraME, class 'd':
+  n:                        5914
+  mae:                      0.0
+  quantity_disagreement:    0.0
+  allocation_disagreement:  0.0
+  total_disagreement:       0.0
+
+Accuracy: 100.0000%   F1: 1.0000   (TP=442 TN=5472 FP=0 FN=0)
+</code></pre></div>
+<p><strong>MAE = 0, 100% cell-by-cell agreement</strong> -- matches exactly the result
+documented in <code>disslucc-discrete</code> itself
+(<code>benchmark/validate_lab15.py</code>: "100% cell-by-cell agreement with
+TerraME d_out").</p>
+<p>Reproduce: <code>examples/run_lab15_validation.py</code>.</p>
+<p>Provenance: despite the "Lab15" label used throughout this project
+(inherited from <code>disslucc-discrete</code>), the script that actually
+generated this reference is named <code>Lab6</code> internally
+(<code>outputTheme = "Lab6_"</code>, <code>maxDifference=10</code>), vendored unmodified at
+terrame-docker's <code>benchmark/references/lab15_md10/</code> under their original
+names <code>lab6_main.lua</code> + <code>lab6_submodel.lua</code> (this project used to keep
+them as <code>lab15_main.lua</code>/<code>lab15_submodel.lua</code>, to match its "Lab15"
+naming). This is <strong>not</strong> the same script as
+<code>terrame/luccme</code>'s public <code>tests/functional/lab15.lua</code>, which shares
+this scenario's coefficients and demand but declares a different
+<code>maxDifference</code> (300) and did not generate this data -- see
+<code>benchmark/references/README.md</code> in terrame-docker for the full trace.</p>
+<h3 id="discriminance-warning-inherited-not-my-own-achievement">Discriminance warning (inherited, not my own achievement)</h3>
+<p>The original <code>disslucc-discrete</code> already documents this caveat in
+<code>benchmark/validate_lab15.py</code>, and it applies equally here: the Lab15
+scenario is <strong>nearly non-discriminative</strong> -- a trivial static ranking
+by <code>(prob_d - prob_f)</code>, with no CLUE-S, no iteration at all, no time
+steps, already reproduces the same cell-by-cell output.</p>
+<p>This means the result above confirms that <strong>the logistic regression
+coefficients were transcribed correctly</strong> (the deterministic part,
+easy to verify) -- <strong>it is not proof that the allocation algorithm</strong>
+(CLUE-S with iteration/convergence via <code>factor_iteration</code>) <strong>is
+faithful</strong> in scenarios where competition between classes really
+matters. Proving that requires comparing the iteration count per step
+against the TerraME log -- done now, year by year, in the next section.</p>
+<h2 id="year-by-year-with-iteration-counts">Year by year, with iteration counts</h2>
+<p><code>benchmark/goldens/</code> holds a copy of the goldens generated in
+<a href="https://github.com/LambdaGeo/terrame-docker">LambdaGeo/terrame-docker</a>:
+for every cell and every simulated year, <code>&lt;lu&gt;_out</code> and <code>&lt;lu&gt;_pot</code>, plus
+TerraME's convergence-loop iteration count per year. terrame-docker has 23
+(the 21 functional labs of the LuccME package and the two scenarios above);
+this repository keeps the ones its tests use (<code>lab01</code>, <code>lab01_md1643</code>,
+<code>lab15</code>, <code>lab15_md10</code>, and <code>lab03</code>/<code>lab06</code> for the components of the next
+section), and adds the others as their components are implemented.
+<code>tests/test_goldens_per_year.py</code> checks the iteration count per year
+(exact) and every class per year (MAE &lt; 1e-6):</p>
+<table>
+<thead>
+<tr>
+<th>Golden</th>
+<th><code>maxDifference</code></th>
+<th>TerraME iterations per year</th>
+<th>disslucc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lab15_md10</code> (discrete)</td>
+<td>10</td>
+<td>0, 67, 56, 56, 61, 61</td>
+<td>same; <code>d_out</code>/<code>d_pot</code> identical every year</td>
+</tr>
+<tr>
+<td><code>lab15</code> (package)</td>
+<td>300</td>
+<td>0 every year</td>
+<td>same; identical every year</td>
+</tr>
+<tr>
+<td><code>lab01_md1643</code> (continuous)</td>
+<td>1643</td>
+<td>0, 0, 8, 26, 18, 17, 17</td>
+<td>same with <code>cell_correction=False</code> (MAE &lt; 1e-7 every year)</td>
+</tr>
+<tr>
+<td><code>lab01</code> (package)</td>
+<td>5000</td>
+<td>0 every year</td>
+<td>same with <code>cell_correction=False</code></td>
+</tr>
+</tbody>
+</table>
+<p>With the default <code>cell_correction=True</code>, <code>lab01_md1643</code> gives 0, 0, 0, 14,
+17, 16, 16 iterations and drifts from 2009 on (MAE 0.003583 in 2014, the
+number in the Lab1 section above).</p>
+<p>This closes the gap left by the Lab15 discriminance warning: the final map
+alone could not tell a correct CLUE-S from a static ranking, but the
+iteration counts can, and they match in every year.</p>
+<h2 id="spatial-lag-potential-and-saturation-allocation-lab03-lab06">Spatial-lag potential and saturation allocation (lab03, lab06)</h2>
+<p><code>PotentialSpatialLagRegression</code> and <code>AllocationClueLikeSaturation</code> port the two
+LuccME components LuccME-BR (Bezerra et al. 2022) is built from. <code>lab03</code> and
+<code>lab06</code> are the two LuccME labs that combine exactly
+<code>DemandPreComputedValues</code> + <code>PotentialCSpatialLagRegression</code> +
+<code>AllocationCClueLikeSaturation</code> (csAC, 2008–2014); <code>lab06</code> also replaces the
+driver <code>ti</code> in 2009 (<code>updateYears</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Result</th>
+<th>Test</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>potential alone, each year from the golden's previous land use</td>
+<td>every cell, year and class, |Δ| &lt; 1e-10 (the goldens keep 12 decimals)</td>
+<td><code>test_spatial_lag_golden.py</code></td>
+</tr>
+<tr>
+<td>whole model (potential + allocation) run from 2008 on its own</td>
+<td>every cell's <code>&lt;lu&gt;_out</code> and <code>&lt;lu&gt;_pot</code>, every year to 2014, |Δ| &lt; 1e-9</td>
+<td><code>test_saturation_golden.py</code></td>
+</tr>
+<tr>
+<td>TerraME log, per year</td>
+<td>iterations (0 every year) and "Maximum error" identical (rel. 1e-9)</td>
+<td><code>test_saturation_golden.py</code></td>
+</tr>
+</tbody>
+</table>
+<p>What the goldens also tell apart: a non-cumulative constant adaptation (the
+reading <code>PotentialLinearRegression</code> uses) misses from 2010 on; <code>lab06</code>'s
+dynamic variables paired by <code>object_id0</code> instead of by position (LuccME's
+<code>forEachCellPair</code>; <code>csAC_2009</code> is not in <code>csAC</code>'s order) misses by 0.045.</p>
+<p>What they do <strong>not</strong> reach: no cell ever needs <code>correctCellChange</code>, no cell is
+saturated (<code>changeLimiarValue = 1</code>), and csAC has no isolated cell — the cells'
+visiting order has no effect either. Those parts are checked against the
+original Lua functions (<code>tests/lua/</code>, run with <code>lupa</code>) on synthetic cases that
+reach every branch, within 1e-12 (<code>test_lua_differential.py</code>); ports broken on
+purpose (<code>BACKP</code> reset per cell, the 3 × 3 window without the cell, an isolated
+cell using its own share) fail them. Not tested at all: <code>modify_driver</code>, called
+only after 500 iterations.</p>
+<h2 id="summary">Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Type</th>
+<th>MAE</th>
+<th>Match</th>
+<th>What it proves</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lab1</td>
+<td>continuous</td>
+<td>0.0036</td>
+<td>--</td>
+<td>full model (Demand+Potential+Allocation), within the official tolerance; the whole MAE is the cell correction that TerraME skips</td>
+</tr>
+<tr>
+<td>Lab15</td>
+<td>discrete</td>
+<td>0.0</td>
+<td>100%</td>
+<td>correct regression coefficients</td>
+</tr>
+<tr>
+<td>Lab1, Lab15 year by year</td>
+<td>both</td>
+<td>&lt; 1e-7</td>
+<td>iterations exact</td>
+<td>CLUE-S convergence confirmed; CLUE identical to TerraME with <code>cell_correction=False</code></td>
+</tr>
+<tr>
+<td>lab03, lab06 year by year</td>
+<td>continuous</td>
+<td>&lt; 1e-9</td>
+<td>iterations and max error exact</td>
+<td>spatial-lag potential + saturation allocation identical to TerraME; the branches the labs don't reach, identical to the Lua</td>
+</tr>
+</tbody>
+</table>
+<h2 id="what-these-numbers-dont-prove-engineering-validation-scientific-validation">What these numbers DON'T prove: engineering validation ≠ scientific validation</h2>
+<p>A distinction from chapter 26 of the <em>Geospatial Modeling with Python</em>
+book (LambdaGeo), worth naming explicitly here: the two results above
+are <strong>engineering validation</strong> -- they confirm this Python port matches
+a TerraME reference run. That's a different question from <strong>scientific
+validation</strong>: fitting the model to real observed data, splitting a
+calibration period (used to fit parameters) from a held-out validation
+period, checked only after fitting.</p>
+<p>Neither scenario here does that calibration/validation split -- Lab1
+and Lab15 run with already-calibrated coefficients (inherited from the
+original repositories), comparing output against output, not against
+an independent observation.</p>
+<p>Also worth noting: cell-by-cell comparison is sometimes too strict a
+standard even for scientific validation -- two reasonable runs of the
+same model can disagree pixel by pixel and still be "equally good" at
+the spatial-pattern level. The standard alternative is <strong>multi-scale</strong>
+comparison (Costanza 1989) -- checking agreement over successively
+larger windows (3×3, 5×5, 9×9, ...): two maps can disagree at the
+finest resolution and agree well at a coarser one, real information a
+strict pixel-by-pixel match would throw away. This metric is already
+listed as implemented in the new LuccME specification spreadsheet
+(<code>Multi-window (Costanza 86)</code>) but doesn't exist in this package yet.</p>
+<h2 id="references">References</h2>
+<ul>
+<li>Verburg, P. H. et al. (2002). "Modeling the spatial dynamics of
+  regional land use: the CLUE-S model." <em>Environmental Management</em>,
+  30(3), 391-405</li>
+<li>Verburg, P. H. et al. (2006). "Downscaling of land use change
+  scenarios to assess the dynamics of European landscapes."
+  <em>Agriculture, Ecosystems &amp; Environment</em>, 114(1), 39-56</li>
+<li>Costanza, R. (1989). "Model goodness of fit: a multiple resolution
+  procedure." <em>Ecological Modelling</em>, 47(3-4), 199-215 -- the
+  multi-scale comparison method cited above</li>
+<li>Pontius Jr., R. G. &amp; Millones, M. (2011). "Death to Kappa: birth of
+  quantity disagreement and allocation disagreement for accuracy
+  assessment." <em>International Journal of Remote Sensing</em>, 32(15),
+  4407-4429 -- the decomposition used in <code>validation/pontius.py</code></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

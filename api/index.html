@@ -1,0 +1,1730 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://dissmodel.github.io/disslucc/api/">
+      
+      
+        <link rel="prev" href="../quickstart/">
+      
+      
+        <link rel="next" href="../architecture/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>API Reference - disslucc</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#api-disslucc" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="disslucc" class="md-header__button md-logo" aria-label="disslucc" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            disslucc
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              API Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="green"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DisSModel/disslucc" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    disslucc
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="disslucc" class="md-nav__button md-logo" aria-label="disslucc" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    disslucc
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DisSModel/disslucc" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    disslucc
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#demand" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Demand
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Demand">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#demandprecomputedvalues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DemandPreComputedValues
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#demandinline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DemandInline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load_demand_csvraw-str-land_use_types-liststr-listlistfloat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        load_demand_csv(raw: str, land_use_types: list[str]) -&gt; list[list[float]]
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#potential" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Potential
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Potential">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#potentiallinearregression-continuous" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PotentialLinearRegression (continuous)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#potentialdlogisticregression-discrete-clue-s" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PotentialDLogisticRegression (discrete, CLUE-S)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#potentialspatiallagregression-continuous" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PotentialSpatialLagRegression (continuous)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#allocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Allocation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Allocation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#allocationcluelike-continuous" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AllocationClueLike (continuous)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#allocationdclueslike-discrete-clue-s" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AllocationDClueSLike (discrete, CLUE-S)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#allocationcluelikesaturation-continuous" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AllocationClueLikeSaturation (continuous)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Validation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pontius_millonespred-ref-dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pontius_millones(pred, ref) -&gt; dict
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confusion_metricspred-ref-threshold05-dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        confusion_metrics(pred, ref, threshold=0.5) -&gt; dict
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schemas-dissluccschemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schemas (disslucc.schemas)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protocols-dissluccprotocols" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protocols (disslucc.protocols)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#executors-dissluccexecutors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executors (disslucc.executors)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Executors (disslucc.executors)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#luccexecutorbase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LuccExecutorBase
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lucccontinuousexecutor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LuccContinuousExecutor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#luccdiscreteexecutor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LuccDiscreteExecutor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#luccsaturationexecutor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LuccSaturationExecutor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registering-with-dissmodel-configs-toml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registering with dissmodel-configs (TOML)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notebooks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Notebooks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/notebooks/continuous_synthetic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LUCC Continuous (CLUE) — a synthetic example
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/notebooks/discrete_synthetic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LUCC Discrete (CLUE-S) — a synthetic example
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#demand" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Demand
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Demand">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#demandprecomputedvalues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DemandPreComputedValues
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#demandinline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DemandInline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load_demand_csvraw-str-land_use_types-liststr-listlistfloat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        load_demand_csv(raw: str, land_use_types: list[str]) -&gt; list[list[float]]
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#potential" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Potential
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Potential">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#potentiallinearregression-continuous" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PotentialLinearRegression (continuous)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#potentialdlogisticregression-discrete-clue-s" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PotentialDLogisticRegression (discrete, CLUE-S)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#potentialspatiallagregression-continuous" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PotentialSpatialLagRegression (continuous)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#allocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Allocation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Allocation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#allocationcluelike-continuous" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AllocationClueLike (continuous)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#allocationdclueslike-discrete-clue-s" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AllocationDClueSLike (discrete, CLUE-S)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#allocationcluelikesaturation-continuous" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AllocationClueLikeSaturation (continuous)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Validation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pontius_millonespred-ref-dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pontius_millones(pred, ref) -&gt; dict
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confusion_metricspred-ref-threshold05-dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        confusion_metrics(pred, ref, threshold=0.5) -&gt; dict
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schemas-dissluccschemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schemas (disslucc.schemas)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protocols-dissluccprotocols" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protocols (disslucc.protocols)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#executors-dissluccexecutors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executors (disslucc.executors)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Executors (disslucc.executors)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#luccexecutorbase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LuccExecutorBase
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lucccontinuousexecutor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LuccContinuousExecutor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#luccdiscreteexecutor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LuccDiscreteExecutor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#luccsaturationexecutor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LuccSaturationExecutor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registering-with-dissmodel-configs-toml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registering with dissmodel-configs (TOML)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="api-disslucc">API — disslucc</h1>
+<p>Reference for all public classes and functions. Every parameter listed
+was extracted from the real signature (<code>inspect.signature</code>), not from
+memory.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">disslucc</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">d</span>
+</code></pre></div>
+<p>exposes everything below directly (<code>d.PotentialLinearRegression</code>, etc.)
+-- no need to import from submodules.</p>
+<hr />
+<h2 id="demand">Demand</h2>
+<h3 id="demandprecomputedvalues"><code>DemandPreComputedValues</code></h3>
+<p>Land use demand precomputed per step. It's a <code>dissmodel.core.Model</code>
+-- registers itself in the active <code>Environment</code> when constructed.</p>
+<div class="highlight"><pre><span></span><code><span class="n">DemandPreComputedValues</span><span class="p">(</span>
+    <span class="n">annual_demand</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]],</span>  <span class="c1"># [step][class], step 0 = env.now()==0</span>
+    <span class="n">land_use_types</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>          <span class="c1"># class names, same order as the columns</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Use <code>load_demand_csv()</code> to build <code>annual_demand</code> from a CSV instead of
+writing the list by hand.</p>
+<p>Implements <code>DemandProtocol</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>get_current_lu_demand(i)</code></td>
+<td>demand for class <code>i</code> at the current step</td>
+</tr>
+<tr>
+<td><code>get_previous_lu_demand(i)</code></td>
+<td>demand for class <code>i</code> at the previous step</td>
+</tr>
+<tr>
+<td><code>get_current_lu_direction(i)</code></td>
+<td><code>1</code> growing, <code>-1</code> shrinking, <code>0</code> stable</td>
+</tr>
+<tr>
+<td><code>change_lu_direction(i)</code></td>
+<td>flips and returns the direction (used by Allocation when elasticity saturates)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="demandinline"><code>DemandInline</code></h3>
+<p>Same as <code>DemandPreComputedValues</code>, but takes the matrix directly as a
+Python list (<code>values</code>) instead of <code>annual_demand</code> coming from a CSV.
+<strong>Doesn't exist in the original repository</strong> -- convenience for
+scripts, no external file needed.</p>
+<div class="highlight"><pre><span></span><code><span class="n">DemandInline</span><span class="p">(</span><span class="n">values</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]],</span> <span class="n">land_use_types</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span>
+</code></pre></div>
+<h3 id="load_demand_csvraw-str-land_use_types-liststr-listlistfloat"><code>load_demand_csv(raw: str, land_use_types: list[str]) -&gt; list[list[float]]</code></h3>
+<p>Parses a CSV with one column per class, one row per step. Column order
+in the CSV doesn't need to match <code>land_use_types</code> -- mapping is by
+header name.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">disslucc.components.demand</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_demand_csv</span>
+<span class="n">annual_demand</span> <span class="o">=</span> <span class="n">load_demand_csv</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">"demand.csv"</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">(),</span> <span class="p">[</span><span class="s2">"f"</span><span class="p">,</span> <span class="s2">"d"</span><span class="p">,</span> <span class="s2">"outros"</span><span class="p">])</span>
+</code></pre></div>
+<hr />
+<h2 id="potential">Potential</h2>
+<h3 id="potentiallinearregression-continuous"><code>PotentialLinearRegression</code> (continuous)</h3>
+<p>Potential for change via linear regression (Verburg et al. 1999).
+Writes <code>&lt;lu&gt;_pot</code> to the backend -- that's what <code>AllocationClueLike</code>
+reads.</p>
+<div class="highlight"><pre><span></span><code><span class="n">PotentialLinearRegression</span><span class="p">(</span>
+    <span class="n">backend</span><span class="p">,</span>
+    <span class="n">potential_data</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">RegressionSpec</span><span class="p">]],</span>  <span class="c1"># [region][class]</span>
+    <span class="n">demand</span><span class="p">,</span>                                        <span class="c1"># object with DemandProtocol</span>
+    <span class="n">land_use_types</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">land_use_no_data</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># array in [0,1]: scales potential down by (1 - value); NOT a binary exclusion mask</span>
+    <span class="n">region_attr</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"region"</span><span class="p">,</span>           <span class="c1"># region array in the backend; created as 1 if absent</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><code>potential_data</code> is an outer list per REGION (the same scenario can
+have different coefficients per zone) -- for a single-region scenario,
+use a list with one element: <code>[[class1_spec, class2_spec, ...]]</code>.</p>
+<p>Each step, <code>_adapt_constants()</code> adjusts the regression constant
+proportionally to the change in demand -- it's the implicit "learning"
+that keeps the model close to the target without manual recalibration.</p>
+<h3 id="potentialdlogisticregression-discrete-clue-s"><code>PotentialDLogisticRegression</code> (discrete, CLUE-S)</h3>
+<p>Transition potential via logistic regression (Verburg et al. 2002).
+<strong>No raster version exists in the original repository</strong> -- this one
+was written following the same pattern as <code>PotentialLinearRegression</code>,
+it's not a literal translation.</p>
+<div class="highlight"><pre><span></span><code><span class="n">PotentialDLogisticRegression</span><span class="p">(</span>
+    <span class="n">backend</span><span class="p">,</span>
+    <span class="n">potential_data</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">LogisticRegressionSpec</span><span class="p">]],</span>
+    <span class="n">land_use_types</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">region_attr</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"region"</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Writes two arrays per class: <code>&lt;lu&gt;_reg</code> (raw logistic probability) and
+<code>&lt;lu&gt;_pot</code> (<code>prob + elasticity</code>, used by Allocation -- elasticity
+reinforces the class a cell already has, "locking" pixels into their
+current class).</p>
+<p>Doesn't implement <code>.modify()</code> -- CLUE-S doesn't use per-potential
+feedback, it adjusts a global correction vector in
+<code>AllocationDClueSLike</code> instead (same behavior as the original).</p>
+<hr />
+<h3 id="potentialspatiallagregression-continuous"><code>PotentialSpatialLagRegression</code> (continuous)</h3>
+<p>Port of LuccME's <code>PotentialCSpatialLagRegression</code>, the potential of LuccME-BR.
+For each class: <code>reg = newconst + Σ beta·x + ro·Y</code>, where <code>Y</code> is the mean share
+of the class over the cell and its Moore neighbours (each share divided by
+<code>1 - no-data share</code>; all-no-data neighbours left out); cells whose
+<code>const + Σ beta·x + ro·Y</code> exceeds <code>max_reg</code> get 1, below <code>min_reg</code> get 0; then
+<code>reg · (1 - no-data share)</code>, and <code>pot = reg - past share</code>. Writes <code>&lt;lu&gt;_pot</code> and
+<code>&lt;lu&gt;_reg</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">PotentialSpatialLagRegression</span><span class="p">(</span>
+    <span class="n">backend</span><span class="p">,</span>
+    <span class="n">potential_data</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">SpatialLagRegressionSpec</span><span class="p">]],</span>  <span class="c1"># [region][class]</span>
+    <span class="n">demand</span><span class="p">,</span>                                  <span class="c1"># DemandProtocol</span>
+    <span class="n">land_use_types</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">land_use_no_data</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>     <span class="c1"># share of the no-data class, as in PotentialLinearRegression</span>
+    <span class="n">region_attr</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"region"</span><span class="p">,</span>             <span class="c1"># created as 1 if absent</span>
+    <span class="n">mask_attr</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"mask"</span><span class="p">,</span>                 <span class="c1"># cells that exist; created as 1 if absent</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Unlike <code>PotentialLinearRegression</code>, the constant adaptation <strong>accumulates</strong>
+(LuccME writes the adapted value back into <code>const</code> every step), and
+<code>modify_driver(attr, rate)</code> ports LuccME's <code>modifyDriver</code> (used by
+<code>AllocationClueLikeSaturation</code>). The pure function <code>spatial_lag_regression()</code>
+in the same module computes one class, for tests and reuse.</p>
+<h2 id="allocation">Allocation</h2>
+<h3 id="allocationcluelike-continuous"><code>AllocationClueLike</code> (continuous)</h3>
+<p>CLUE allocation -- elasticity + iterative convergence + proportional
+correction between classes + <code>complementar_lu</code>. Cell fraction in
+<code>[0,1]</code>, not categorical.</p>
+<div class="highlight"><pre><span></span><code><span class="n">AllocationClueLike</span><span class="p">(</span>
+    <span class="n">backend</span><span class="p">,</span>
+    <span class="n">demand</span><span class="p">,</span>                            <span class="c1"># DemandProtocol</span>
+    <span class="n">potential</span><span class="p">,</span>                         <span class="c1"># PotentialProtocol (only uses .modify())</span>
+    <span class="n">land_use_types</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">static</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>            <span class="c1"># -1 follows demand | 0 free | 1 fixed, per class</span>
+    <span class="n">complementar_lu</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>               <span class="c1"># class that absorbs the remainder (sum always = 1)</span>
+    <span class="n">cell_area</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">max_difference</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1643</span><span class="p">,</span>       <span class="c1"># convergence tolerance (scales with total area!)</span>
+    <span class="n">max_iteration</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span>
+    <span class="n">initial_elasticity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">min_elasticity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.001</span><span class="p">,</span>
+    <span class="n">max_elasticity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span>
+    <span class="n">allocation_data</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">AllocationSpec</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># min/max per class, in land_use_types order</span>
+    <span class="n">cell_correction</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>       <span class="c1"># False reproduces TerraME (see below)</span>
+<span class="p">)</span>
+</code></pre></div>
+<blockquote>
+<p><code>cell_correction=True</code> (default) runs <code>_correct_cell_change</code>, which brings
+each cell's classes back to a total of 1. LuccME meant to do the same, but its
+<code>correctCellChange</code> never runs (the guard reads <code>cell.regionregionAloc</code>, a typo,
+in <code>AllocationCClueLike.lua</code>). So the default is the intended algorithm and
+differs from TerraME; <code>cell_correction=False</code> reproduces TerraME year by year
+(<code>tests/test_goldens_per_year.py</code>).</p>
+<p>After a run, <code>iterations_per_step</code> lists the convergence-loop iterations of
+each step, same meaning as LuccME's "Number of iterations" (0 = first
+allocation accepted).</p>
+<p><code>max_difference</code> has to be calibrated to the scenario's scale -- the
+default (1643) is the value used in the real Lab1 (~900k ha). In a
+synthetic scenario with 900 cells, using the default never triggers
+the iteration; lower it to something like <code>5.0</code>.</p>
+</blockquote>
+<p>Reads <code>backend.get(lu + "_pot")</code> directly (doesn't call
+<code>potential.get_potential()</code> -- that indirection only existed on an
+experimental branch of the original repository, not on <code>main</code>).</p>
+<h3 id="allocationdclueslike-discrete-clue-s"><code>AllocationDClueSLike</code> (discrete, CLUE-S)</h3>
+<p>Cell-by-cell competition allocation with a transition matrix. Each
+cell belongs to exactly one class (binary 0/1 array).
+<strong>New raster version, no equivalent in the original</strong> (same situation
+as <code>PotentialDLogisticRegression</code>).</p>
+<div class="highlight"><pre><span></span><code><span class="n">AllocationDClueSLike</span><span class="p">(</span>
+    <span class="n">backend</span><span class="p">,</span>
+    <span class="n">demand</span><span class="p">,</span>                                       <span class="c1"># DemandProtocol</span>
+    <span class="n">land_use_types</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">transition_matrix</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]],</span>      <span class="c1"># [region][from][to], 1=allowed</span>
+    <span class="n">cell_area</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">max_difference</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">,</span>
+    <span class="n">max_iteration</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span>
+    <span class="n">factor_iteration</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0001</span><span class="p">,</span>               <span class="c1"># correction-vector adjustment rate</span>
+    <span class="n">region_attr</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"region"</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Optional <code>tau_&lt;lu&gt;</code> arrays in the backend act as per-cell/class
+attraction/repulsion; if absent, <code>tau=0</code> (default behavior).</p>
+<p>After a run, <code>iterations_per_step</code> lists the convergence-loop iterations of
+each step (the largest <code>n</code> in LuccME's <code>Iteration -&gt; n</code> log; 0 = first pass
+accepted). It matches TerraME in every year of <code>lab15_md10</code> (0, 67, 56, 56, 61, 61).</p>
+<hr />
+<h3 id="allocationcluelikesaturation-continuous"><code>AllocationClueLikeSaturation</code> (continuous)</h3>
+<p>Port of LuccME's <code>AllocationCClueLikeSaturation</code>, the allocation of LuccME-BR:
+<code>AllocationClueLike</code>'s CLUE loop plus a per-cell <strong>saturation indicator</strong> —
+the share of the available area (not no-data, not protected) no longer in
+<code>complementar_lu</code>, averaged over the 3 × 3 window with the cell, recomputed each
+step. Where it exceeds a class's <code>change_limiar_value</code>, the change in the
+demand's direction is halved or capped at <code>max_change_above_limiar</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">AllocationClueLikeSaturation</span><span class="p">(</span>
+    <span class="n">backend</span><span class="p">,</span>
+    <span class="n">demand</span><span class="p">,</span>                                   <span class="c1"># DemandProtocol</span>
+    <span class="n">potential</span><span class="p">,</span>                                <span class="c1"># RegionalPotentialProtocol</span>
+    <span class="n">land_use_types</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">allocation_data</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">SaturationAllocationSpec</span><span class="p">]],</span>  <span class="c1"># [region][class], static per class</span>
+    <span class="n">complementar_lu</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">cell_area</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">land_use_no_data</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">attr_protection</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>       <span class="c1"># protected share, left out of the indicator</span>
+    <span class="n">saturation_indicator</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"saturationLimiar"</span><span class="p">,</span>  <span class="c1"># array written each step</span>
+    <span class="n">max_difference</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1643</span><span class="p">,</span>
+    <span class="n">max_iteration</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span>
+    <span class="n">initial_elasticity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">min_elasticity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.001</span><span class="p">,</span>
+    <span class="n">max_elasticity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span>
+    <span class="n">region_attr</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"regionAloc"</span><span class="p">,</span>
+    <span class="n">mask_attr</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"mask"</span><span class="p">,</span>
+    <span class="n">order_attr</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>            <span class="c1"># LuccME's cell order (see below); default row-major</span>
+<span class="p">)</span>
+</code></pre></div>
+<blockquote>
+<p>Unlike <code>AllocationClueLike</code>, this is LuccME's own <code>correctCellChange</code>, which
+runs in the Saturation variant (the region test is spelled right there). Its
+<code>BACKP</code> is declared outside the loop over cells, so a cell that lowers it lowers
+it for the cells visited after it: the result depends on the order of the
+cells, which <code>order_attr</code> gives (TerraME visits them in the order of the layer).</p>
+<p><code>iterations_per_step</code> and <code>max_error_per_step</code> record, per step, what LuccME
+logs as "Number of iterations" and "Maximum error".</p>
+</blockquote>
+<h2 id="validation">Validation</h2>
+<h3 id="pontius_millonespred-ref-dict"><code>pontius_millones(pred, ref) -&gt; dict</code></h3>
+<p>Pontius &amp; Millones (2011) decomposition into quantity + allocation
+disagreement. Accepts continuous <code>[0,1]</code> fraction OR <code>0/1</code> categorical
+-- reduces exactly to the classic discrete formula in the binary case
+(proof embedded in <code>validation/pontius.py</code>, run
+<code>python3 src/disslucc/validation/pontius.py</code> to see the self-test).</p>
+<div class="highlight"><pre><span></span><code><span class="n">pontius_millones</span><span class="p">(</span><span class="n">pred</span><span class="p">:</span> <span class="n">array</span><span class="o">-</span><span class="n">like</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="n">array</span><span class="o">-</span><span class="n">like</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">{</span>
+    <span class="s2">"n"</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">"mae"</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="s2">"quantity_disagreement"</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">"allocation_disagreement"</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="s2">"total_disagreement"</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>  <span class="c1"># == mae</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>pred</code>/<code>ref</code> are the per-cell value of <strong>one class</strong> -- to compare
+several classes, call once per class.</p>
+<h3 id="confusion_metricspred-ref-threshold05-dict"><code>confusion_metrics(pred, ref, threshold=0.5) -&gt; dict</code></h3>
+<p>Accuracy/precision/recall/F1, binarizes at <code>threshold</code> before
+comparing. Only makes sense for categorical comparison -- for
+genuinely continuous maps, use <code>pontius_millones()</code> without binarizing
+(binarizing throws away fractional information).</p>
+<div class="highlight"><pre><span></span><code><span class="n">confusion_metrics</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">ref</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">{</span>
+    <span class="s2">"n"</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">"tp"</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">"tn"</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">"fp"</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">"fn"</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="s2">"accuracy"</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>  <span class="c1"># in %</span>
+    <span class="s2">"precision"</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">"recall"</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">"f1"</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="schemas-dissluccschemas">Schemas (<code>disslucc.schemas</code>)</h2>
+<p>Plain dataclasses -- type validation, no logic.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">RegressionSpec</span><span class="p">:</span>
+    <span class="n">const</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">betas</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">is_log</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>          <span class="c1"># if True, applies 10**reg before the clip</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">LogisticRegressionSpec</span><span class="p">:</span>
+    <span class="n">const</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">elasticity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">betas</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">AllocationSpec</span><span class="p">:</span>
+    <span class="n">static</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>              <span class="c1"># -1 follows demand | 0 free | 1 fixed</span>
+    <span class="n">min_value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">max_value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">min_change</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">max_change</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SpatialLagRegressionSpec</span><span class="p">:</span>
+    <span class="n">const</span><span class="p">:</span> <span class="nb">float</span>                  <span class="c1"># adapted every step, cumulatively</span>
+    <span class="n">ro</span><span class="p">:</span> <span class="nb">float</span>                     <span class="c1"># spatial autoregressive coefficient</span>
+    <span class="n">betas</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">is_log</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">min_reg</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">max_reg</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SaturationAllocationSpec</span><span class="p">:</span>
+    <span class="n">static</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">min_value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">max_value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">min_change</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">max_change</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">change_limiar_value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>      <span class="c1"># saturation above this limits the change...</span>
+    <span class="n">max_change_above_limiar</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>  <span class="c1"># ...to half, or to this</span>
+</code></pre></div>
+<hr />
+<h2 id="protocols-dissluccprotocols">Protocols (<code>disslucc.protocols</code>)</h2>
+<p>Contracts between roles -- <code>@runtime_checkable</code>, so
+<code>isinstance(obj, DemandProtocol)</code> actually works at runtime.</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">DemandProtocol</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_current_lu_demand</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lu_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span> <span class="o">...</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_previous_lu_demand</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lu_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span> <span class="o">...</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_current_lu_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lu_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span> <span class="o">...</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">change_lu_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lu_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span> <span class="o">...</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">PotentialProtocol</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">modify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r_number</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">lu_idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">RegionalPotentialProtocol</span><span class="p">(</span><span class="n">PotentialProtocol</span><span class="p">,</span> <span class="n">Protocol</span><span class="p">):</span>   <span class="c1"># AllocationClueLikeSaturation</span>
+    <span class="n">potential_data</span><span class="p">:</span> <span class="nb">list</span>                                         <span class="c1"># one entry per region</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">modify_driver</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_protection</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">rate</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
+</code></pre></div>
+<hr />
+<h2 id="executors-dissluccexecutors">Executors (<code>disslucc.executors</code>)</h2>
+<p>Second entry point, with automatic provenance (<code>ExperimentRecord</code>) --
+coexists with direct construction in a script, doesn't replace it.
+Not imported by <code>import disslucc</code> (heavier import, pulls in
+<code>geopandas</code>/rasterization) -- import it explicitly:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">disslucc.executors</span><span class="w"> </span><span class="kn">import</span> <span class="n">LuccContinuousExecutor</span><span class="p">,</span> <span class="n">LuccDiscreteExecutor</span>
+</code></pre></div>
+<h3 id="luccexecutorbase"><code>LuccExecutorBase</code></h3>
+<p>Base shared by <code>LuccContinuousExecutor</code>/<code>LuccDiscreteExecutor</code>,
+extracted after measuring with <code>diff</code> that <code>validate()</code>/<code>load()</code> were
+identical between the two and <code>save()</code> had the same skeleton -- not
+premature abstraction. Provides:</p>
+<ul>
+<li><code>validate()</code> -- checks <code>record.source.uri</code> and
+  <code>self.required_parameters</code> (list of required keys, declared per
+  subclass)</li>
+<li><code>load()</code> -- a <code>.tif</code>/<code>.tiff</code> source is a <strong>GeoTIFF with named bands</strong>
+  (a <code>name</code> tag per band, as <code>dissmodel.io.save_geotiff</code> writes): read as
+  it is, with its georeference, after checking that every land use and
+  driver has a band. Any other source is loaded as a GeoDataFrame via
+  <code>load_dataset</code>, gets <code>column_map</code>, <strong>and is already rasterized</strong>
+  (<code>vector_to_raster_backend</code>). Either way it returns the <code>RasterBackend</code>
+  ready to use, not the GeoDataFrame.
+  Same convention as the real <code>LUCCRasterExecutor</code>, checked against the
+  source: rasterizing is expensive, it runs once inside <code>load()</code>,
+  never inside <code>run()</code>.</li>
+<li><code>save()</code> -- a default that serves both cases: writes the land-use
+  bands (+ <code>"mask"</code>, if present) as a GeoTIFF to <code>record.output_path</code>
+  -- local path or <code>s3://</code> (MinIO), via <code>dissmodel.io.raster.save_geotiff</code>
+  -- then <code>record.metrics.update(result["metrics"])</code>, output checksum
+  (of the written file), status, final log. <code>crs</code>/<code>transform</code> come
+  straight off the <code>RasterBackend</code> (<code>load()</code> sets both, from the
+  GeoTIFF or via <code>vector_to_raster_backend</code>). Same mechanism as
+  <code>brmangue-dissmodel</code>'s <code>RasterExecutor.save()</code>.</li>
+</ul>
+<p><code>run(data, record)</code> remains abstract -- <code>data</code> arrives as the
+<code>RasterBackend</code> already built (not the GeoDataFrame); subclasses just
+run the model on top of it and return
+<code>{"backend", "land_use_types", "metrics", "final_log"}</code>.</p>
+<h3 id="lucccontinuousexecutor"><code>LuccContinuousExecutor</code></h3>
+<p><code>name = "lucc_continuous"</code>. Expects in <code>record.parameters</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>land_use_types</code></td>
+<td><code>list[str]</code></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><code>demand_csv</code></td>
+<td><code>str</code> (path)</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><code>potential_data</code></td>
+<td><code>list[dict]</code> (one per class: <code>const</code>, <code>betas</code>, <code>is_log</code>)</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><code>static</code></td>
+<td><code>dict[str, int]</code></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><code>complementar_lu</code></td>
+<td><code>str</code></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><code>allocation_data</code></td>
+<td><code>list[dict]</code> (<code>AllocationSpec</code> fields)</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><code>cell_area</code>, <code>n_steps</code>, <code>resolution</code>, <code>max_difference</code>, <code>land_use_no_data</code></td>
+<td>--</td>
+<td>no (defaults)</td>
+</tr>
+</tbody>
+</table>
+<p><code>record.source.uri</code> points to the input shapefile/GeoDataFrame
+(rasterized via <code>vector_to_raster_backend</code>, <code>resolution</code> parameter).</p>
+<h3 id="luccdiscreteexecutor"><code>LuccDiscreteExecutor</code></h3>
+<p><code>name = "lucc_discrete"</code>. Same shape, swapping <code>potential_data</code> for
+<code>LogisticRegressionSpec</code> specs (<code>const</code>, <code>elasticity</code>, <code>betas</code>) and
+<code>static</code>/<code>complementar_lu</code>/<code>allocation_data</code> for <code>transition_matrix</code>
+(<code>list[list[list[int]]]</code>, <code>[region][from][to]</code>).</p>
+<h3 id="luccsaturationexecutor"><code>LuccSaturationExecutor</code></h3>
+<p><code>name = "lucc_continuous_saturation"</code>: <code>DemandPreComputedValues</code> +
+<code>PotentialSpatialLagRegression</code> + <code>AllocationClueLikeSaturation</code>, the
+continuous model of LuccME-BR. Parameters as the components', plus:</p>
+<ul>
+<li>each <code>potential_data</code>/<code>allocation_data</code> entry names its class (<code>lu</code>) and,
+  optionally, its <code>region</code> (default 1) — one entry per class per region;</li>
+<li><code>record.source.uri</code> is usually a <strong>GeoTIFF with named bands</strong> (read by the
+  base's <code>load()</code>): land uses, drivers and, optionally, <code>mask</code>,
+  <code>region</code>/<code>regionAloc</code> and the cell order (<code>order_attr</code>);</li>
+<li><code>save_steps: list[int]</code> writes those steps too, as <code>&lt;output&gt;_step&lt;k&gt;.tif</code>.</li>
+</ul>
+<p><code>examples/dissmodel-configs/lucc_saturation.toml</code> is LuccME's lab03;
+<code>tests/test_executor_saturation.py</code> runs it through the local CLI and matches
+the lab03 golden:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>disslucc.executors.saturation<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--toml<span class="w"> </span>examples/dissmodel-configs/lucc_saturation.toml<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--input<span class="w"> </span>cellspace.tif<span class="w"> </span>--param<span class="w"> </span><span class="nv">demand_csv</span><span class="o">=</span>demand.csv<span class="w"> </span>--output<span class="w"> </span>out.tif
+</code></pre></div>
+<h3 id="example">Example</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dissmodel.executor</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExperimentRecord</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dissmodel.executor.runner</span><span class="w"> </span><span class="kn">import</span> <span class="n">execute_lifecycle</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">disslucc.executors</span><span class="w"> </span><span class="kn">import</span> <span class="n">LuccContinuousExecutor</span>
+
+<span class="n">record</span> <span class="o">=</span> <span class="n">ExperimentRecord</span><span class="p">(</span>
+    <span class="n">model_name</span><span class="o">=</span><span class="n">LuccContinuousExecutor</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+    <span class="n">source</span><span class="o">=</span><span class="p">{</span><span class="s2">"uri"</span><span class="p">:</span> <span class="s2">"my_shapefile.zip"</span><span class="p">},</span>
+    <span class="n">parameters</span><span class="o">=</span><span class="p">{</span><span class="o">...</span><span class="p">},</span>
+<span class="p">)</span>
+<span class="n">record</span><span class="p">,</span> <span class="n">timings</span> <span class="o">=</span> <span class="n">execute_lifecycle</span><span class="p">(</span><span class="n">LuccContinuousExecutor</span><span class="p">(),</span> <span class="n">record</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">metrics</span><span class="p">,</span> <span class="n">record</span><span class="o">.</span><span class="n">artifacts</span><span class="p">,</span> <span class="n">record</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">checksum</span><span class="p">)</span>
+</code></pre></div>
+<p>See <code>examples/run_lab1_via_executor.py</code> and
+<code>examples/run_lab15_via_executor.py</code> for a full example with real data.</p>
+<h3 id="registering-with-dissmodel-configs-toml">Registering with <code>dissmodel-configs</code> (TOML)</h3>
+<p>The Executors are also the entry point registered in
+<a href="https://github.com/DisSModel/dissmodel-configs"><code>dissmodel-configs</code></a>
+for running on <code>dissmodel-platform</code>, and (as of the <code>dissmodel</code> fix
+below) runnable locally too, via <code>dissmodel.executor.cli.run_cli</code>
+(<code>continuous.py</code>/<code>discrete.py</code> each have an <code>if __name__ == "__main__"</code>
+block):</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>disslucc.executors.continuous<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--toml<span class="w"> </span>examples/dissmodel-configs/lucc_continuous.toml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--input<span class="w"> </span>data/input/csAC.zip<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--param<span class="w"> </span><span class="nv">demand_csv</span><span class="o">=</span>data/input/examples_demand_lab1.csv
+</code></pre></div>
+<p><code>examples/dissmodel-configs/</code> has one TOML per executor --
+<a href="https://github.com/DisSModel/disslucc/blob/main/examples/dissmodel-configs/lucc_continuous.toml"><code>lucc_continuous.toml</code></a>
+and
+<a href="https://github.com/DisSModel/disslucc/blob/main/examples/dissmodel-configs/lucc_discrete.toml"><code>lucc_discrete.toml</code></a>
+-- each encoding the exact same coefficients as its <code>*_via_executor.py</code>
+sibling above (verified: same final metrics, same output checksum for
+the continuous/Lab1 case). Everything under <code>[model]</code> besides
+<code>[model.parameters]</code> (<code>land_use_types</code>, <code>[[model.potential_data]]</code>,
+<code>[[model.allocation_data]]</code>, <code>static</code>, <code>transition_matrix</code>, ...) is
+what gets merged into <code>record.parameters</code> before <code>run()</code> is called --
+by the platform when registered in <code>dissmodel-configs</code>, and (as of the
+fix below) by <code>dissmodel.executor.cli</code> for local <code>--toml</code> runs too.
+Table names match this package's own <code>required_parameters</code>
+(<code>potential_data</code>/<code>allocation_data</code>, not the shorter <code>potential</code>/
+<code>allocation</code> used in some other <code>dissmodel-configs</code> entries) --
+<code>disslucc</code>'s executors read those keys as-is, with no renaming layer
+of its own.</p>
+<blockquote>
+<p><strong>Fixed in <code>dissmodel</code> 0.6.4.</strong> The local-<code>--toml</code> merge above
+didn't exist in <code>dissmodel</code>'s CLI before this was found (only
+<code>[model.parameters]</code> was ever read into <code>record.parameters</code>,
+matching the docstring's promise but not the code). A fix was
+written and validated (full <code>dissmodel</code> test suite + new regression
+tests for the merge, <code>mypy</code> clean, and this exact
+<code>lucc_continuous.toml</code>/<code>lucc_discrete.toml</code> run end-to-end through
+the real CLI with matching output checksums) and shipped in
+<code>dissmodel</code> 0.6.4 -- <code>disslucc</code> pins <code>dissmodel&gt;=0.6.4</code>, so both
+commands above work as written. See <code>docs/decisions.md</code>, "TOML
+config example added for the executors path", for the full history.</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

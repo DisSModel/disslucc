@@ -1,0 +1,1082 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://dissmodel.github.io/disslucc/architecture/">
+      
+      
+        <link rel="prev" href="../api/">
+      
+      
+        <link rel="next" href="../validation/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Architecture - disslucc</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#architecture-disslucc" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="disslucc" class="md-header__button md-logo" aria-label="disslucc" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            disslucc
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Architecture
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="green"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DisSModel/disslucc" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    disslucc
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="disslucc" class="md-nav__button md-logo" aria-label="disslucc" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    disslucc
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DisSModel/disslucc" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    disslucc
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-this-package-is" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What this package is
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#two-decisions-that-define-everything-here-and-a-third-that-came-back" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Two decisions that define everything here, and a third that came back
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validationpontiuspy-a-candidate-for-dissmodel-not-just-disslucc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        validation/pontius.py: a candidate for dissmodel, not just disslucc
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protocolspy-a-type-hint-with-no-enforcement-until-now" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        protocols.py: a type hint with no enforcement, until now
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fidelity-by-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fidelity, by module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-unify-continuous-and-discrete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why unify continuous and discrete
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-folder-per-role-file-per-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why folder-per-role, file-per-strategy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-was-considered-and-dropped" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What was considered and dropped
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notebooks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Notebooks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/notebooks/continuous_synthetic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LUCC Continuous (CLUE) — a synthetic example
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/notebooks/discrete_synthetic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LUCC Discrete (CLUE-S) — a synthetic example
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-this-package-is" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What this package is
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#two-decisions-that-define-everything-here-and-a-third-that-came-back" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Two decisions that define everything here, and a third that came back
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validationpontiuspy-a-candidate-for-dissmodel-not-just-disslucc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        validation/pontius.py: a candidate for dissmodel, not just disslucc
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protocolspy-a-type-hint-with-no-enforcement-until-now" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        protocols.py: a type hint with no enforcement, until now
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fidelity-by-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fidelity, by module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-unify-continuous-and-discrete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why unify continuous and discrete
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-folder-per-role-file-per-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why folder-per-role, file-per-strategy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-was-considered-and-dropped" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What was considered and dropped
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="architecture-disslucc">Architecture — disslucc</h1>
+<h2 id="what-this-package-is">What this package is</h2>
+<p><strong>Raster-only</strong>, <strong>script-first</strong> port of two real repositories from
+the DisSModel ecosystem:</p>
+<ul>
+<li><a href="https://github.com/DisSModel/disslucc-continuous"><code>disslucc-continuous</code></a>
+  (<code>main</code> branch) — continuous CLUE (Verburg et al. 1999)</li>
+<li><a href="https://github.com/DisSModel/disslucc-discrete"><code>disslucc-discrete</code></a> —
+  discrete CLUE-S (Verburg et al. 2002)</li>
+</ul>
+<p>unified into a single package, because real parts of what they do
+(Demand, Validation) were already duplicated code between the two --
+see <a href="#why-unify-continuous-and-discrete">"Why unify continuous and discrete"</a>
+below.</p>
+<h2 id="two-decisions-that-define-everything-here-and-a-third-that-came-back">Two decisions that define everything here, and a third that came back</h2>
+<p><strong>1. Raster only.</strong> The two original repositories keep vector and
+raster in parallel. For LUCC with large data, raster is the better
+path, and keeping two substrates creates complication without
+proportional payoff right now -- a deliberate decision, not a
+technical limitation.</p>
+<p><strong>2. Script-first as the default entry point, not the only one.</strong> No
+<code>ModelExecutor</code> required -- a Python script can build the components
+directly:</p>
+<div class="highlight"><pre><span></span><code><span class="n">demand</span> <span class="o">=</span> <span class="n">DemandInline</span><span class="p">(</span><span class="n">values</span><span class="o">=...</span><span class="p">,</span> <span class="n">land_use_types</span><span class="o">=...</span><span class="p">)</span>
+<span class="n">potential</span> <span class="o">=</span> <span class="n">PotentialLinearRegression</span><span class="p">(</span><span class="n">backend</span><span class="o">=...</span><span class="p">,</span> <span class="n">demand</span><span class="o">=</span><span class="n">demand</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<span class="n">allocation</span> <span class="o">=</span> <span class="n">AllocationClueLike</span><span class="p">(</span><span class="n">backend</span><span class="o">=...</span><span class="p">,</span> <span class="n">demand</span><span class="o">=</span><span class="n">demand</span><span class="p">,</span> <span class="n">potential</span><span class="o">=</span><span class="n">potential</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<span class="n">env</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div>
+<p>the way an original LuccME <code>.lua</code> script built
+<code>P1 = PotentialCLinearRegression{...}; LuccMEModel{potential=P1, ...}</code>.
+The whole script <strong>is</strong> the experiment -- reproducible, versionable in
+Git, without depending on any platform on top.</p>
+<p><strong>3. <code>executors/</code> — <code>ModelExecutor</code> came back, with a shared base.</strong>
+An earlier version of this package completely dropped
+<code>ModelExecutor</code>/<code>ExperimentRecord</code> in favor of script-first only. That
+contradicted <code>dissmodel</code>'s own central argument (automatic provenance
+-- input checksum, parameters, timing, output paths -- is a
+"first-class concern" in the paper's Statement of Need).
+<code>executors/continuous.py</code> and <code>executors/discrete.py</code> bring that back
+as a SECOND entry point, not as a replacement: the same direct scripts
+keep working exactly as before.</p>
+<p>After measuring with <code>diff</code> that the two had identical
+<code>validate()</code>/<code>load()</code> and the same <code>save()</code> skeleton, I extracted
+<code>executors/base.py</code> (<code>LuccExecutorBase</code>) with that shared behavior --
+it's not dynamic dispatch by name, it's plain inheritance (method
+template): <code>run()</code> stays abstract, each executor implements its own,
+because that's where continuous and discrete genuinely diverge. Total
+line count went up (237 → 286, <code>base.py</code>'s docstring is heavy), so the
+gain isn't "less code" -- it's zero duplication of identical logic: a
+bug in <code>validate()</code>/<code>load()</code> now only needs fixing in one place, not
+two that could drift apart unnoticed (the same real problem we already
+saw with <code>DemandPreComputedValues</code> duplicated between the original
+repositories). Tested by running the same already-validated Lab1/Lab15
+scenarios -- identical result, digit for digit. See
+<a href="../decisions/#the-executor-came-back"><code>decisions.md</code></a> for the numbers.</p>
+<h2 id="validationpontiuspy-a-candidate-for-dissmodel-not-just-disslucc"><code>validation/pontius.py</code>: a candidate for <code>dissmodel</code>, not just <code>disslucc</code></h2>
+<p><code>pontius_millones()</code>/<code>confusion_metrics()</code> have no code reference at
+all to <code>land_use_types</code>, <code>backend</code>, <code>Demand</code>/<code>Potential</code>/<code>Allocation</code>
+-- they take two arrays (<code>pred</code>, <code>ref</code>) and return the decomposition,
+with no knowledge that land use is being compared. Same test that
+separated <code>pipeline_core.py</code> (generic) from <code>disslucc/protocols.py</code>
+(knows LUCC) in an earlier prototype -- by that criterion, it's a
+<code>dissmodel</code> candidate, it doesn't belong stuck here.</p>
+<p>Stronger evidence than any earlier candidate: the JOSS paper draft
+already cites Pontius &amp; Millones validating <code>brmangue-dissmodel</code>
+(mangrove coastal dynamics -- a different domain from LUCC). A second
+real consumer already exists, not a hypothetical one -- the criterion
+<code>dissmodel</code>'s own issue #128 uses to decide on extraction is already
+met.</p>
+<p>Not migrated now: waiting for the JOSS verdict (decision already
+made), <code>brmangue-dissmodel</code> isn't this team's (coordination between
+people, not just refactoring), and the project's
+one-repo-per-fellow structure makes "where the code lives" an
+institutional decision, not just a technical one.</p>
+<h2 id="protocolspy-a-type-hint-with-no-enforcement-until-now"><code>protocols.py</code>: a type hint with no enforcement, until now</h2>
+<p><code>DemandProtocol</code>/<code>PotentialProtocol</code> are <code>@runtime_checkable</code>, but
+nowhere in the code does anything <code>isinstance()</code> them -- the value was
+just contract documentation until <code>mypy</code> entered the project (see
+"What this package is" -- <code>[project.optional-dependencies].dev</code> +
+<code>[tool.mypy]</code> in <code>pyproject.toml</code>). Running <code>mypy src/disslucc</code> for
+the first time: <strong>12 real errors across 4 files</strong>, not noise --</p>
+<ul>
+<li><code>load_demand_csv</code>: <code>reader.fieldnames</code> can be <code>None</code> (empty CSV),
+  the original code didn't handle that -- an ugly <code>TypeError</code> instead
+  of a clear error. Fixed.</li>
+<li><code>RegressionSpec.newconst</code>: created dynamically at runtime
+  (<code>spec.newconst = spec.const</code>), never declared on the dataclass --
+  <strong>the same problem exists in the real <code>disslucc-continuous</code></strong>
+  (checked on <code>main</code>). Declared explicitly here, without changing
+  behavior.</li>
+<li>Two <code>_mask()</code> methods (<code>allocation/clue.py</code>, <code>allocation/clue_s.py</code>)
+  returning <code>Any</code> instead of <code>np.ndarray</code> -- <code>backend.arrays.get()</code>
+  isn't typed. Explicit <code>cast()</code> in both.</li>
+</ul>
+<p>After the fixes: <code>mypy src/disslucc</code> clean, retested all six example
+scripts -- identical result (same checksum, same MAE, same F1).
+<code>protocols.py</code> now has real enforcement, not just a promise.</p>
+<h2 id="fidelity-by-module">Fidelity, by module</h2>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Faithful to the original?</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>protocols.py</code></td>
+<td>Yes, byte for byte (main)</td>
+<td><code>disslucc-continuous/schemas/protocols.py</code></td>
+</tr>
+<tr>
+<td><code>components/demand/precomputed.py</code></td>
+<td>Yes, byte for byte (main)</td>
+<td><code>disslucc-continuous/components/demand/precomputed.py</code></td>
+</tr>
+<tr>
+<td><code>components/demand/inline.py</code></td>
+<td><strong>Doesn't exist in the original</strong></td>
+<td>my own convenience (only exists on the <code>decoupling</code> branch, where the idea was taken from)</td>
+</tr>
+<tr>
+<td><code>components/potential/linear.py</code></td>
+<td>Yes, identical algorithm (main)</td>
+<td><code>disslucc-continuous/components/potential/raster/linear.py</code></td>
+</tr>
+<tr>
+<td><code>components/allocation/clue.py</code></td>
+<td>Yes, identical algorithm (main)</td>
+<td><code>disslucc-continuous/components/allocation/raster/clue.py</code></td>
+</tr>
+<tr>
+<td><code>components/potential/logistic.py</code></td>
+<td>Faithful algorithm, <strong>raster is new</strong></td>
+<td>ported from <code>disslucc-discrete/components/potential/vector/logistic_regression.py</code> (only vector existed)</td>
+</tr>
+<tr>
+<td><code>components/allocation/clue_s.py</code></td>
+<td>Faithful algorithm, <strong>raster is new</strong></td>
+<td>ported from <code>disslucc-discrete/components/allocation/vector/clue_s.py</code> (only vector existed)</td>
+</tr>
+<tr>
+<td><code>components/potential/spatial_lag.py</code></td>
+<td>Yes, the Lua itself (LuccME <code>6244dd4</code>), <strong>raster is new</strong></td>
+<td><code>luccme/lua/PotentialCSpatialLagRegression.lua</code> — no earlier Python port</td>
+</tr>
+<tr>
+<td><code>components/allocation/saturation.py</code></td>
+<td>Yes, the Lua itself, quirks included (<code>BACKP</code> across cells), <strong>raster is new</strong></td>
+<td><code>luccme/lua/AllocationCClueLikeSaturation.lua</code> — no earlier Python port</td>
+</tr>
+<tr>
+<td><code>validation/pontius.py</code></td>
+<td>New generalization</td>
+<td>inspired by <code>disslucc-discrete/executors/lucc_validation_executor.py</code> (only had a binarized version) and matches the formula in <code>disslucc-continuous/executors/lucc_benchmark_executor.py::_metrics</code> (continuous, also not ported before)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Detail that only shows up when comparing <code>disslucc-continuous</code>
+branches</strong>: on the <code>decoupling</code> branch (experimental, not used here),
+<code>AllocationClueLike</code> read the potential via
+<code>self.potential.get_potential(lu)</code> -- an indirection through a
+Protocol. On <code>main</code> -- and here -- it reads
+<code>self.backend.get(lu + "_pot")</code> directly. More coupled, but it's what's
+in production; that's why <code>PotentialProtocol</code> here only declares
+<code>.modify()</code>, not <code>.get_potential()</code>.</p>
+<h2 id="why-unify-continuous-and-discrete">Why unify continuous and discrete</h2>
+<p>Comparing the two real repositories with <code>diff</code>:</p>
+<ul>
+<li><code>DemandPreComputedValues</code> is <strong>byte-for-byte identical</strong> between the
+  two -- only formatting differs. Duplicated, not intentional.</li>
+<li><code>disslucc-discrete</code> has a validation metric
+  (Pontius &amp; Millones, <code>lucc_validation_executor.py::_discrete_metrics</code>)
+  that <code>disslucc-continuous</code> doesn't have. Except that version
+  binarizes at 0.5 before comparing -- loses information when the data
+  is already a continuous fraction.</li>
+<li><code>Potential</code> and <code>Allocation</code> are <strong>genuinely different</strong> between the
+  two (logistic regression + cell-by-cell competition vs. linear
+  regression + elasticity). That part of the two-repository split is
+  justified -- it's not accidental duplication, it's a different
+  technique.</li>
+</ul>
+<p>Hence: <code>components/demand/</code> and <code>validation/</code> live in a single shared
+place; <code>components/potential/</code> and <code>components/allocation/</code> stay
+organized by strategy (one file per technique), but inside the same
+package, distinguished by name (<code>linear.py</code>/<code>clue.py</code> = continuous,
+<code>logistic.py</code>/<code>clue_s.py</code> = discrete) instead of by repository.</p>
+<p><code>validation/</code> sits OUTSIDE <code>components/</code> on purpose: there's no
+"validation component" in the original repositories (Pontius &amp;
+Millones lived inside <code>executors/lucc_validation_executor.py</code>, not as
+a reusable module) -- and we already identified <code>validation/pontius.py</code>
+as a <code>dissmodel</code> candidate, not a LUCC "component" (see the section
+above). Mixing the two inside <code>components/</code> would hide that
+difference.</p>
+<p><strong>This diverges from what chapter 26 of the <em>Geospatial Modeling with
+Python</em> book (LambdaGeo, <code>docs/part5/ch26_lucc.ipynb</code>) describes
+today</strong> -- there, "DisSLUCC" is presented as two separate libraries,
+with no mention of the Demand/Validation duplication. The chapter
+itself is declared a draft, "written ahead of the DisSLUCC packages
+settling... revise once that work stabilizes, not a final reference"
+-- this repository (with real validation against TerraME in both
+cases) is a natural candidate to feed that revision.</p>
+<p>Chapter 26 does have, on the other hand, a cleaner decision criterion
+than "look at the code" for choosing between continuous and discrete:
+<strong>look at the calibration/validation data type first</strong>. If it's a
+per-cell class label, discrete is the only one that can be checked
+against it exactly. If it's per-cell area/percentage, continuous is
+the only one that represents that without first forcing a lossy
+discretization. It's a criterion based on the data, not the
+architecture -- worth more than anything I derived just by comparing
+the repositories.</p>
+<h2 id="why-folder-per-role-file-per-strategy">Why folder-per-role, file-per-strategy</h2>
+<p><code>components/demand/</code>, <code>components/potential/</code>, <code>components/allocation/</code>
+(and <code>validation/</code>, outside <code>components/</code> -- see above) are packages
+(a folder, an <code>__init__.py</code> re-exporting), not a single file each --
+same convention as the original repositories, with the same folder
+name (<code>components/potential/raster/__init__.py</code> re-exporting from
+<code>linear.py</code> there; here without the <code>raster/</code> level, which we already
+dropped). Reason: the real LuccME has more than one strategy per role
+(<code>PotentialCLinearRegression</code>, <code>PotentialCSpatialLagRegression</code>,
+<code>PotentialCSampleBased</code>, ...) -- one file per strategy keeps this
+extensible without reopening an already-large file every time a new
+strategy comes in. Each <code>__init__.py</code> gains one line re-exporting the
+new class; the rest of the package doesn't need to know the new
+strategy exists.</p>
+<blockquote>
+<p>A <code>registry.py</code> (plain name→class dict) did exist here at one point,
+but was removed: nothing in the package did a lookup by name (not
+even <code>executors/</code>, which import the class directly in Python code)
+-- it was infrastructure with no real consumer, the same kind of
+problem that brought down the generic <code>StageRegistry</code> before it. It
+comes back if/when <code>executors/</code> starts resolving a strategy by name
+coming from <code>record.parameters</code> (a natural candidate, not
+implemented yet) -- see <a href="../decisions/"><code>decisions.md</code></a>.</p>
+</blockquote>
+<h2 id="what-was-considered-and-dropped">What was considered and dropped</h2>
+<p>Before this version, there was a prototype with <code>Pipeline</code>/<code>Stage</code>
+(generic Protocol)/<code>StageRegistry</code> (a class, <code>.register()</code> decorator) +
+Pydantic schemas per strategy to auto-generate a UI. It was reverted:
+for 3-6 known strategies per role, a plain literal dict solves the
+same problem without the dynamic dispatch machinery -- which only pays
+off at scale/runtime discovery, a problem that doesn't exist here.
+Full history of that reversal, with line-count numbers comparing the
+two versions, in <a href="../decisions/"><code>decisions.md</code></a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
