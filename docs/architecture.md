@@ -123,6 +123,8 @@ scripts -- identical result (same checksum, same MAE, same F1).
 | `components/allocation/clue.py` | Yes, identical algorithm (main) | `disslucc-continuous/components/allocation/raster/clue.py` |
 | `components/potential/logistic.py` | Faithful algorithm, **raster is new** | ported from `disslucc-discrete/components/potential/vector/logistic_regression.py` (only vector existed) |
 | `components/allocation/clue_s.py` | Faithful algorithm, **raster is new** | ported from `disslucc-discrete/components/allocation/vector/clue_s.py` (only vector existed) |
+| `components/potential/spatial_lag.py` | Yes, the Lua itself (LuccME `6244dd4`), **raster is new** | `luccme/lua/PotentialCSpatialLagRegression.lua` — no earlier Python port |
+| `components/allocation/saturation.py` | Yes, the Lua itself, quirks included (`BACKP` across cells), **raster is new** | `luccme/lua/AllocationCClueLikeSaturation.lua` — no earlier Python port |
 | `validation/pontius.py` | New generalization | inspired by `disslucc-discrete/executors/lucc_validation_executor.py` (only had a binarized version) and matches the formula in `disslucc-continuous/executors/lucc_benchmark_executor.py::_metrics` (continuous, also not ported before) |
 
 **Detail that only shows up when comparing `disslucc-continuous`

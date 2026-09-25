@@ -44,6 +44,8 @@ from dissmodel.io import load_dataset
 from dissmodel.io.convert import vector_to_raster_backend
 from dissmodel.io.raster import save_geotiff
 
+RASTER_SUFFIXES = (".tif", ".tiff")
+
 
 class LuccExecutorBase(ModelExecutor):
     """
@@ -59,18 +61,33 @@ class LuccExecutorBase(ModelExecutor):
 
     def validate(self, record: ExperimentRecord) -> None:
         if not record.source or not record.source.uri:
-            raise ValueError("record.source.uri is empty -- point it at the input shapefile")
+            raise ValueError("record.source.uri is empty -- point it at the input GeoTIFF or shapefile")
         missing = [p for p in self.required_parameters if p not in record.parameters]
         if missing:
             raise ValueError(f"Missing parameters: {missing}")
 
     def load(self, record: ExperimentRecord) -> RasterBackend:
-        """Loads the input vector AND ALREADY RASTERIZES -- returns the
-        RasterBackend ready to use, not the GeoDataFrame. `run()` just
-        runs the model on top of whatever arrives here."""
+        """Returns the RasterBackend ready to use. A GeoTIFF whose bands are
+        named (a `name` tag per band, as `dissmodel.io.save_geotiff` writes
+        them) is read as it is -- the land uses, the drivers and any other
+        band (`mask`, regions, cell order). A vector is loaded AND ALREADY
+        RASTERIZED, not returned as a GeoDataFrame. `run()` just runs the
+        model on top of whatever arrives here."""
         p = record.parameters
         land_use_types = p["land_use_types"]
         driver_names = {k for spec in p["potential_data"] for k in spec.get("betas", {})}
+
+        uri = record.source.uri
+        if uri.lower().endswith(RASTER_SUFFIXES):
+            (backend, meta), checksum = load_dataset(uri, fmt="raster")
+            record.source.checksum = checksum
+            backend.transform = meta["transform"]
+            backend.crs = meta["crs"]
+            missing = sorted((set(land_use_types) | driver_names) - set(backend.arrays))
+            if missing:
+                raise ValueError(f"{uri}: bands missing: {missing}")
+            record.add_log(f"Loaded raster: shape={backend.shape}, {len(backend.arrays)} bands")
+            return backend
 
         gdf, checksum = load_dataset(record.source.uri, fmt="vector")
         record.source.checksum = checksum

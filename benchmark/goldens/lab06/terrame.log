@@ -1,0 +1,121 @@
+
+Verifying Model parameters
+Verifying Demand parameters
+Verifying Potential parameters
+Verifying Allocation parameters
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Year: 2008	Step: 0
+f	area: 137878	Difference: 0
+d	area: 19982	Difference: 0
+outros	area: 6489	Difference: 0
+Region 1
+f	elas: 	0.10000000002027	dir: 	-1	const: 	0.05266679	->	0.05266679	0	1
+d	elas: 	0.10000000001401	dir: 	-1	const: 	0.01431553	->	0.01431553	0	1
+outros	elas: 	0.10000016027163	dir: 	-1	const: 	0	->	0	0	1
+
+Demand allocated correctly in 2008	Number of iterations: 0	Maximum error: 0.01040035000733
+[harness] lab06: Lab06, years 2008..2014, columns f_out,d_out,outros_out,f_pot,d_pot,outros_pot
+
+Updating dynamic variables...
+layer_2009
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Year: 2009	Step: 0
+f	area: 137389	Difference: -233
+d	area: 20331	Difference: 93
+outros	area: 6489	Difference: 0
+Region 1
+f	elas: 	0.09983074185143	dir: 	-1	const: 	0.052648226568119	->	0.052648226568119	-1.8563431881255e-05	0.99998143656812
+d	elas: 	0.099542216292271	dir: 	1	const: 	0.014443615865131	->	0.014443615865131	0.00012808586513093	1.0001280858651
+outros	elas: 	0.10000016027163	dir: 	0	const: 	0.0	->	0.0	0.0	1.0
+
+Demand allocated correctly in 2009	Number of iterations: 0	Maximum error: 232.93682142338
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Year: 2010	Step: 0
+f	area: 137053	Difference: -313
+d	area: 20667	Difference: 173
+outros	area: 6489	Difference: 0
+Region 1
+f	elas: 	0.099772292812196	dir: 	-1	const: 	0.052629628612048	->	0.052629628612048	-1.8597956070319e-05	0.99998140204393
+d	elas: 	0.099162815645913	dir: 	1	const: 	0.014570081884318	->	0.014570081884318	0.00012646601918755	1.0001264660192
+outros	elas: 	0.10000016027163	dir: 	0	const: 	0.0	->	0.0	0.0	1.0
+
+Demand allocated correctly in 2010	Number of iterations: 0	Maximum error: 312.79287200209
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Year: 2011	Step: 0
+f	area: 136729	Difference: -381
+d	area: 20991	Difference: 240
+outros	area: 6489	Difference: 0
+Region 1
+f	elas: 	0.099722588869631	dir: 	-1	const: 	0.052610995995854	->	0.052610995995854	-1.8632616194334e-05	0.99998136738381
+d	elas: 	0.098851979284461	dir: 	1	const: 	0.014694968507161	->	0.014694968507161	0.00012488662284242	1.0001248866228
+outros	elas: 	0.10000016027163	dir: 	0	const: 	0.0	->	0.0	0.0	1.0
+
+Demand allocated correctly in 2011	Number of iterations: 0	Maximum error: 380.35929244847
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Year: 2012	Step: 0
+f	area: 136417	Difference: -408
+d	area: 21304	Difference: 268
+outros	area: 6489	Difference: 0
+Region 1
+f	elas: 	0.099702461272719	dir: 	-1	const: 	0.052590163421247	->	0.052590163421247	-2.0832574607325e-05	0.99997916742539
+d	elas: 	0.098740566525434	dir: 	1	const: 	0.014832621312254	->	0.014832621312254	0.00013765280509327	1.0001376528051
+outros	elas: 	0.10000016027163	dir: 	0	const: 	0.0	->	0.0	0.0	1.0
+
+Demand allocated correctly in 2012	Number of iterations: 0	Maximum error: 407.10642724726
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Year: 2013	Step: 0
+f	area: 136115	Difference: -424
+d	area: 21607	Difference: 285
+outros	area: 6489	Difference: 0
+Region 1
+f	elas: 	0.099689657048882	dir: 	-1	const: 	0.052569287356422	->	0.052569287356422	-2.0876064825124e-05	0.99997912393517
+d	elas: 	0.098678829724857	dir: 	1	const: 	0.014968405021323	->	0.014968405021323	0.00013578370906851	1.0001357837091
+outros	elas: 	0.10000016027163	dir: 	0	const: 	0.0	->	0.0	0.0	1.0
+
+Demand allocated correctly in 2013	Number of iterations: 0	Maximum error: 423.73931471611
+
+Executing Demand component
+Executing Potential component
+Executing Allocation component
+
+Year: 2014	Step: 0
+f	area: 135822	Difference: -431
+d	area: 21900	Difference: 293
+outros	area: 6489	Difference: 0
+Region 1
+f	elas: 	0.099683763142858	dir: 	-1	const: 	0.052548367612094	->	0.052548367612094	-2.0919744327618e-05	0.99997908025567
+d	elas: 	0.098660722562989	dir: 	1	const: 	0.015102369708185	->	0.015102369708185	0.00013396468686188	1.0001339646869
+outros	elas: 	0.10000016027163	dir: 	0	const: 	0.0	->	0.0	0.0	1.0
+
+Demand allocated correctly in 2014	Number of iterations: 0	Maximum error: 430.88351101935
+
+Saving Lab06_2014.
+Elapsed time: 00:00:05 hh:mm:ss
+
+End of Simulation
+[harness] lab06: 5 files of the lab's own output in /work/out/lab06
+[harness] lab06: CSV written to /work/out/lab06

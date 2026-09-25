@@ -59,7 +59,7 @@ The reference results live in `benchmark/goldens/`, a copy of the goldens
 generated in [LambdaGeo/terrame-docker](https://github.com/LambdaGeo/terrame-docker)
 v0.1.1, which keeps the generating scripts, the original TerraME outputs, the
 generator and goldens for all 21 LuccME labs. This repository keeps only the
-goldens its tests use (`lab01`, `lab15`: the LuccME package's labs;
+goldens its tests use (`lab01`, `lab15`, `lab03`, `lab06`: the LuccME package's labs;
 `lab01_md1643`, `lab15_md10`); add one together with the component and test
 that need it, never ahead of time. `lab01_md1643` and `lab15_md10` are the scenarios behind `docs/validation.md`
 (same coefficients and demand as `lab01`/`lab15`, but `maxDifference` 1643
@@ -81,7 +81,7 @@ PR/commit and say so explicitly -- don't let it drift silently.
 ```bash
 python -m venv venv && source venv/bin/activate
 pip install -e ".[examples,dev]"
-pytest tests/ -v          # expect: 19 passed, 2 xfailed
+pytest tests/ -v          # expect: 73 passed, 2 xfailed (38 passed, 1 skipped without lupa)
 mypy src/disslucc         # expect: clean
 ```
 

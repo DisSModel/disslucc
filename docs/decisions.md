@@ -1018,3 +1018,86 @@ reproduces TerraME year by year, iteration counts included (0, 0, 8, 26, 18,
 17, 17; MAE < 1e-7). The tests against the continuous goldens use `False`;
 `test_lab1_default_cell_correction_deviates_from_terrame` pins the default's
 deviation. Both allocations also record `iterations_per_step`.
+
+## Spatial-lag potential and saturation allocation, for LuccME-BR (2026-09-24, #6)
+
+**What and why.** `PotentialSpatialLagRegression` and
+`AllocationClueLikeSaturation` port LuccME's `PotentialCSpatialLagRegression`
+and `AllocationCClueLikeSaturation` (LuccME `6244dd4`), the components LuccME-BR
+(Bezerra et al. 2022, PLOS ONE e0256052) is built from. They were written and
+validated first in [profsergiocosta/luccmebr-reconstruction](https://github.com/profsergiocosta/luccmebr-reconstruction),
+with this package's interfaces, and moved here so that repository keeps only
+the model. Nothing existing changed: Lab1/Lab15 numbers are the same.
+
+**Faithful to the Lua, including what looks accidental** — each point is pinned
+by a test that fails on the other reading:
+- the potential's constant adaptation accumulates year to year (LuccME writes
+  it back into `const`), unlike `PotentialLinearRegression`;
+- `lab06`'s `updateYears` copies the new drivers into the cells by position
+  (`forEachCellPair`), and `csAC_2009` is not in `csAC`'s order;
+- `correctCellChange` runs here (the Saturation variant spells `regionAloc`
+  right), as the Lua writes it — not `AllocationClueLike`'s own version —
+  and its `BACKP`, declared outside the loop over cells, carries over from cell
+  to cell: the cells' order matters, given by `order_attr`;
+- the neighbourhood LuccME names "11x11" is `createNeighborhood{strategy="mxn"}`
+  with no `m`/`n`: TerraME's default, 3 × 3 with the cell
+  (`packages/base/lua/CellularSpace.lua`).
+
+**Validation, and the Lua in `tests/lua/`.** The `lab03`/`lab06` goldens match
+cell for cell, year by year, iterations and maximum error included
+(`docs/validation.md`). But those labs never reach `correctCellChange`, the
+saturation branch or an isolated cell. For those, `tests/test_lua_differential.py`
+runs the original Lua functions with `lupa` on synthetic cases that reach every
+branch. That brings Lua source back into this repository, after the reference
+scripts left it for terrame-docker (entry above) — deliberately, and
+**provisionally**: these are component sources needed to test branches, not
+reference scripts, and `lupa` + stubs is not TerraME. The intended replacement
+is component-level goldens generated in terrame-docker (the same synthetic
+cases run in the real TerraME, inputs and outputs as CSV); when they exist,
+`tests/lua/` and the `lupa` dependency go, and `benchmark/goldens/` holds
+results only again.
+
+**Left open.** `AllocationClueLike`'s `cell_correction=True` is an intended
+version of the step LuccME skips there; the Saturation variant's
+`correctCellChange` is LuccME's own. Whether the first should follow the second
+is a separate question, not settled here.
+
+## `LuccSaturationExecutor`, with raster input (2026-09-24, #6)
+
+LuccME-BR is run from a model TOML, not a script: the same second entry point
+the continuous and discrete executors are (entry "The Executor came back").
+`LuccSaturationExecutor` builds the three components from `record.parameters`
+and differs from `LuccContinuousExecutor` where that model needs it:
+
+- **raster input.** A continental cellular space (≈ 260 k cells, 15+ drivers)
+  is built once, as a raster, by the data pipeline (DisSCube in
+  luccmebr-reconstruction); rasterizing a vector at every run, as the base's
+  `load()` does, is the wrong way round there. So `load()` reads a GeoTIFF
+  whose bands carry their names (`dissmodel.io.load_dataset(fmt="raster")`,
+  the format `save()` already writes), and falls back to the base for vectors.
+  `_read_geotiff` returns the georeference in `meta`, not in the backend, so
+  `load()` copies it over — `save()` needs it.
+- **regions** are named per entry (`lu`, `region`) instead of implied by list
+  position, because LuccME-BR has three regions × six classes.
+- **`save_steps`**: a model checked against maps of intermediate years
+  (LuccME-BR: IBGE 2010, 2012, 2014) needs those states, not only the last.
+
+Checked end to end through the CLI: `examples/dissmodel-configs/lucc_saturation.toml`
+is lab03, and its run matches the lab03 golden in 2011 and 2014
+(`tests/test_executor_saturation.py`).
+
+## GeoTIFF input moved to the base executor (2026-09-24, #6)
+
+The named-band GeoTIFF reading `LuccSaturationExecutor.load()` introduced
+(entry above) is not specific to that model: any LUCC executor whose
+cellular space is built once by a data pipeline wants it. It now lives in
+`LuccExecutorBase.load()` -- a `.tif`/`.tiff` source is read as it is,
+anything else is rasterized as before -- and `LuccSaturationExecutor` no
+longer overrides `load()`. The georeference is still copied from `meta`:
+dissmodel releases up to 0.6.5 keep it only there.
+
+In the same pass, the spatial lag's private shift helper gave way to
+`dissmodel`'s `RasterBackend.shift2d`: same slices, opposite sign
+convention, and the Moore neighbourhood is symmetric, so the sums are the
+same (the golden and Lua-differential tests pass unchanged).
+

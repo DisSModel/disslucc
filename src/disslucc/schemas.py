@@ -59,3 +59,48 @@ class AllocationSpec:
     max_value:  float = 1.0
     min_change: float = 0.0
     max_change: float = 1.0
+
+
+@dataclass
+class SpatialLagRegressionSpec:
+    """
+    Parameters of a spatial-lag regression for one land use class.
+
+    Port of one entry of LuccME's `PotentialCSpatialLagRegression.potentialData`
+    (`isLog`, `const`, `minReg`, `maxReg`, `ro`, `betas`). Used by
+    PotentialSpatialLagRegression (continuous).
+
+    `newconst` is runtime state, as in RegressionSpec: the constant after
+    the allocation's adjustments within a step (`modify`). Unlike
+    RegressionSpec, `const` itself also changes during a run -- LuccME's
+    `adaptRegressionConstants` writes the adapted value back into it every
+    step, so the adaptation accumulates (the lab03/lab06 goldens reject the
+    non-cumulative reading).
+    """
+    const:    float
+    ro:       float
+    betas:    dict[str, float] = field(default_factory=dict)
+    is_log:   bool = False
+    min_reg:  float = 0.0
+    max_reg:  float = 1.0
+    newconst: float = field(default=0.0, init=False, repr=False, compare=False)
+
+
+@dataclass
+class SaturationAllocationSpec:
+    """
+    Allocation constraints of one land use class in one region, for
+    AllocationClueLikeSaturation.
+
+    AllocationSpec plus `static` per class (LuccME keeps it in
+    allocationData) and the two saturation parameters: where the cell's
+    saturation indicator exceeds `change_limiar_value`, the change in the
+    demand's direction is halved or capped at `max_change_above_limiar`.
+    """
+    static:                  int   = -1   # -1 = follows demand | 0 = free | 1 = fixed
+    min_value:               float = 0.0
+    max_value:               float = 1.0
+    min_change:              float = 0.0
+    max_change:              float = 1.0
+    change_limiar_value:     float = 1.0
+    max_change_above_limiar: float = 0.0

@@ -1,0 +1,97 @@
+# configs/models/lucc_saturation.toml
+#
+# Registers disslucc's LuccSaturationExecutor (name="lucc_continuous_saturation"):
+# DemandPreComputedValues + PotentialSpatialLagRegression +
+# AllocationClueLikeSaturation, the components of LuccME-BR.
+#
+# This file is LuccME's lab03 (luccme/tests/functional/lab03.lua), the same
+# coefficients, demand and allocation data; tests/test_executor_saturation.py
+# runs it through the local CLI and checks the result against the lab03 golden:
+#
+#   python -m disslucc.executors.saturation run \
+#       --toml examples/dissmodel-configs/lucc_saturation.toml \
+#       --input <csAC as a GeoTIFF with named bands> \
+#       --param demand_csv=data/input/examples_demand_lab1.csv --output out.tif
+#
+# Every [[model.potential_data]] / [[model.allocation_data]] entry names its
+# class (lu) and may name its region (default 1): one entry per class per region.
+
+[model]
+executor_module  = "disslucc.executors"
+name             = "lucc_continuous_saturation"
+class            = "lucc_continuous_saturation"
+description      = "LUCC continuous simulation (CLUE-like with saturation, spatial-lag regression potential)"
+package          = "git+https://github.com/DisSModel/disslucc@main"
+dissmodel        = ">=0.6.4,<0.7.0"
+
+land_use_types       = ["f", "d", "outros"]
+land_use_no_data     = "outros"
+complementar_lu      = "f"
+cell_area            = 25.0
+attr_protection      = "uc_pi"
+saturation_indicator = "saturationLimiar"
+order_attr           = "order"     # LuccME visits cells in the layer's order (BACKP in correctCellChange)
+max_difference       = 1643.0
+max_iteration        = 1000
+initial_elasticity   = 0.1
+min_elasticity       = 0.001
+max_elasticity       = 1.5
+
+# Runtime parameters. demand_csv comes with the experiment.
+[model.parameters]
+n_steps    = 7
+save_steps = [3]           # also write step 3 (2011)
+
+[[model.potential_data]]
+lu     = "f"
+const  = 0.05266679
+ro     = 0.9124615
+  [model.potential_data.betas]
+  uc_us = 0.03789872
+  uc_pi = 0.04141921
+  ti    = 0.04455667
+
+[[model.potential_data]]
+lu     = "d"
+const  = 0.01431553
+ro     = 0.9019253
+  [model.potential_data.betas]
+  assentamen = 0.0443537
+  uc_us      = -0.01454847
+  fertilidad = 0.01701601
+  dist_riobr = -0.00000002262071
+
+[[model.potential_data]]
+lu     = "outros"
+const  = 0.0
+ro     = 0.0
+
+[[model.allocation_data]]
+lu = "f"
+static = -1
+min_value = 0.0
+max_value = 1.0
+min_change = 0.0
+max_change = 1.0
+change_limiar_value = 1.0
+max_change_above_limiar = 0.0
+
+[[model.allocation_data]]
+lu = "d"
+static = -1
+min_value = 0.0
+max_value = 1.0
+min_change = 0.0
+max_change = 1.0
+change_limiar_value = 1.0
+max_change_above_limiar = 0.0
+
+[[model.allocation_data]]
+lu = "outros"
+static = 1
+min_value = 0.0
+max_value = 1.0
+min_change = 0.0
+max_change = 1.0
+change_limiar_value = 1.0
+max_change_above_limiar = 0.0
