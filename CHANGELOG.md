@@ -4,6 +4,13 @@ All notable changes to `disslucc` are documented here.
 
 ## [Unreleased]
 
+### Added
+- `DemandComputeTwoDates` and `DemandComputeThreeDates`: demand computed from the land-use
+  layers (start-year areas and one or two later reference years, interpolated linearly, rounded
+  as LuccME does). They are what LuccME labs 04, 05, 16 and 17 need on top of components that
+  already existed; with them those four labs reproduce the TerraME goldens
+  ([disslucc-benchmark](https://github.com/LambdaGeo/disslucc-benchmark)).
+
 ### Changed
 - `benchmark/goldens/` updated to terrame-docker v0.1.1: same results (CSVs within
   1e-12), with `terrame.log` and `manifest.json` in English; `benchmark/README.md`

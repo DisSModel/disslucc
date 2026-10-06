@@ -4,7 +4,13 @@ disslucc -- raster-only, "script-first" port of disslucc-continuous
 (the CLUE algorithm itself is faithful to the original).
 """
 from .components.allocation import AllocationClueLike, AllocationClueLikeSaturation, AllocationDClueSLike
-from .components.demand import DemandInline, DemandPreComputedValues, load_demand_csv
+from .components.demand import (
+    DemandComputeThreeDates,
+    DemandComputeTwoDates,
+    DemandInline,
+    DemandPreComputedValues,
+    load_demand_csv,
+)
 from .components.potential import (
     PotentialDLogisticRegression,
     PotentialLinearRegression,
@@ -28,6 +34,8 @@ __all__ = [
     "AllocationClueLikeSaturation",
     "AllocationDClueSLike",
     "AllocationSpec",
+    "DemandComputeThreeDates",
+    "DemandComputeTwoDates",
     "DemandInline",
     "DemandPreComputedValues",
     "DemandProtocol",
