@@ -92,10 +92,8 @@ pip install -e ".[examples,dev]"
 pytest tests/ -v
 ```
 
-Expect `19 passed, 2 xfailed` on a clean checkout (the two `xfail` cases are
-documented, known limitations of the Lab15 discriminance test -- see
-`tests/test_benchmark_discriminance_lab15.py`). If your change makes that
-number change unexpectedly, treat it as a regression until proven otherwise.
+All tests should pass on a clean checkout. If your change makes a test fail
+unexpectedly, treat it as a regression until proven otherwise.
 
 ---
 
@@ -107,32 +105,18 @@ number change unexpectedly, treat it as a regression until proven otherwise.
 
 ---
 
-## Validation data and provenance
-
-Two things make this package different from a typical model port, and both
-have their own conventions:
+## Data and agreement with TerraME
 
 - **Vendored input data** (`data/input/`) is real data from
-  `disslucc-continuous`/`disslucc-discrete`, not synthetic. Don't regenerate
-  or "clean up" these files without understanding `docs/validation.md` first
-  -- the numbers they produce are cited in `dissmodel`'s JOSS paper.
-- **Reference results** (`benchmark/goldens/`) are a copy of the goldens this
-  repository's tests use, generated in [LambdaGeo/terrame-docker](https://github.com/LambdaGeo/terrame-docker)
-  v0.1.1 (which has goldens for all 21 LuccME labs; copy one here only with
-  the component and test that use it),
-  which also keeps the original LuccME "Model Configurator" scripts, the
-  original TerraME outputs and the generator. Never edit a golden by hand:
-  regenerate it there and copy the folder (see `benchmark/README.md`). If
-  you're unsure which script is "the" source for a scenario, check
-  terrame-docker's `benchmark/references/README.md` -- coefficients/demand
-  matching is not sufficient evidence, since TerraME's own public test suite
-  contains look-alike scenarios with different convergence parameters.
-
-If your change affects a Lab1 or Lab15 validation number, update
-`docs/validation.md` in the same PR and say so explicitly in the PR
-description -- these numbers are cited outside this repository.
-
----
+  `disslucc-continuous`/`disslucc-discrete`, used by the examples and tests.
+  Don't regenerate or "clean up" these files without checking the examples
+  and the benchmark that read them.
+- **Agreement with TerraME/LuccME** is checked in
+  [LambdaGeo/disslucc-benchmark](https://github.com/LambdaGeo/disslucc-benchmark)
+  (reference results from [luccme-goldens](https://github.com/LambdaGeo/luccme-goldens),
+  generated in [terrame-docker](https://github.com/profsergiocosta/terrame-docker)).
+  If your change can alter numerical results, run the benchmark against your branch
+  and describe the outcome in the PR. Don't copy goldens into this repository.
 
 ## Documentation & Docstrings
 

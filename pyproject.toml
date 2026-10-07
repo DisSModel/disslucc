@@ -1,9 +1,9 @@
 [project]
 name = "disslucc"
-version = "0.4.0"
+version = "0.5.0"
 description = "Land Use and Cover Change (LUCC) modeling — continuous and discrete allocation — on top of dissmodel."
 readme = "README.md"
-authors = [{ name = "Sergio Souza Costa", email = "sergio@ufma.br" }]
+authors = [{ name = "Sérgio Souza Costa" }]
 license = { text = "MIT" }
 requires-python = ">=3.11"
 dependencies = [
@@ -15,11 +15,15 @@ dependencies = [
     "scipy",
 ]
 
+[project.urls]
+Homepage = "https://github.com/DisSModel/disslucc"
+Repository = "https://github.com/DisSModel/disslucc"
+Documentation = "https://dissmodel.github.io/disslucc/"
+Issues = "https://github.com/DisSModel/disslucc/issues"
+
 [project.optional-dependencies]
 examples = ["matplotlib"]
-# lupa runs the original LuccME Lua in tests/test_lua_differential.py
-# (skipped without it); see docs/decisions.md
-dev = ["mypy>=1.10", "pytest>=7", "ruff>=0.16,<0.17", "lupa"]
+dev = ["mypy>=1.10", "pytest>=7", "ruff>=0.16,<0.17"]
 
 [tool.mypy]
 # 3.12, not 3.11 (the floor in requires-python): numpy 2.5's stub uses

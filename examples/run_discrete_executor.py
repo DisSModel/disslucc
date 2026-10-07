@@ -1,6 +1,10 @@
 """
-Same Lab15 scenario as run_lab15_validation.py, through the real
-ModelExecutor lifecycle.
+Discrete (CLUE-S-like) model on the Moju region (data/input/cs_moju.zip),
+through the ModelExecutor lifecycle (validate -> load -> run -> save), which
+adds provenance (ExperimentRecord, checksums, timings).
+
+The same experiment as TOML: examples/dissmodel-configs/lucc_discrete.toml.
+Agreement with TerraME (LuccME's Lab 15): LambdaGeo/disslucc-benchmark.
 """
 from __future__ import annotations
 
@@ -23,13 +27,8 @@ record = ExperimentRecord(
         "cell_area": 1.0,
         "n_steps": 6,
         "resolution": 0.00455,  # cs_moju is in EPSG:4618 (degrees); ~84x92 cells
-        "max_difference": 100.0,  # looser tolerance than run_lab15_validation.py: the
-                                    # resolution-based rasterization (production, new
-                                    # dataset) doesn't reproduce TerraME's exact cell
-                                    # count (that only happens with direct row/col
-                                    # alignment -- see run_lab15_validation.py, which
-                                    # uses that method for exact validation instead of
-                                    # general use)
+        "max_difference": 100.0,  # the grid is rasterized from the resolution, so the cell count
+                                  # is close to, not exactly, the original layer's
         "factor_iteration": 0.0001,
         "potential_data": [
             {"const": -2.34187976925989, "elasticity": 0.0, "betas": {

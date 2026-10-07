@@ -66,9 +66,10 @@ is the experiment, reproducible with
 | Script | What | Data |
 |---|---|---|
 | `examples/run_script.py` | full continuous model | synthetic |
-| `examples/run_lab1_real.py` | continuous model | real (csAC.zip, Lab1) |
-| `examples/run_lab1_validation.py` | validates against TerraME | real + TerraME reference |
-| `examples/run_lab15_validation.py` | discrete model, validates against TerraME | real + TerraME reference |
+| `examples/run_continuous_real_data.py` | continuous model | real (csAC.zip) |
+| `examples/run_continuous_executor.py` | same, through the executor (provenance) | real (csAC.zip) |
+| `examples/run_discrete_executor.py` | discrete model, through the executor | real (cs_moju.zip) |
+| `examples/dissmodel-configs/*.toml` | the same experiments as TOML, run with the CLI | real |
 
 Run any of them from inside `examples/`:
 
@@ -89,8 +90,8 @@ walk through the same mechanics one step at a time:
 - [`api.md`](api.md) -- reference for every class and parameter
 - [`architecture.md`](architecture.md) -- what's faithful to the original
   `disslucc-continuous`/`disslucc-discrete`, what was simplified, what's new
-- [`validation.md`](validation.md) -- validation results against
-  TerraME (MAE, Pontius & Millones decomposition)
+- [`validation.md`](validation.md) -- how disslucc is checked against
+  TerraME (the disslucc-benchmark repository)
 - [`decisions.md`](decisions.md) -- full history of decisions, tests,
   and findings throughout development
 
@@ -102,8 +103,8 @@ instead of direct construction -- same components underneath, same
 math, identical result:
 
 ```bash
-python3 run_lab1_via_executor.py     # same Lab1, with ExperimentRecord
-python3 run_lab15_via_executor.py    # same Lab15, with ExperimentRecord
+python3 run_continuous_executor.py   # continuous, with ExperimentRecord
+python3 run_discrete_executor.py     # discrete, with ExperimentRecord
 ```
 
 Details in [`api.md`](api.md#executors-dissluccexecutors).

@@ -1,20 +1,21 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
-title: "disslucc"
+title: "disslucc: Land Use and Cover Change Modeling on top of DisSModel"
 abstract: >-
   Land use and land cover change (LUCC) modeling, raster-only,
-  script-first, on top of dissmodel. Continuous (CLUE) and discrete
-  (CLUE-S) allocation, validated against the original TerraME
-  reference on real data.
+  script-first, on top of dissmodel. LuccME's components
+  (demand, potential, allocation) in Python; agreement with
+  TerraME/LuccME is checked in LambdaGeo/disslucc-benchmark.
 authors:
-  - family-names: "Souza Costa"
-    given-names: "Sérgio"
+  - family-names: "Costa"
+    given-names: "Sérgio Souza"
     orcid: "https://orcid.org/0000-0002-0232-4549"
     affiliation: "Universidade Federal do Maranhão (UFMA)"
-version: 0.4.0
-date-released: "2026-09-23"
+version: 0.5.0
+date-released: "2026-10-08"
 license: MIT
-repository-code: "https://github.com/LambdaGeo/disslucc"
+url: "https://github.com/DisSModel/disslucc"
+repository-code: "https://github.com/DisSModel/disslucc"
 keywords:
   - land use and land cover change
   - LUCC

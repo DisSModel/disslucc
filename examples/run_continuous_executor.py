@@ -1,8 +1,12 @@
 """
-Same Lab1 scenario as run_lab1_real.py, but through the real
-ModelExecutor lifecycle (validate -> load -> run -> save) instead of
-direct construction -- proves that bringing the Executor back doesn't
-change the result, it only adds provenance (ExperimentRecord).
+Same scenario as run_continuous_real_data.py (csAC region, 6,574 cells), but
+through the ModelExecutor lifecycle (validate -> load -> run -> save) instead
+of direct construction: the result is the same, and it adds provenance
+(ExperimentRecord, input checksum, timings).
+
+The same experiment as TOML: examples/dissmodel-configs/lucc_continuous.toml
+(tests/test_executor_toml.py checks that both give the same output file).
+Agreement with TerraME (LuccME's Lab 1): LambdaGeo/disslucc-benchmark.
 """
 from __future__ import annotations
 

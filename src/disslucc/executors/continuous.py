@@ -7,7 +7,7 @@ paper's Statement of Need), and a plain script on its own doesn't
 produce that.
 
 Coexists with script-first, doesn't replace it: `examples/run_script.py`
-and `examples/run_lab1_real.py` keep working exactly as before -- this
+and `examples/run_continuous_real_data.py` keep working exactly as before -- this
 executor is a SECOND entry point.
 
 Inherits from `LuccExecutorBase` (validate/load/save shared with

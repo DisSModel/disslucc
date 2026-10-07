@@ -1,12 +1,10 @@
-# configs/models/lucc_saturation.toml
+# LuccSaturationExecutor (name="lucc_continuous_saturation"): the components of
+# LuccME-BR -- DemandPreComputedValues + PotentialSpatialLagRegression +
+# AllocationClueLikeSaturation.
 #
-# Registers disslucc's LuccSaturationExecutor (name="lucc_continuous_saturation"):
-# DemandPreComputedValues + PotentialSpatialLagRegression +
-# AllocationClueLikeSaturation, the components of LuccME-BR.
-#
-# This file is LuccME's lab03 (luccme/tests/functional/lab03.lua), the same
-# coefficients, demand and allocation data; tests/test_executor_saturation.py
-# runs it through the local CLI and checks the result against the lab03 golden:
+# Coefficients, demand and allocation data are those of LuccME's lab03. The input
+# is a GeoTIFF with named bands (land uses, drivers, "mask", "order"); the test
+# in tests/test_executor_toml.py shows how to build one from csAC.zip:
 #
 #   python -m disslucc.executors.saturation run \
 #       --toml examples/dissmodel-configs/lucc_saturation.toml \
@@ -15,6 +13,7 @@
 #
 # Every [[model.potential_data]] / [[model.allocation_data]] entry names its
 # class (lu) and may name its region (default 1): one entry per class per region.
+# Agreement with TerraME for this model: LambdaGeo/disslucc-benchmark.
 
 [model]
 executor_module  = "disslucc.executors"

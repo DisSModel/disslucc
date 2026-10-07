@@ -2,11 +2,11 @@
 
 **Land Use and Cover Change (LUCC) modeling, raster-only, on top of [`dissmodel`](https://dissmodel.github.io/dissmodel/)**
 
-Continuous (CLUE) and discrete (CLUE-S) allocation, both validated
-against the original TerraME reference on real data: Lab1 (continuous)
-within the official 0.01 MAE tolerance, Lab15 (discrete) at exact,
-100% cell-by-cell agreement -- see [Validation](validation.md) for
-both results and what each one does and doesn't prove.
+LuccME's components -- demand, potential and allocation -- in Python:
+continuous (CLUE-like), discrete (CLUE-S-like), spatial-lag potential and
+saturation. Agreement with the original TerraME/LuccME is checked in
+[disslucc-benchmark](https://github.com/LambdaGeo/disslucc-benchmark);
+see [Validation](validation.md).
 
 ```bash
 pip install -e ".[examples]"
@@ -38,9 +38,8 @@ a second entry point, with a CLI, same math -- see
 - **[API Reference](api.md)** -- reference for every public class and parameter
 - **[Architecture](architecture.md)** -- what's faithful to the
   original repositories, what was simplified, what's new
-- **[Validation](validation.md)** -- validation results against
-  TerraME (Lab1 continuous, Lab15 discrete) and the engineering vs.
-  scientific validation distinction
+- **[Validation](validation.md)** -- where the comparison with TerraME
+  lives (disslucc-benchmark) and what is checked in this repository
 - **[Decisions](decisions.md)** -- full history of decisions and
   tests throughout development
 - **Notebooks** -- two small, fully synthetic (no shapefiles, no

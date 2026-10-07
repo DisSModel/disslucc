@@ -1,14 +1,13 @@
-# configs/models/lucc_discrete.toml
+# LuccDiscreteExecutor (CLUE-S-like, logistic-regression potential) from a TOML file.
 #
-# Registers disslucc's LuccDiscreteExecutor with dissmodel-platform.
-# See lucc_continuous.toml in this directory for the full explanation
-# of the [model] vs [model.parameters] split and the open item this
-# depends on (docs/decisions.md, "TOML config example added for the
-# executors path").
+#   python -m disslucc.executors.discrete run \
+#       --toml examples/dissmodel-configs/lucc_discrete.toml \
+#       --input data/input/cs_moju.zip \
+#       --param demand_csv=data/input/demand_moju.csv \
+#       --output outputs/result.tif
 #
-# Encodes the same Lab15/Moju coefficients as
-# examples/run_lab15_via_executor.py, so the two are directly
-# comparable.
+# Declarative twin of examples/run_discrete_executor.py (the Moju region).
+# See lucc_continuous.toml for the [model] / [model.parameters] split.
 
 [model]
 executor_module  = "disslucc.executors"
@@ -32,11 +31,8 @@ transition_matrix = [[[1, 1, 0], [0, 1, 0], [0, 0, 1]]]
 # demand_csv must be supplied at experiment time -- no sensible default.
 [model.parameters]
 n_steps          = 6
-max_difference   = 100.0  # looser than the exact-validation tolerance (10.0) used in
-                            # run_lab15_validation.py -- see that script's comment:
-                            # resolution-based rasterization here doesn't reproduce
-                            # TerraME's exact cell count the way direct row/col
-                            # alignment does.
+max_difference   = 100.0  # the grid is rasterized from the resolution, so the cell
+                          # count is close to, not exactly, the original layer's
 factor_iteration = 0.0001
 
 [[model.potential_data]]

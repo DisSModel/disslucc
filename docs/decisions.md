@@ -1,5 +1,12 @@
 # Decision history — disslucc
 
+> **Note (0.5.0).** This is a historical log. References to `benchmark/goldens/`,
+> `tests/_lab*_helpers.py`, the Lua differential test and the discriminance suites
+> describe the state up to v0.4.0; those now live in
+> [disslucc-benchmark](https://github.com/LambdaGeo/disslucc-benchmark) or in the
+> `v0.4.0` tag.
+
+
 
 > This file is the "why": decisions made, tests already run, what was
 > tried and dropped. For "how to use it", see [`quickstart.md`](quickstart.md)
