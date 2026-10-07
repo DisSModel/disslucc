@@ -50,6 +50,45 @@ scripts, no external file needed.
 DemandInline(values: list[list[float]], land_use_types: list[str])
 ```
 
+### `DemandComputeTwoDates` and `DemandComputeThreeDates`
+
+Demand computed from the land-use layers instead of a table (LuccME's
+components of the same names). The start-year area of each class is read
+from the layers at construction; the later area(s) from other columns of the
+layer (for example `f2014`); the years in between are interpolated linearly.
+Both subclass `DemandPreComputedValues`, so they implement the same
+`DemandProtocol`. Create them **before** `env.run()`.
+
+```python
+DemandComputeTwoDates(
+    backend,                          # layers: land_use_types + final_land_use_types (+ optional "mask")
+    land_use_types: list[str],        # e.g. ["f", "d", "outros"], layers at start_year
+    final_land_use_types: list[str],  # e.g. ["f2014", "d2014", "outros"], same order
+    start_year: int, end_year: int,   # rows = end_year - start_year + 1
+    final_year: int,                  # year the final layers describe
+    cell_area: float,                 # unit of the demand
+    direction_for_interpolation: list[str] | None = None,  # "Increase" / "Decrease" per class
+)
+
+DemandComputeThreeDates(
+    backend, land_use_types,
+    middle_land_use_types,            # e.g. ["f2011", "d2011", "outros"]
+    final_land_use_types,
+    start_year, end_year, middle_year, final_year,   # start < middle < final
+    cell_area, direction_for_interpolation=None,
+)
+```
+
+Rounding follows LuccME: each year adds the step to the **already rounded**
+previous demand and rounds half up (`floor(x + 0.5)`); the reference years are
+set to their exact area, rounded. So the demand is integer-valued and can
+differ by a few units from exact linear interpolation. The final year may lie
+after `end_year` (lab17); beyond it the same step keeps being applied. With
+float32 layers the areas carry float32 rounding: use float64 layers when the
+demand must match a reference to the unit. The pure functions
+`interpolate_two_dates` / `interpolate_three_dates` (areas in, rows out) are
+exported from `disslucc.components.demand` too.
+
 ### `load_demand_csv(raw: str, land_use_types: list[str]) -> list[list[float]]`
 
 Parses a CSV with one column per class, one row per step. Column order
