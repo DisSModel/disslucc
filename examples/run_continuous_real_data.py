@@ -113,6 +113,6 @@ for ax, lu in zip(axes, LAND_USE_TYPES):
     ax.axis("off")
 fig.colorbar(im, ax=axes, shrink=0.7, label="cell fraction")
 fig.suptitle(f"csAC (real data) — land use after {N_STEPS - 1} steps")
-fig.savefig("quicklook_lab1_real.png", dpi=120)
+fig.savefig("quicklook_continuous_real_data.png", dpi=120)
 plt.close(fig)
-print("\nquicklook saved to: quicklook_lab1_real.png")
+print("\nquicklook saved to: quicklook_continuous_real_data.png")

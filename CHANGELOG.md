@@ -2,20 +2,41 @@
 
 All notable changes to `disslucc` are documented here.
 
-## [Unreleased]
+## [0.5.0] -- 2026-10-08
 
-### Added
-- `DemandComputeTwoDates` and `DemandComputeThreeDates`: demand computed from the land-use
-  layers (start-year areas and one or two later reference years, interpolated linearly, rounded
-  as LuccME does). They are what LuccME labs 04, 05, 16 and 17 need on top of components that
-  already existed; with them those four labs reproduce the TerraME goldens
-  ([disslucc-benchmark](https://github.com/LambdaGeo/disslucc-benchmark)).
+Clean-up release: the numerical comparison with TerraME/LuccME moved to
+[LambdaGeo/disslucc-benchmark](https://github.com/LambdaGeo/disslucc-benchmark),
+and this repository keeps the package and examples to learn it with.
+Everything removed is in the `v0.4.0` tag.
+
+### Removed
+- `benchmark/goldens/` and `benchmark/README.md` (reference results now live in
+  luccme-goldens and are consumed by disslucc-benchmark).
+- Golden, per-year, discriminance, validation and Lua differential tests and their
+  helpers; the `lupa` dev dependency; `examples/run_lab1_validation.py` and
+  `examples/run_lab15_validation.py`.
 
 ### Changed
-- `benchmark/goldens/` updated to terrame-docker v0.1.1: same results (CSVs within
-  1e-12), with `terrame.log` and `manifest.json` in English; `benchmark/README.md`
-  translated to English.
-- `CONTRIBUTING.md` and the onboarding issue template expect `19 passed, 2 xfailed`.
+- Examples renamed without "lab": `run_continuous_real_data.py`,
+  `run_continuous_executor.py`, `run_discrete_executor.py`.
+- TOML headers explain how to run each file locally with the CLI.
+- `docs/validation.md` is a pointer to disslucc-benchmark; README, quickstart,
+  CLAUDE.md and CONTRIBUTING updated accordingly.
+- `CITATION.cff`: repository is `DisSModel/disslucc`.
+
+### Added
+- LuccME-BR components: `PotentialSpatialLagRegression` (spatial-lag regression
+  potential), `AllocationClueLikeSaturation` (continuous allocation with a saturation
+  limit), and `LuccSaturationExecutor` (`lucc_continuous_saturation`) with
+  `examples/dissmodel-configs/lucc_saturation.toml`; `data/input/csAC_2009.zip` (dynamic
+  drivers). (Merged after 0.4.0; checked against LuccME labs 03 and 06 in disslucc-benchmark.)
+- `tests/test_executor_toml.py`: each example TOML run through the CLI gives the
+  same output file (SHA-256) as the equivalent hand-built experiment.
+- `.github/workflows/publish.yml`: PyPI Trusted Publishing on GitHub release.
+- `DemandComputeTwoDates` and `DemandComputeThreeDates`: demand computed from the land-use
+  layers (start-year areas and one or two later reference years, interpolated linearly, rounded
+  as LuccME does), what LuccME labs 04, 05, 16 and 17 need.
+
 
 ## [0.4.0] -- 2026-09-23
 

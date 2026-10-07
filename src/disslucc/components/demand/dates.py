@@ -136,7 +136,7 @@ class DemandComputeTwoDates(DemandPreComputedValues):
     the demand must match a reference to the unit.
     """
 
-    def setup(
+    def setup(  # type: ignore[override]
         self,
         backend,
         land_use_types: list[str],
@@ -158,7 +158,7 @@ class DemandComputeTwoDates(DemandPreComputedValues):
             end_year - start_year + 1,
             direction_for_interpolation,
         )
-        super().setup(annual_demand=rows, land_use_types=land_use_types)
+        super().setup(annual_demand=[[float(v) for v in r] for r in rows], land_use_types=land_use_types)
 
 
 class DemandComputeThreeDates(DemandPreComputedValues):
@@ -172,7 +172,7 @@ class DemandComputeThreeDates(DemandPreComputedValues):
     middle_year           : year they describe; start_year < middle_year < final_year.
     """
 
-    def setup(
+    def setup(  # type: ignore[override]
         self,
         backend,
         land_use_types: list[str],
@@ -199,4 +199,4 @@ class DemandComputeThreeDates(DemandPreComputedValues):
             end_year - start_year + 1,
             direction_for_interpolation,
         )
-        super().setup(annual_demand=rows, land_use_types=land_use_types)
+        super().setup(annual_demand=[[float(v) for v in r] for r in rows], land_use_types=land_use_types)

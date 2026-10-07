@@ -18,8 +18,8 @@ assignees: ""
 2. Follow the setup in `README.md` (`pip install -e ".[examples,dev]"`) and
    activate the virtual environment.
 3. Make the specified adjustments.
-4. Run `pytest tests/ -v` -- expect `19 passed, 2 xfailed` unmodified,
-   unless your task changes that on purpose.
+4. Run `pytest tests/ -v` -- expect everything to pass
+   unmodified.
 5. Run `mypy src/disslucc` and fix any new warnings it reports.
 
 ### Expected Deliverable

@@ -1,35 +1,20 @@
-# configs/models/lucc_continuous.toml
+# LuccContinuousExecutor (CLUE-like, linear-regression potential) from a TOML file.
 #
-# Registers disslucc's LuccContinuousExecutor with dissmodel-platform.
-# This is the SECOND entry point (docs/decisions.md) -- the default,
-# script-first path (examples/run_script.py) needs none of this.
+# Run it locally (data/input/csAC.zip is the region used in LuccME's Lab 1):
 #
-# Mirrors the convention in dissmodel-configs
-# (https://github.com/DisSModel/dissmodel-configs/blob/main/models/
-# lucc_continuous_vector.toml from disslucc-continuous), adapted to
-# this package: disslucc is raster-only (no vector/raster split), so
-# there is one executor -- LuccContinuousExecutor, name="lucc_continuous"
-# -- not "lucc_vector"/"lucc_raster".
+#   python -m disslucc.executors.continuous run \
+#       --toml examples/dissmodel-configs/lucc_continuous.toml \
+#       --input data/input/csAC.zip \
+#       --param demand_csv=data/input/examples_demand_lab1.csv \
+#       --output outputs/result.tif
 #
-# Everything under [model] except [model.parameters] becomes part of
-# record.resolved_spec on the platform and is merged into
-# record.parameters before run() is called (see ModelExecutor.run()'s
-# docstring in dissmodel/executor/model_executor.py: "Receives record
-# with resolved_spec and parameters already merged"). LuccContinuousExecutor
-# reads land_use_types/potential_data/static/complementar_lu/
-# allocation_data directly from record.parameters -- see
-# src/disslucc/executors/continuous.py and the equivalent hand-built
-# ExperimentRecord in examples/run_lab1_via_executor.py, which this
-# file is the TOML-registered version of (same Lab1 coefficients).
+# The same file registers the model in dissmodel-configs for dissmodel-platform.
+# It is the declarative twin of examples/run_continuous_executor.py: same
+# coefficients, and tests/test_executor_toml.py checks that both give the
+# same output file (same SHA-256).
 #
-# NOTE: dissmodel's own *local* CLI (dissmodel.executor.cli.run_cli,
-# `python -m disslucc.executors.continuous run --toml ...`) only lifts
-# [model.parameters] into record.parameters -- it does NOT perform the
-# resolved_spec merge described above. That merge is platform-side.
-# So this file, as structured, is for registration in dissmodel-configs
-# and execution via dissmodel-platform; it is not yet a drop-in
-# --toml argument for local CLI runs of this executor. See
-# docs/decisions.md for the open item this leaves.
+# Everything under [model] except [model.parameters] is merged into
+# record.parameters before run(); [model.parameters] holds runtime values.
 
 [model]
 executor_module  = "disslucc.executors"

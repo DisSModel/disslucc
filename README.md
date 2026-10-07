@@ -4,16 +4,16 @@
 
 Land use and land cover change (LUCC) modeling, raster-only,
 script-first, on top of [`dissmodel`](https://github.com/DisSModel/dissmodel).
-Continuous (CLUE) and discrete (CLUE-S) allocation, validated against
-the original TerraME reference on real data for both: Lab1
-(continuous) within the official 0.01 MAE tolerance, Lab15 (discrete)
-at exact, 100% cell-by-cell agreement — see
-[`docs/validation.md`](docs/validation.md) for both results and what
-each one does and doesn't prove. Both are also checked year by year,
-iteration counts included, against the goldens of
-[LambdaGeo/terrame-docker](https://github.com/LambdaGeo/terrame-docker)
-(`benchmark/goldens/`), which cover the 21 labs of the LuccME package; this
-repository keeps the ones its tests use.
+LuccME's components -- demand, potential, allocation -- in Python:
+continuous (CLUE-like), discrete (CLUE-S-like), spatial-lag potential,
+saturation, and demand computed from land-use layers. It is an alternative
+that you can run next to TerraME/LuccME, not a replacement for them.
+
+**Agreement with TerraME/LuccME** (iteration counts, per-year error, timings,
+10 of the 21 LuccME labs so far) is checked in
+[LambdaGeo/disslucc-benchmark](https://github.com/LambdaGeo/disslucc-benchmark),
+which pins the release of disslucc it ran against. This repository is the
+package and the examples to learn it with.
 
 ## Migration status: becoming the single successor repository
 
@@ -99,7 +99,7 @@ curious).
 `examples/dissmodel-configs/` has a TOML config per executor
 ([continuous](examples/dissmodel-configs/lucc_continuous.toml),
 [discrete](examples/dissmodel-configs/lucc_discrete.toml)), each
-encoding the same coefficients as its `examples/run_*_via_executor.py`
+encoding the same coefficients as its `examples/run_*_executor.py`
 counterpart — see [`api.md`](docs/api.md#registering-with-dissmodel-configs-toml)
 for the full explanation.
 
@@ -109,9 +109,8 @@ for the full explanation.
 - **[api.md](docs/api.md)** — reference for every class and parameter
 - **[architecture.md](docs/architecture.md)** — what's faithful to the
   original repositories, what was simplified, what's new
-- **[validation.md](docs/validation.md)** — validation results against
-  TerraME (Lab1 continuous, Lab15 discrete) and the engineering vs.
-  scientific validation distinction
+- **[validation.md](docs/validation.md)** — where the comparison with
+  TerraME lives: [disslucc-benchmark](https://github.com/LambdaGeo/disslucc-benchmark)
 - **[decisions.md](docs/decisions.md)** — full history of decisions and
   tests throughout development
 
@@ -128,12 +127,18 @@ mypy src/disslucc
 pytest tests/ -v
 ```
 
-CI (`.github/workflows/tests.yml`) runs the same test suite on every push
-and pull request. `tests/` includes the Lab1/Lab15 validation numbers as
-real assertions, plus the discriminance suites ported from
-`disslucc-continuous`/`disslucc-discrete` -- these check whether the
-benchmark itself can tell a correct implementation from a wrong one, not
-just whether it reproduces the reference.
+CI (`.github/workflows/tests.yml`) runs ruff, mypy and the tests on every push
+and pull request. `tests/` covers the demand components and checks that each
+example TOML, run through the CLI, produces the same output file as the
+equivalent hand-built experiment. **Agreement with TerraME/LuccME is not tested
+here**: it is the job of
+[disslucc-benchmark](https://github.com/LambdaGeo/disslucc-benchmark), which pins
+the disslucc release it ran against.
+
+## Citing
+
+Use the DOI of the release you used (Zenodo, badge above once published) and
+`CITATION.cff`.
 
 ## Structure
 
@@ -145,13 +150,10 @@ disslucc/
 │   │   ├── demand/      #   shared continuous + discrete
 │   │   ├── potential/    #   linear.py (continuous) + logistic.py (discrete)
 │   │   └── allocation/   #   clue.py (continuous) + clue_s.py (discrete)
-│   ├── validation/      # shared continuous + discrete (outside components/, see architecture.md)
-│   │   └── naive_baseline.py  # discriminance baseline for Lab15
+│   ├── validation/      # Pontius & Millones metrics, naive baseline (outside components/, see architecture.md)
 │   └── executors/        # ModelExecutor -- automatic provenance, second entry point
-├── examples/          # ready-made scripts, synthetic, real data, and via Executor
-├── data/input/        # vendored Lab1 + Lab15 input shapefiles and demand CSVs
-├── benchmark/
-│   └── goldens/       # TerraME reference results, year by year (from LambdaGeo/terrame-docker)
-├── tests/             # pytest suite -- validation + discriminance, run by CI
+├── examples/          # ready-made scripts: synthetic, real data, executor, TOML configs
+├── data/input/        # vendored example inputs (csAC, cs_moju) and demand CSVs
+├── tests/             # pytest suite: demand components, TOML == executor
 └── docs/
 ```
