@@ -1,6 +1,8 @@
 # disslucc
 
 [![Tests](https://github.com/DisSModel/disslucc/actions/workflows/tests.yml/badge.svg)](https://github.com/DisSModel/disslucc/actions/workflows/tests.yml)
+[![PyPI](https://img.shields.io/pypi/v/disslucc.svg)](https://pypi.org/project/disslucc/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23219338.svg)](https://doi.org/10.5281/zenodo.23219338)
 
 Land use and land cover change (LUCC) modeling, raster-only,
 script-first, on top of [`dissmodel`](https://github.com/DisSModel/dissmodel).
@@ -46,8 +48,11 @@ status, and what's still pending (this does not happen before
 disrupted mid-review).
 
 ```bash
-pip install -e ".[examples]"
+pip install disslucc                 # from PyPI
+pip install "disslucc[examples]"     # + matplotlib, for the examples
 ```
+
+From a clone, for development: `pip install -e ".[dev]"`.
 
 ```python
 from dissmodel.core import Environment

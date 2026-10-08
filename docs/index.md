@@ -9,8 +9,11 @@ saturation. Agreement with the original TerraME/LuccME is checked in
 see [Validation](validation.md).
 
 ```bash
-pip install -e ".[examples]"
+pip install disslucc                 # from PyPI
+pip install "disslucc[examples]"     # + matplotlib, for the examples
 ```
+
+From a clone, for development: `pip install -e ".[dev]"`.
 
 ```python
 from dissmodel.core import Environment
