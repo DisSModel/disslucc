@@ -3,8 +3,11 @@
 ## Install
 
 ```bash
-pip install -e ".[examples]"
+pip install disslucc                 # from PyPI
+pip install "disslucc[examples]"     # + matplotlib, for the examples
 ```
+
+From a clone, for development: `pip install -e ".[dev]"`.
 
 `dissmodel` comes as a dependency (brings `geopandas`/`rasterio`
 along). `matplotlib` is optional, only for the examples that generate
