@@ -2,6 +2,14 @@
 
 All notable changes to `disslucc` are documented here.
 
+## [0.5.1] -- 2026-11-07
+
+### Changed
+- Dependency: `dissmodel>=0.6.4,<0.8.0` (was `<0.7.0`), so `disslucc` installs
+  next to `dissmodel` 0.7 and its reproducibility tools (`dissmodel verify`,
+  `compare`, `reproduce`) without pip downgrading it. No code change.
+- The `dissmodel` bound in `examples/dissmodel-configs/*.toml` follows.
+
 ## [0.5.0] -- 2026-10-08
 
 Clean-up release: the numerical comparison with TerraME/LuccME moved to
