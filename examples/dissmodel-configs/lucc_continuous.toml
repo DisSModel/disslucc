@@ -22,7 +22,7 @@ name             = "lucc_continuous"
 class            = "lucc_continuous"
 description      = "LUCC continuous simulation (CLUE-like, linear regression potential)"
 package          = "git+https://github.com/DisSModel/disslucc@main"
-dissmodel        = ">=0.6.0,<0.7.0"
+dissmodel        = ">=0.6.0,<0.8.0"
 
 # Model-level config read from spec (record.resolved_spec["model"]),
 # merged into record.parameters by the platform before run().

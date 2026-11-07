@@ -7,7 +7,7 @@ authors = [{ name = "Sérgio Souza Costa" }]
 license = { text = "MIT" }
 requires-python = ">=3.11"
 dependencies = [
-    "dissmodel>=0.6.4,<0.7.0",
+    "dissmodel>=0.6.4,<0.8.0",
     # scipy.special.expit (potential/logistic.py) -- was already pulled
     # in transitively by dissmodel's own deps, but disslucc now imports
     # it directly, so it needs to be a declared dependency, not an

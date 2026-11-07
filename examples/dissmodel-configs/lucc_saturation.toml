@@ -21,7 +21,7 @@ name             = "lucc_continuous_saturation"
 class            = "lucc_continuous_saturation"
 description      = "LUCC continuous simulation (CLUE-like with saturation, spatial-lag regression potential)"
 package          = "git+https://github.com/DisSModel/disslucc@main"
-dissmodel        = ">=0.6.4,<0.7.0"
+dissmodel        = ">=0.6.4,<0.8.0"
 
 land_use_types       = ["f", "d", "outros"]
 land_use_no_data     = "outros"

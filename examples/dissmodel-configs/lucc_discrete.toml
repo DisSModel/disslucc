@@ -15,7 +15,7 @@ name             = "lucc_discrete"
 class            = "lucc_discrete"
 description      = "LUCC discrete simulation (CLUE-S-like, logistic regression potential)"
 package          = "git+https://github.com/DisSModel/disslucc@main"
-dissmodel        = ">=0.6.0,<0.7.0"
+dissmodel        = ">=0.6.0,<0.8.0"
 
 # Model-level config read from spec (record.resolved_spec["model"]),
 # merged into record.parameters by the platform before run().
